@@ -1,16 +1,18 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.0.11
+Version:	1.0.12
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
-# Source0-md5:	e3ccd02dec264ad3b9baa9c5c5c39f0b
+# Source0-md5:	9900410b93cb9675903388c697e18b0f
 Patch0:		%{name}-am18.patch
+Patch1:		%{name}-fix.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
+BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.1.94
 BuildRequires:	libtasn1-devel >= 0.2.5
 BuildRequires:	libtool >= 1:1.4.2-9
@@ -61,7 +63,9 @@ Biblioteka statyczna gnutls.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
+mv -f doc/manpages/{gnutls-srpcrypt,srptool}.1
 rm -f acinclude.m4
 
 %build
@@ -94,9 +98,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
 %attr(755,root,root) %{_bindir}/gnutls*
+%attr(755,root,root) %{_bindir}/srptool
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*
+%{_mandir}/man1/srptool.1*
 
 %files devel
 %defattr(644,root,root,755)
