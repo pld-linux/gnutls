@@ -1,0 +1,88 @@
+--- gnutls-1.2.0/doc/gnutls.texi.orig	2005-01-27 01:01:52.000000000 +0100
++++ gnutls-1.2.0/doc/gnutls.texi	2005-02-28 19:24:21.482986888 +0100
+@@ -27,19 +27,19 @@
+ @end quotation
+ @end copying
+ 
+-@dircategory GNU Libraries
++@dircategory Libraries:
+ @direntry
+-* libgnutls: (gnutls).		A Transport Layer Security Library.
++* libgnutls: (gnutls).			A Transport Layer Security Library
+ @end direntry
+ 
+-@dircategory Network Applications
++@dircategory Net utilities:
+ @direntry
+-* GnuTLS: (gnutls).			Package for Transport Layer Security.
+-* certtool: (gnutls)Invoking certtool.	Manipulate certificates and keys.
+-* srptool: (gnutls)Invoking srptool.	Simple SRP password tool.
+-* gnutls-serv: (gnutls)Invoking gnutls-serv.	GNU TLS test server.
+-* gnutls-cli: (gnutls)Invoking gnutls-cli.	GNU TLS test client.
+-* gnutls-cli-debug: (gnutls)Invoking gnutls-cli-debug.	GNU TLS debug client.
++* GnuTLS: (gnutls).			Package for Transport Layer Security
++* certtool: (gnutls)certtool.		Manipulate certificates and keys
++* srptool: (gnutls)srptool.		Simple SRP password tool
++* gnutls-serv: (gnutls)gnutls-serv.	GNU TLS test server
++* gnutls-cli: (gnutls)gnutls-cli.	GNU TLS test client
++* gnutls-cli-debug: (gnutls)gnutls-cli-debug.	GNU TLS debug client
+ @end direntry
+ 
+ @titlepage
+@@ -1957,14 +1957,13 @@
+ application.  The applications are discussed in this chapter.
+ 
+ @menu
+-* Invoking srptool::
+-* Invoking gnutls-cli::
+-* Invoking gnutls-cli-debug::
+-* Invoking gnutls-serv::
+-* Invoking certtool::
++* srptool::
++* gnutls-cli::
++* gnutls-cli-debug::
++* gnutls-serv::
++* certtool::
+ @end menu
+ 
+-@node Invoking srptool
++@node srptool
+ @section Invoking srptool
+-@anchor{srptool}
+ @cindex srptool
+@@ -2009,7 +2009,7 @@
+ 
+ @end itemize
+ 
+-@node Invoking gnutls-cli
++@node gnutls-cli
+ @section Invoking gnutls-cli
+ @cindex gnutls-cli
+ 
+@@ -2066,7 +2066,7 @@
+      --copyright              prints the program's license
+ @end verbatim
+ 
+-@node Invoking gnutls-cli-debug
++@node gnutls-cli-debug
+ @section Invoking gnutls-cli-debug
+ @cindex gnutls-cli-debug
+ 
+@@ -2115,7 +2115,7 @@
+ Checking for OpenPGP authentication support (TLS extension)... no
+ @end smallexample
+ 
+-@node Invoking gnutls-serv
++@node gnutls-serv
+ @section Invoking gnutls-serv
+ @cindex gnutls-serv
+ 
+@@ -2164,7 +2164,7 @@
+      --copyright              prints the program's license
+ @end verbatim
+ 
+-@node Invoking certtool
++@node certtool
+ @section Invoking certtool
+ @cindex certtool
+ 
