@@ -1,0 +1,177 @@
+--- gnutls-0.8.9/lib/gnutls_mpi.h.orig	2003-02-04 13:52:24.000000000 +0100
++++ gnutls-0.8.9/lib/gnutls_mpi.h	2003-08-03 04:38:49.000000000 +0200
+@@ -24,6 +24,7 @@
+ 
+ # define _gnutls_mpi_alloc_like(x) _gnutls_mpi_new(_gnutls_mpi_get_nbits(x)) 
+ 
++typedef gcry_mpi_t MPI;
+ void _gnutls_mpi_release( MPI* x);
+ 
+ int _gnutls_mpi_scan( GNUTLS_MPI *ret_mpi, const opaque *buffer, size_t *nbytes );
+--- gnutls-0.8.9/lib/gnutls_hash_int.c.orig	2003-01-09 23:10:45.000000000 +0100
++++ gnutls-0.8.9/lib/gnutls_hash_int.c	2003-08-03 04:41:10.000000000 +0200
+@@ -37,7 +37,7 @@
+ 		ret = gnutls_malloc(sizeof(GNUTLS_MAC_HANDLE_INT));
+ 		if (ret == NULL)
+ 			return GNUTLS_HASH_FAILED;
+-		ret->handle = gcry_md_open(GCRY_MD_SHA1, 0);
++		gcry_md_open(&ret->handle, GCRY_MD_SHA1, 0);
+ 		if (!ret->handle) {
+ 			gnutls_free(ret);
+ 			ret = GNUTLS_HASH_FAILED;
+@@ -48,7 +48,7 @@
+ 		ret = gnutls_malloc(sizeof(GNUTLS_MAC_HANDLE_INT));
+ 		if (ret == NULL)
+ 			return GNUTLS_HASH_FAILED;
+-		ret->handle = gcry_md_open(GCRY_MD_MD5, 0);
++		gcry_md_open(&ret->handle, GCRY_MD_MD5, 0);
+ 		if (!ret->handle) {
+ 			gnutls_free(ret);
+ 			ret = GNUTLS_HASH_FAILED;
+@@ -104,7 +104,7 @@
+ 	ret->key = NULL;	/* it's a hash anyway */
+ 	ret->keysize = 0;
+ 
+-	ret->handle = gcry_md_copy(handle->handle);
++	gcry_md_copy(&ret->handle, handle->handle);
+ 
+ 	if (ret->handle == NULL) {
+ 		gnutls_free(ret);
+@@ -147,8 +147,7 @@
+ 		if (ret == NULL)
+ 			return GNUTLS_MAC_FAILED;
+ 
+-		ret->handle =
+-		    gcry_md_open(GCRY_MD_SHA1, GCRY_MD_FLAG_HMAC);
++		gcry_md_open(&ret->handle, GCRY_MD_SHA1, GCRY_MD_FLAG_HMAC);
+ 
+ 		if (!ret->handle)
+ 			ret = GNUTLS_MAC_FAILED;
+@@ -158,7 +157,7 @@
+ 		if (ret == NULL)
+ 			return GNUTLS_MAC_FAILED;
+ 
+-		ret->handle = gcry_md_open(GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
++		gcry_md_open(&ret->handle, GCRY_MD_MD5, GCRY_MD_FLAG_HMAC);
+ 
+ 		if (!ret->handle)
+ 			ret = GNUTLS_MAC_FAILED;
+--- gnutls-0.8.9/lib/gnutls_cipher_int.c.orig	2003-01-09 22:28:46.000000000 +0100
++++ gnutls-0.8.9/lib/gnutls_cipher_int.c	2003-08-03 04:42:22.000000000 +0200
+@@ -33,20 +33,20 @@
+ 		ret = GNUTLS_CIPHER_FAILED;
+ 		break;
+ 	case GNUTLS_CIPHER_RIJNDAEL_128_CBC:
+-		ret = gcry_cipher_open(GCRY_CIPHER_RIJNDAEL, GCRY_CIPHER_MODE_CBC, 0);
++		gcry_cipher_open(&ret, GCRY_CIPHER_RIJNDAEL, GCRY_CIPHER_MODE_CBC, 0);
+ 		break;
+ 	case GNUTLS_CIPHER_RIJNDAEL_256_CBC:
+-		ret = gcry_cipher_open(GCRY_CIPHER_RIJNDAEL256, GCRY_CIPHER_MODE_CBC, 0);
++		gcry_cipher_open(&ret, GCRY_CIPHER_RIJNDAEL256, GCRY_CIPHER_MODE_CBC, 0);
+ 		break;
+ 	case GNUTLS_CIPHER_TWOFISH_128_CBC:
+-		ret = gcry_cipher_open(GCRY_CIPHER_TWOFISH, GCRY_CIPHER_MODE_CBC, 0);
++		gcry_cipher_open(&ret, GCRY_CIPHER_TWOFISH, GCRY_CIPHER_MODE_CBC, 0);
+ 		break;
+ 	case GNUTLS_CIPHER_3DES_CBC:
+-		ret = gcry_cipher_open(GCRY_CIPHER_3DES, GCRY_CIPHER_MODE_CBC, 0);
++		gcry_cipher_open(&ret, GCRY_CIPHER_3DES, GCRY_CIPHER_MODE_CBC, 0);
+ 		break;
+ 	case GNUTLS_CIPHER_ARCFOUR_128:
+ 	case GNUTLS_CIPHER_ARCFOUR_40:
+-		ret = gcry_cipher_open(GCRY_CIPHER_ARCFOUR, GCRY_CIPHER_MODE_STREAM, 0);
++		gcry_cipher_open(&ret, GCRY_CIPHER_ARCFOUR, GCRY_CIPHER_MODE_STREAM, 0);
+ 		break;
+ 	default:
+ 		ret = GNUTLS_CIPHER_FAILED;
+--- gnutls-0.8.9/lib/gnutls_mpi.c.orig	2003-02-04 13:52:24.000000000 +0100
++++ gnutls-0.8.9/lib/gnutls_mpi.c	2003-08-03 04:44:22.000000000 +0200
+@@ -41,7 +41,7 @@
+ int _gnutls_mpi_scan( GNUTLS_MPI *ret_mpi, const opaque *buffer, size_t *nbytes ) {
+ 	int ret;
+ 	
+-	ret = gcry_mpi_scan( ret_mpi, GCRYMPI_FMT_USG, buffer, nbytes);
++	ret = gcry_mpi_scan( ret_mpi, GCRYMPI_FMT_USG, buffer, *nbytes, nbytes);
+ 	if (ret) return ret;
+ 	
+ 	/* MPIs with 0 bits are illegal
+@@ -56,7 +56,7 @@
+ 
+ int _gnutls_mpi_scan_pgp( GNUTLS_MPI *ret_mpi, const opaque *buffer, size_t *nbytes ) {
+ int ret;
+-	ret = gcry_mpi_scan( ret_mpi, GCRYMPI_FMT_PGP, buffer, nbytes);
++	ret = gcry_mpi_scan( ret_mpi, GCRYMPI_FMT_PGP, buffer, *nbytes, nbytes);
+ 
+ 	if (ret) return ret;
+ 
+@@ -71,12 +71,12 @@
+ }
+ 
+ int _gnutls_mpi_print( opaque *buffer, size_t *nbytes, const GNUTLS_MPI a ) {
+-	return gcry_mpi_print( GCRYMPI_FMT_USG, buffer, nbytes, a);
++	return gcry_mpi_print( GCRYMPI_FMT_USG, buffer, *nbytes, nbytes, a);
+ }
+ 
+ /* Always has the first bit zero */
+ int _gnutls_mpi_print_lz( opaque *buffer, size_t *nbytes, const GNUTLS_MPI a ) {
+-	return gcry_mpi_print( GCRYMPI_FMT_STD, buffer, nbytes, a);
++	return gcry_mpi_print( GCRYMPI_FMT_STD, buffer, *nbytes, nbytes, a);
+ }
+ 
+ 
+--- gnutls-0.8.9/src/prime.c.orig	2003-02-04 13:52:26.000000000 +0100
++++ gnutls-0.8.9/src/prime.c	2003-08-03 04:51:21.000000000 +0200
+@@ -26,6 +26,7 @@
+ #include <gcrypt.h>
+ #include <gnutls/gnutls.h>
+ #include "../lib/defines.h"
++typedef gcry_mpi_t MPI;
+ 
+ MPI _gcry_generate_elg_prime( int mode, unsigned pbits, unsigned qbits,
+ 	                MPI g, MPI **ret_factors );
+@@ -60,10 +61,10 @@
+ 
+ 	/* print generator */
+ 	size = 0;
+-	gcry_mpi_print(GCRYMPI_FMT_USG, NULL, &size, g);
++	gcry_mpi_print(GCRYMPI_FMT_USG, NULL, size, &size, g);
+ 
+ 	tmp = malloc(size);
+-   	gcry_mpi_print(GCRYMPI_FMT_USG, tmp, &size, g);
++   	gcry_mpi_print(GCRYMPI_FMT_USG, tmp, size, &size, g);
+ 
+ 	printf( "/* generator - %d bits */\n", gcry_mpi_get_nbits(g)); 
+ 	printf( "\nconst uint8 g[%d] = { ", size);
+@@ -79,10 +80,10 @@
+ 
+ 	/* print prime */
+ 	size = 0;
+-	gcry_mpi_print(GCRYMPI_FMT_USG, NULL, &size, prime);
++	gcry_mpi_print(GCRYMPI_FMT_USG, NULL, size, &size, prime);
+ 
+ 	tmp = malloc(size);
+-   	gcry_mpi_print(GCRYMPI_FMT_USG, tmp, &size, prime);
++   	gcry_mpi_print(GCRYMPI_FMT_USG, tmp, size, &size, prime);
+ 
+ 	printf( "/* prime - %d bits */\n",  gcry_mpi_get_nbits(prime)); 
+ 	printf( "\nconst uint8 prime[%d] = { ", size);
+--- gnutls-0.8.9/libextra/gnutls_openssl.c.orig	2003-06-29 08:48:11.000000000 +0200
++++ gnutls-0.8.9/libextra/gnutls_openssl.c	2003-08-03 04:49:00.000000000 +0200
+@@ -896,7 +896,7 @@
+ 
+ void MD5_Init(MD5_CTX *ctx)
+ {
+-    ctx->handle = gcry_md_open(GCRY_MD_MD5, 0);
++    gcry_md_open(&ctx->handle, GCRY_MD_MD5, 0);
+ }
+ 
+ void MD5_Update(MD5_CTX *ctx, const void *buf, int len)
+@@ -934,7 +934,7 @@
+ 
+ void RIPEMD160_Init(RIPEMD160_CTX *ctx)
+ {
+-    ctx->handle = gcry_md_open(GCRY_MD_RMD160, 0);
++     gcry_md_open(&ctx->handle, GCRY_MD_RMD160, 0);
+ }
+ 
+ void RIPEMD160_Update(RIPEMD160_CTX *ctx, const void *buf, int len)
