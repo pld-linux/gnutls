@@ -8,7 +8,7 @@ Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
 # Source0-md5:	07ddd9b30ea538b204628c3d6613a465
 URL:		http://www.gnu.org/software/gnutls/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	libgcrypt-devel >= 1.1.44
 BuildRequires:	libtasn1-devel >= 0.2.5
