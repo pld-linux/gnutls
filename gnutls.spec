@@ -7,15 +7,16 @@ License:	LGPL
 Group:		Libraries
 Source0:	ftp://gnutls.hellug.gr/pub/gnutls/%{name}-%{version}.tar.bz2
 # Source0-md5:	6bf79feb3425ad437c52c87463b70e53
+Patch0:		%{name}-fix.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake
+BuildRequires:	automake >= 1.8.3
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.1.94
 BuildRequires:	libtasn1-devel >= 0.2.5
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	lzo-devel
-BuildRequires:	opencdk-devel >= 0.5.3
+BuildRequires:	opencdk-devel >= 0.5.5
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,6 +61,7 @@ Biblioteka statyczna gnutls.
 
 %prep
 %setup -q
+%patch0 -p1
 
 rm -f acinclude.m4
 
@@ -81,6 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
+
+echo '.so srptool.1' > $RPM_BUILD_ROOT%{_mandir}/man1/gnutls-srpcrypt.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
