@@ -1,22 +1,20 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	0.8.12
+Version:	0.9.96
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
-# Source0-md5:	e03f5abefb95458bdeee7d7e6cbd80fb
-Patch0:		%{name}-libgcrypt.patch
-Patch1:		%{name}-acfix.patch
+# Source0-md5:	62c9ee7fa647e52b76782b7e7de71e6f
 URL:		http://www.gnu.org/software/gnutls/
-BuildRequires:	autoconf >= 2.54
+BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
-BuildRequires:	libtool
-BuildRequires:	libgcrypt-devel >= 1.1.42
-BuildRequires:	libtasn1-devel
+BuildRequires:	libgcrypt-devel >= 1.1.44
+BuildRequires:	libtasn1-devel >= 0.2.5
+BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	lzo-devel
-BuildRequires:	opencdk-devel >= 0.5.1
+BuildRequires:	opencdk-devel >= 0.5.2
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,7 +35,7 @@ Summary:	Header files etc to develop gnutls applications
 Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	libgcrypt-devel >= 1.1.42
+Requires:	libgcrypt-devel >= 1.1.44
 Requires:	libtasn1-devel
 Requires:	zlib-devel
 
@@ -61,13 +59,13 @@ Biblioteka statyczna gnutls.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
+# supplied libtool is broken (relink)
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	--disable-dependency-tracking
@@ -90,13 +88,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS
-%attr(755,root,root) %{_bindir}/*
-%exclude %{_bindir}/*-config
+%attr(755,root,root) %{_bindir}/certtool
+%attr(755,root,root) %{_bindir}/gnutls*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_mandir}/man1/gnutls-*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*-config
+%attr(755,root,root) %{_bindir}/libgnutls*-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/gnutls
