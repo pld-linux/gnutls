@@ -1,0 +1,73 @@
+--- gnutls-1.0.12/lib/Makefile.am.orig	2004-03-20 20:12:47.000000000 +0100
++++ gnutls-1.0.12/lib/Makefile.am	2004-04-24 10:58:34.954185376 +0200
+@@ -55,7 +55,7 @@
+ 	x509/x509.lo x509/extensions.lo x509/compat.lo x509/verify.lo \
+ 	x509/mpi.lo x509/privkey.lo x509/pkcs7.lo x509/crq.lo x509/xml.lo x509/sign.lo \
+ 	x509/pkcs5.lo x509/privkey_pkcs8.lo x509/pkcs12.lo x509/pkcs12_bag.lo \
+-	x509/pkcs12_encr.lo x509/rfc2818_hostname.lo x509/rc2.lo x509/x509_write.lo \
++	x509/pkcs12_encr.lo x509/rfc2818_hostname.lo x509/x509_write.lo \
+ 	x509/crl_write.lo x509/dsa.lo
+ 
+ libgnutls_la_LDFLAGS = $(LIBASN1_LINK) $(LIBGCRYPT_LIBS) \
+--- gnutls-1.0.12/src/Makefile.am.orig	2004-04-23 08:15:06.000000000 +0200
++++ gnutls-1.0.12/src/Makefile.am	2004-04-24 11:18:52.693060928 +0200
+@@ -5,7 +5,11 @@
+ 
+ SUBDIRS = srp x509 openpgp cfg
+ 
++if HAVE_LIBCFG
+ INCLUDES = -I../lib -I../libtasn1/lib -I../includes $(LIBOPENCDK_CFLAGS)
++else
++INCLUDES = -I../lib -I../libtasn1/lib -I../includes -Icfg $(LIBOPENCDK_CFLAGS)
++endif
+ 
+ bin_PROGRAMS = gnutls-serv gnutls-cli srptool gnutls-cli-debug certtool
+ gnutls_serv_SOURCES = serv-gaa.c serv.c common.c
+--- gnutls-1.0.12/doc/manpages/gnutls-srpcrypt.1.orig	2003-12-02 13:21:58.000000000 +0100
++++ gnutls-1.0.12/doc/manpages/gnutls-srpcrypt.1	2004-04-24 11:27:56.959319880 +0200
+@@ -1,8 +1,8 @@
+ .TH gnutls\-srpcrypt 1 "December 1st 2003"
+ .SH NAME
+-gnutls\-srpcrypt \- Simple SRP password tool
++srptool \- Simple SRP password tool
+ .SH SYNOPSIS
+-gnutls\-srpcrypt [\fIoptions\fR]
++srptool [\fIoptions\fR]
+ .SH DESCRIPTION
+ Very simple program that emulates the programs in the Stanford SRP
+ (Secure Remote Password) libraries using GNU TLS.
+@@ -34,7 +34,7 @@
+ 
+ .RS
+ .nf
+-$ gnutls\-srpcrypt \-\-create\-conf /etc/tpasswd.conf
++$ srptool \-\-create\-conf /etc/tpasswd.conf
+ .fi
+ .RE
+ 
+@@ -44,7 +44,7 @@
+ 
+ .RS
+ .nf
+-$ gnutls\-srpcrypt \-\-passwd /etc/tpasswd \\
++$ srptool \-\-passwd /etc/tpasswd \\
+     \-\-passwd\-conf /etc/tpasswd.conf \-u test
+ .fi
+ .RE
+@@ -54,7 +54,7 @@
+ 
+ .RS
+ .nf
+-$ gnutls\-srpcrypt \-\-passwd /etc/tpasswd \\
++$ srptool \-\-passwd /etc/tpasswd \\
+     \-\-passwd\-conf /etc/tpasswd.conf \-\-verify \-u test
+ .fi
+ .RE
+--- gnutls-1.0.12/doc/manpages/Makefile.am.orig	2003-12-02 13:22:11.000000000 +0100
++++ gnutls-1.0.12/doc/manpages/Makefile.am	2004-04-24 11:28:13.956735880 +0200
+@@ -1,3 +1,3 @@
+-man_MANS = gnutls-cli.1 gnutls-cli-debug.1 gnutls-serv.1 gnutls-srpcrypt.1 certtool.1
+-EXTRA_DIST = gnutls-cli.1 gnutls-cli-debug.1 gnutls-serv.1 gnutls-srpcrypt.1 certtool.1
++man_MANS = gnutls-cli.1 gnutls-cli-debug.1 gnutls-serv.1 srptool.1 certtool.1
++EXTRA_DIST = gnutls-cli.1 gnutls-cli-debug.1 gnutls-serv.1 srptool.1 certtool.1
+ 
