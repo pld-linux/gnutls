@@ -1,4 +1,5 @@
 Summary:	The GNU Transport Layer Security Library
+Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	0.2.9
 Release:	1
@@ -31,7 +32,7 @@ grupê robocz± IETF TLS.
 
 %package devel
 Summary:	Header files etc to develop gnutls applications
-Summary(pl):	Pliki naglowkowe i inne do gnutls
+Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(es):	Desarrollo/Bibliotecas
@@ -45,8 +46,8 @@ Requires:	%{name} = %{version}
 %description devel
 Header files etc to develop gnutls applications.
 
-%description -l pl devel
-Pliki naglowkowe i inne do gnutls.
+%description devel -l pl
+Pliki nag³ówkowe i inne do gnutls.
 
 %package static
 Summary:	Static gnutls library
@@ -64,7 +65,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static gnutls library.
 
-%description -l pl static
+%description static -l pl
 Biblioteka statyczna gnutls.
 
 %prep
@@ -85,11 +86,11 @@ rm -rf $RPM_BUILD_ROOT
 
 gzip -9nf AUTHORS NEWS README THANKS
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
