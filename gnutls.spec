@@ -1,25 +1,28 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.0.24
+Version:	1.2.0
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
-# Source0-md5:	3debf25f86c8d42670719f654bb19f5e
+Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
+# Source0-md5:	05a9b0a16089db1afd37ed88b36f1e77
 Patch0:		%{name}-fix.patch
+Patch1:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
-BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake >= 1:1.8.3
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	libcfg+-devel
-BuildRequires:	libgcrypt-devel >= 1.1.94
-BuildRequires:	libtasn1-devel >= 0.2.10
+BuildRequires:	libgcrypt-devel >= 1.2.0
+BuildRequires:	libtasn1-devel >= 0.2.11
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
 BuildRequires:	opencdk-devel >= 0.5.5
+BuildRequires:	texinfo
 BuildRequires:	zlib-devel
-Requires:	libgcrypt >= 1.1.94
-Requires:	libtasn1 >= 0.2.10
+Requires(post,postun):	/sbin/ldconfig
+Requires:	libgcrypt >= 1.2.0
+Requires:	libtasn1 >= 0.2.11
 Requires:	opencdk >= 0.5.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,8 +43,8 @@ Summary:	Header files etc to develop gnutls applications
 Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libgcrypt-devel >= 1.1.94
-Requires:	libtasn1-devel >= 0.2.10
+Requires:	libgcrypt-devel >= 1.2.0
+Requires:	libtasn1-devel >= 0.2.11
 Requires:	zlib-devel
 
 %description devel
@@ -65,13 +68,12 @@ Biblioteka statyczna gnutls.
 %prep
 %setup -q
 %patch0 -p1
-
-rm -f acinclude.m4
+%patch1 -p1
 
 %build
 # supplied libtool is broken (relink)
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4 -I gl/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -87,13 +89,16 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 
-echo '.so srptool.1' > $RPM_BUILD_ROOT%{_mandir}/man1/gnutls-srpcrypt.1
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+
+%postun
+/sbin/ldconfig
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)
@@ -105,6 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*
 %{_mandir}/man1/srptool.1*
+%{_infodir}/*.info*
 
 %files devel
 %defattr(644,root,root,755)
@@ -114,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gnutls
 %{_aclocaldir}/*.m4
 %{_pkgconfigdir}/*.pc
+%{_mandir}/man3/*gnutls*.3*
 
 %files static
 %defattr(644,root,root,755)
