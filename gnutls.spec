@@ -1,7 +1,7 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	0.8.1
+Version:	0.8.7
 Release:	1
 License:	LGPL
 Group:		Libraries
@@ -12,6 +12,7 @@ BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	libgcrypt-devel >= 1.1.12
 BuildRequires:	libtasn1-devel
+BuildRequires:	lzo-devel
 BuildRequires:	opencdk-devel >= 0.4.0
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
