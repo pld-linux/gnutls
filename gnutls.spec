@@ -1,12 +1,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.0.23
+Version:	1.0.24
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
-# Source0-md5:	949a2c86fec16216213a4582ef6a5d71
+# Source0-md5:	3debf25f86c8d42670719f654bb19f5e
 Patch0:		%{name}-fix.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.57
