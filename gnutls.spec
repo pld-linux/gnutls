@@ -10,7 +10,7 @@ Source0:	ftp://gnutls.hellug.gr/pub/gnutls/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-fix.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake >= 1.8.3
+BuildRequires:	automake >= 1:1.8.3
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.1.94
 BuildRequires:	libtasn1-devel >= 0.2.5
