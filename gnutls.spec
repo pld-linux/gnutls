@@ -10,14 +10,14 @@ Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
 Patch0:		%{name}-libgcrypt.patch
 Patch1:		%{name}-acfix.patch
 URL:		http://www.gnu.org/software/gnutls/
-BuildRequires:	autoconf >= 2.54
+BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRequires:	libgcrypt-devel >= 1.1.42
+BuildRequires:	libgcrypt-devel >= 1.1.43
 BuildRequires:	libtasn1-devel
 BuildRequires:	lzo-devel
 # don't work with opencdk yet
-#BuildRequires:	opencdk-devel >= 0.5.1
+#BuildRequires:	opencdk-devel >= 0.5.2
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -38,7 +38,7 @@ Summary:	Header files etc to develop gnutls applications
 Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	libgcrypt-devel >= 1.1.42
+Requires:	libgcrypt-devel >= 1.1.43
 Requires:	libtasn1-devel
 Requires:	zlib-devel
 
