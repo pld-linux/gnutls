@@ -2,12 +2,13 @@ Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	0.8.9
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
 # Source0-md5:	69d1e02095cca39f6e037d66b2f44beb
 Patch0:		%{name}-libgcrypt.patch
+Patch1:		%{name}-opencdk.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
@@ -15,7 +16,7 @@ BuildRequires:	libtool
 BuildRequires:	libgcrypt-devel >= 1.1.42
 BuildRequires:	libtasn1-devel
 BuildRequires:	lzo-devel
-BuildRequires:	opencdk-devel >= 0.4.0
+BuildRequires:	opencdk-devel >= 0.5.1
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,7 +61,8 @@ Biblioteka statyczna gnutls.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
