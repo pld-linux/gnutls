@@ -1,14 +1,17 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	0.2.9
+Version:	0.5.8
 Release:	1
-License:	GPL
+License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gnupg.org/gcrypt/alpha/libgcrypt/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
 URL:		http://www.gnu.org/software/gnutls/
-BuildRequires:	libgcrypt-devel >= 1.1.4
-BuildRequires:	libmcrypt-devel
+BuildRequires:	libgcrypt-devel >= 1.1.8
+BuildRequires:	libmcrypt-devel >= 2.4.0
+BuildRequires:	zlib-devel
+BuildRequires:	opencdk-devel >= 0.2.0
+BuildRequires:	libtasn1-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -63,8 +66,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 
-gzip -9nf AUTHORS NEWS README THANKS
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -73,15 +74,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/*
+%exclude %{_bindir}/*-config
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/*-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-%{_includedir}/*.h
+%{_includedir}/gnutls
 %{_aclocaldir}/*
 
 %files static
