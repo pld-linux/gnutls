@@ -1,0 +1,13 @@
+--- gnutls-0.8.11/configure.in.orig	Sat Oct  4 08:50:42 2003
++++ gnutls-0.8.11/configure.in	Wed Oct  8 13:17:20 2003
+@@ -165,9 +165,7 @@
+ AC_CHECK_SIZEOF(unsigned char, 1)
+ AC_CHECK_SIZEOF(unsigned char*, 4)
+ 
+-AC_CHECK_TYPES(ptrdiff_t,,, [
+-# include <sys/types.h>
+-])
++AC_CHECK_TYPES([ptrdiff_t])
+ 
+ AC_CHECK_TYPES(uint,,, [
+ # include <sys/types.h>
