@@ -6,6 +6,7 @@ Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
+# Source0-md5:	09c9003dbc9f189b3c652675930d218e
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
