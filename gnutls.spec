@@ -1,18 +1,18 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.2.8
-Release:	2
+Version:	1.2.9
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	623e40d768a5387bcc86f9ae78909cd5
+# Source0-md5:	9b14bac9202c91dbc89431726dbf6b90
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	libcfg+-devel
-BuildRequires:	libgcrypt-devel >= 1.2.0
+BuildRequires:	libgcrypt-devel >= 1.2.2
 BuildRequires:	libtasn1-devel >= 0.2.11
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
@@ -21,7 +21,7 @@ BuildRequires:	readline-devel
 BuildRequires:	texinfo
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
-Requires:	libgcrypt >= 1.2.0
+Requires:	libgcrypt >= 1.2.2
 Requires:	libtasn1 >= 0.2.11
 Requires:	opencdk >= 0.5.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -43,7 +43,7 @@ Summary:	Header files etc to develop gnutls applications
 Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libgcrypt-devel >= 1.2.0
+Requires:	libgcrypt-devel >= 1.2.2
 Requires:	libtasn1-devel >= 0.2.11
 Requires:	opencdk-devel
 Requires:	zlib-devel
