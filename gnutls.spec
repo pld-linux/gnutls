@@ -1,12 +1,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.2.9
+Version:	1.3.0
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	9b14bac9202c91dbc89431726dbf6b90
+# Source0-md5:	e5caf8f1240088a97e53c8e20b117afd
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.59
@@ -105,10 +105,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
 %attr(755,root,root) %{_bindir}/gnutls*
+%attr(755,root,root) %{_bindir}/psktool
 %attr(755,root,root) %{_bindir}/srptool
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*
+%{_mandir}/man1/psktool.1*
 %{_mandir}/man1/srptool.1*
 %{_infodir}/*.info*
 
