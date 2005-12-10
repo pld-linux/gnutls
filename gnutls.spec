@@ -18,7 +18,7 @@ BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
 BuildRequires:	opencdk-devel >= 0.5.5
 BuildRequires:	readline-devel
-BuildRequires:	texinfo
+BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires:	libgcrypt >= 1.2.2
