@@ -1,8 +1,9 @@
+# TODO: switch back to system libtasn1 when possible
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	1.3.4
-Release:	1
+Release:	1.1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/devel/%{name}-%{version}.tar.bz2
@@ -13,7 +14,7 @@ BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.2.2
-BuildRequires:	libtasn1-devel >= 0.2.18
+#BuildRequires:	libtasn1-devel >= 0.2.18
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
 BuildRequires:	opencdk-devel >= 0.5.5
@@ -22,7 +23,7 @@ BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires:	libgcrypt >= 1.2.2
-Requires:	libtasn1 >= 0.2.18
+#Requires:	libtasn1 >= 0.2.18
 Requires:	opencdk >= 0.5.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,7 +45,7 @@ Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.2.2
-Requires:	libtasn1-devel >= 0.2.18
+#Requires:	libtasn1-devel >= 0.2.18
 Requires:	opencdk-devel
 Requires:	zlib-devel
 
@@ -78,7 +79,8 @@ Biblioteka statyczna gnutls.
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-dependency-tracking
+	--disable-dependency-tracking \
+	--with-included-libtasn1
 
 %{__make}
 
