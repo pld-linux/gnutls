@@ -1,4 +1,3 @@
-# TODO: switch back to system libtasn1 when possible
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
