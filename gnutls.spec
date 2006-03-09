@@ -2,19 +2,20 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.3.4
-Release:	1.1
+Version:	1.3.5
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/devel/%{name}-%{version}.tar.bz2
-# Source0-md5:	81bed0c3a2b4c6ae20237a3f3c441001
+# Source0-md5:	585139a0da1385a5a0d97a610de850fe
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
+BuildRequires:	gettext-devel
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.2.2
-#BuildRequires:	libtasn1-devel >= 0.2.18
+BuildRequires:	libtasn1-devel >= 0.3.1
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
 BuildRequires:	opencdk-devel >= 0.5.5
@@ -23,7 +24,7 @@ BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires:	libgcrypt >= 1.2.2
-#Requires:	libtasn1 >= 0.2.18
+Requires:	libtasn1 >= 0.3.1
 Requires:	opencdk >= 0.5.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,7 +46,7 @@ Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.2.2
-#Requires:	libtasn1-devel >= 0.2.18
+Requires:	libtasn1-devel >= 0.3.1
 Requires:	opencdk-devel
 Requires:	zlib-devel
 
@@ -72,15 +73,14 @@ Biblioteka statyczna gnutls.
 %patch0 -p1
 
 %build
-# supplied libtool is broken (relink)
+%{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I m4 -I gl/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-dependency-tracking \
-	--with-included-libtasn1
+	--disable-dependency-tracking
 
 %{__make}
 
@@ -90,6 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -102,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/ldconfig
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
