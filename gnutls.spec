@@ -1,12 +1,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.3.5
+Version:	1.4.0
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/pub/gnutls/devel/%{name}-%{version}.tar.bz2
-# Source0-md5:	585139a0da1385a5a0d97a610de850fe
+Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
+# Source0-md5:	9e1e1b07e971c604923ec394f6922301
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.59
@@ -14,7 +14,7 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.2.2
-BuildRequires:	libtasn1-devel >= 0.3.1
+BuildRequires:	libtasn1-devel >= 0.3.4
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
 BuildRequires:	opencdk-devel >= 0.5.5
@@ -23,7 +23,7 @@ BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires:	libgcrypt >= 1.2.2
-Requires:	libtasn1 >= 0.3.1
+Requires:	libtasn1 >= 0.3.4
 Requires:	opencdk >= 0.5.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,7 +45,7 @@ Summary(pl):	Pliki nag³ówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.2.2
-Requires:	libtasn1-devel >= 0.3.1
+Requires:	libtasn1-devel >= 0.3.4
 Requires:	opencdk-devel
 Requires:	zlib-devel
 
