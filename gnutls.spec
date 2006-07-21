@@ -9,7 +9,7 @@ Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
 # Source0-md5:	1948be128e8f684da034b32988867a13
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
-BuildRequires:	autoconf >= 2.59
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	gettext-devel
 BuildRequires:	libcfg+-devel
