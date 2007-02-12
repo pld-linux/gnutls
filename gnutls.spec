@@ -1,5 +1,5 @@
 Summary:	The GNU Transport Layer Security Library
-Summary(pl):	Biblioteka GNU TLS (Transport Layer Security)
+Summary(pl.UTF-8):   Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	1.6.1
 Release:	1
@@ -34,15 +34,15 @@ secure layer, over a reliable transport layer (ie. TCP/IP). Currently
 the gnuTLS library implements the proposed standards by the IETF's TLS
 working group.
 
-%description -l pl
-GnuTLS to projekt maj±cy na celu stworzenie biblioteki udostÍpniaj±cej
-pow≥okÍ bezpieczeÒstwa ponad pow≥ok± transportow± (np. TCP/IP).
+%description -l pl.UTF-8
+GnuTLS to projekt majƒÖcy na celu stworzenie biblioteki udostƒôpniajƒÖcej
+pow≈Çokƒô bezpiecze≈Ñstwa ponad pow≈ÇokƒÖ transportowƒÖ (np. TCP/IP).
 Aktualnie biblioteka gnuTLS implementuje standardy proponowane przez
-grupÍ robocz± IETF TLS.
+grupƒô roboczƒÖ IETF TLS.
 
 %package devel
 Summary:	Header files etc to develop gnutls applications
-Summary(pl):	Pliki nag≥Ûwkowe i inne do gnutls
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.2.2
@@ -53,36 +53,36 @@ Requires:	zlib-devel
 %description devel
 Header files etc to develop gnutls applications.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe i inne do gnutls.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe i inne do gnutls.
 
 %package static
 Summary:	Static gnutls library
-Summary(pl):	Biblioteka statyczna gnutls
+Summary(pl.UTF-8):   Biblioteka statyczna gnutls
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gnutls library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteka statyczna gnutls.
 
 %package c++
 Summary:	libgnutlsxx - C++ interface to gnutls library
-Summary(pl):	libgnutlsxx - interfejs C++ do biblioteki gnutls
+Summary(pl.UTF-8):   libgnutlsxx - interfejs C++ do biblioteki gnutls
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description c++
 libgnutlsxx - C++ interface to gnutls library.
 
-%description c++ -l pl
+%description c++ -l pl.UTF-8
 libgnutlsxx - interfejs C++ do biblioteki gnutls.
 
 %package c++-devel
 Summary:	Header files for libgnutlsxx, a C++ interface to gnutls library
-Summary(pl):	Pliki nag≥Ûwkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls
 Group:		Development/Libraries
 Requires:	%{name}-c++ = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
@@ -91,19 +91,19 @@ Requires:	libstdc++-devel
 %description c++-devel
 Header files for libgnutlsxx, a C++ interface to gnutls library.
 
-%description c++-devel -l pl
-Pliki nag≥Ûwkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls.
+%description c++-devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 
 %package c++-static
 Summary:	Static version of libgnutlsxx, a C++ interface to gnutls library
-Summary(pl):	Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls
+Summary(pl.UTF-8):   Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls
 Group:		Development/Libraries
 Requires:	%{name}-c++-devel = %{version}-%{release}
 
 %description c++-static
 Static version of libgnutlsxx, a C++ interface to gnutls library.
 
-%description c++-static -l pl
+%description c++-static -l pl.UTF-8
 Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 
 %prep
