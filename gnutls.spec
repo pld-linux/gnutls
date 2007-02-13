@@ -1,5 +1,5 @@
 Summary:	The GNU Transport Layer Security Library
-Summary(pl.UTF-8):   Biblioteka GNU TLS (Transport Layer Security)
+Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	1.6.1
 Release:	1
@@ -42,7 +42,7 @@ grupę roboczą IETF TLS.
 
 %package devel
 Summary:	Header files etc to develop gnutls applications
-Summary(pl.UTF-8):   Pliki nagłówkowe i inne do gnutls
+Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.2.2
@@ -58,7 +58,7 @@ Pliki nagłówkowe i inne do gnutls.
 
 %package static
 Summary:	Static gnutls library
-Summary(pl.UTF-8):   Biblioteka statyczna gnutls
+Summary(pl.UTF-8):	Biblioteka statyczna gnutls
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -70,7 +70,7 @@ Biblioteka statyczna gnutls.
 
 %package c++
 Summary:	libgnutlsxx - C++ interface to gnutls library
-Summary(pl.UTF-8):   libgnutlsxx - interfejs C++ do biblioteki gnutls
+Summary(pl.UTF-8):	libgnutlsxx - interfejs C++ do biblioteki gnutls
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -82,7 +82,7 @@ libgnutlsxx - interfejs C++ do biblioteki gnutls.
 
 %package c++-devel
 Summary:	Header files for libgnutlsxx, a C++ interface to gnutls library
-Summary(pl.UTF-8):   Pliki nagłówkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls
+Summary(pl.UTF-8):	Pliki nagłówkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls
 Group:		Development/Libraries
 Requires:	%{name}-c++ = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
@@ -96,7 +96,7 @@ Pliki nagłówkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 
 %package c++-static
 Summary:	Static version of libgnutlsxx, a C++ interface to gnutls library
-Summary(pl.UTF-8):   Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls
+Summary(pl.UTF-8):	Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls
 Group:		Development/Libraries
 Requires:	%{name}-c++-devel = %{version}-%{release}
 
