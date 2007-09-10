@@ -1,31 +1,32 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	1.6.3
+Version:	2.0.0
 Release:	1
-License:	LGPL
+License:	LGPL v2.1+ (libgnutls), GPL v2+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	73da68a4248d34c4d38491ce2119af0f
+# Source0-md5:	181b2ff554a83e6cf85505ea16699d39
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
-BuildRequires:	autoconf >= 2.60
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	autoconf >= 2.61
+BuildRequires:	automake >= 1:1.10
 BuildRequires:	gettext-devel >= 0.14.5
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.2.2
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 0.3.4
+BuildRequires:	libtasn1-devel >= 1.1
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
-BuildRequires:	opencdk-devel >= 0.5.5
+BuildRequires:	opencdk-devel >= 0.6.4
 BuildRequires:	readline-devel
+BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires:	libgcrypt >= 1.2.2
-Requires:	libtasn1 >= 0.3.4
-Requires:	opencdk >= 0.5.5
+Requires:	libtasn1 >= 1.1
+Requires:	opencdk >= 0.6.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,11 +44,12 @@ grupę roboczą IETF TLS.
 %package devel
 Summary:	Header files etc to develop gnutls applications
 Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
+License:	LGPL v2.1+ (libgnutls), GPL v2+ (extra libs)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.2.2
-Requires:	libtasn1-devel >= 0.3.4
-Requires:	opencdk-devel
+Requires:	libtasn1-devel >= 1.1
+Requires:	opencdk-devel >= 0.6.4
 Requires:	zlib-devel
 
 %description devel
@@ -59,6 +61,7 @@ Pliki nagłówkowe i inne do gnutls.
 %package static
 Summary:	Static gnutls library
 Summary(pl.UTF-8):	Biblioteka statyczna gnutls
+License:	LGPL v2.1+ (libgnutls), GPL v2+ (extra libs)
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -71,6 +74,7 @@ Biblioteka statyczna gnutls.
 %package c++
 Summary:	libgnutlsxx - C++ interface to gnutls library
 Summary(pl.UTF-8):	libgnutlsxx - interfejs C++ do biblioteki gnutls
+License:	LGPL v2.1+
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -83,6 +87,7 @@ libgnutlsxx - interfejs C++ do biblioteki gnutls.
 %package c++-devel
 Summary:	Header files for libgnutlsxx, a C++ interface to gnutls library
 Summary(pl.UTF-8):	Pliki nagłówkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name}-c++ = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
@@ -97,6 +102,7 @@ Pliki nagłówkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 %package c++-static
 Summary:	Static version of libgnutlsxx, a C++ interface to gnutls library
 Summary(pl.UTF-8):	Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls
+License:	LGPL v2.1+
 Group:		Development/Libraries
 Requires:	%{name}-c++-devel = %{version}-%{release}
 
@@ -160,6 +166,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/psktool.1*
 %{_mandir}/man1/srptool.1*
 %{_infodir}/gnutls.info*
+%{_infodir}/gnutls-*.png
 
 %files devel
 %defattr(644,root,root,755)
