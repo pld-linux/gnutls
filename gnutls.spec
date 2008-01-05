@@ -1,12 +1,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	2.0.4
+Version:	2.2.0
 Release:	1
-License:	LGPL v2.1+ (libgnutls), GPL v2+ (extra libs and tools)
+License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	0d3c959ff2b3b71f840038c3441ba1f9
+# Source0-md5:	bc9d44a618ad6ec7da35d1dfb56bae57
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
@@ -14,20 +14,20 @@ BuildRequires:	automake >= 1:1.10
 BuildRequires:	gettext-devel >= 0.16
 BuildRequires:	guile-devel >= 5:1.8
 BuildRequires:	libcfg+-devel
-BuildRequires:	libgcrypt-devel >= 1.2.2
+BuildRequires:	libgcrypt-devel >= 1.2.4
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 1.1
+BuildRequires:	libtasn1-devel >= 1.2
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzo-devel
-BuildRequires:	opencdk-devel >= 0.6.4
+BuildRequires:	opencdk-devel >= 0.6.6
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
-Requires:	libgcrypt >= 1.2.2
-Requires:	libtasn1 >= 1.1
-Requires:	opencdk >= 0.6.4
+Requires:	libgcrypt >= 1.2.4
+Requires:	libtasn1 >= 1.2
+Requires:	opencdk >= 0.6.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,12 +45,12 @@ grupę roboczą IETF TLS.
 %package devel
 Summary:	Header files etc to develop gnutls applications
 Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
-License:	LGPL v2.1+ (libgnutls), GPL v2+ (extra libs)
+License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libgcrypt-devel >= 1.2.2
-Requires:	libtasn1-devel >= 1.1
-Requires:	opencdk-devel >= 0.6.4
+Requires:	libgcrypt-devel >= 1.2.4
+Requires:	libtasn1-devel >= 1.2
+Requires:	opencdk-devel >= 0.6.6
 Requires:	zlib-devel
 
 %description devel
@@ -62,7 +62,7 @@ Pliki nagłówkowe i inne do gnutls.
 %package static
 Summary:	Static gnutls library
 Summary(pl.UTF-8):	Biblioteka statyczna gnutls
-License:	LGPL v2.1+ (libgnutls), GPL v2+ (extra libs)
+License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs)
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -116,6 +116,7 @@ Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 %package -n guile-gnutls
 Summary:	Guile bindings for GnuTLS
 Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
+License:	LGPL v2.1+ (gnutls binding), GPL v3+ (gnutls-extra binding)
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 Requires:	guile >= 5:1.8
@@ -178,8 +179,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/psktool
 %attr(755,root,root) %{_bindir}/srptool
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls.so.26
 %attr(755,root,root) %{_libdir}/libgnutls-extra.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-extra.so.26
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.26
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*.1*
 %{_mandir}/man1/psktool.1*
@@ -214,6 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 %files c++
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutlsxx.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutlsxx.so.26
 
 %files c++-devel
 %defattr(644,root,root,755)
@@ -227,12 +232,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n guile-gnutls
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libguile-gnutls-v-0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libguile-gnutls-v-0.so.0
-%attr(755,root,root) %{_libdir}/libguile-gnutls-v-0.so
-%attr(755,root,root) %{_libdir}/libguile-gnutls-extra-v-0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libguile-gnutls-extra-v-0.so.0
-%attr(755,root,root) %{_libdir}/libguile-gnutls-extra-v-0.so
+%attr(755,root,root) %{_libdir}/libguile-gnutls-v-1.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libguile-gnutls-v-1.so.0
+%attr(755,root,root) %{_libdir}/libguile-gnutls-v-1.so
+%attr(755,root,root) %{_libdir}/libguile-gnutls-extra-v-1.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libguile-gnutls-extra-v-1.so.0
+%attr(755,root,root) %{_libdir}/libguile-gnutls-extra-v-1.so
 %{_datadir}/guile/site/gnutls.scm
 %dir %{_datadir}/guile/site/gnutls
 %{_datadir}/guile/site/gnutls/extra.scm
