@@ -9,12 +9,6 @@ Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
 # Source0-md5:	ca2489e29f9dc313a79b9747bb1090e5
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
-# fix: http://article.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/3515
-#BuildRequires:	security(CVE-2009-1415)
-# fix: http://article.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/3516
-#BuildRequires:	security(CVE-2009-1416)
-# fix: http://article.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/3517
-#BuildRequires:	security(CVE-2009-1417)
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
 BuildRequires:	gettext-devel >= 0.17
