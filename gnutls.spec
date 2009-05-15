@@ -1,20 +1,20 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	2.6.5
+Version:	2.6.6
 Release:	1
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	92b92c36b616aa8bd69a9a0fb2b8eb24
+# Source0-md5:	ca2489e29f9dc313a79b9747bb1090e5
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 # fix: http://article.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/3515
-BuildRequires:	security(CVE-2009-1415)
+#BuildRequires:	security(CVE-2009-1415)
 # fix: http://article.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/3516
-BuildRequires:	security(CVE-2009-1416)
+#BuildRequires:	security(CVE-2009-1416)
 # fix: http://article.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/3517
-BuildRequires:	security(CVE-2009-1417)
+#BuildRequires:	security(CVE-2009-1417)
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
 BuildRequires:	gettext-devel >= 0.17
