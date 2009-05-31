@@ -1,37 +1,34 @@
---- gnutls-2.4.0/doc/gnutls.texi.orig	2008-06-05 16:13:55.000000000 +0200
-+++ gnutls-2.4.0/doc/gnutls.texi	2008-06-19 20:13:42.891831150 +0200
-@@ -30,20 +30,20 @@
+--- gnutls-2.8.0/doc/gnutls.texi.orig	2009-05-30 21:21:29.000000000 +0200
++++ gnutls-2.8.0/doc/gnutls.texi	2009-05-30 21:22:36.000000000 +0200
+@@ -29,19 +29,19 @@
  @end quotation
  @end copying
  
--@dircategory GNU Libraries
-+@dircategory Libraries:
+-@dircategory Software libraries
++@dircategory Libraries
  @direntry
--* libgnutls: (gnutls).		A Transport Layer Security Library.
-+* libgnutls: (gnutls).			A Transport Layer Security Library
+ * GnuTLS: (gnutls).		GNU Transport Layer Security Library.
  @end direntry
  
--@dircategory Network Applications
-+@dircategory Net utilities:
+-@dircategory System Administration
++@dircategory Net utilities
  @direntry
--* GnuTLS: (gnutls).			Package for Transport Layer Security.
 -* certtool: (gnutls)Invoking certtool.	Manipulate certificates and keys.
 -* gnutls-serv: (gnutls)Invoking gnutls-serv.	GNU TLS test server.
 -* gnutls-cli: (gnutls)Invoking gnutls-cli.	GNU TLS test client.
 -* gnutls-cli-debug: (gnutls)Invoking gnutls-cli-debug.	GNU TLS debug client.
 -* psktool: (gnutls)Invoking psktool.	Simple TLS-Pre-Shared-Keys manager.
 -* srptool: (gnutls)Invoking srptool.	Simple SRP password tool.
-+* GnuTLS: (gnutls).			Package for Transport Layer Security
-+* certtool: (gnutls)certtool.		Manipulate certificates and keys
-+* gnutls-serv: (gnutls)gnutls-serv.	GNU TLS test server
-+* gnutls-cli: (gnutls)gnutls-cli.	GNU TLS test client
-+* gnutls-cli-debug: (gnutls)gnutls-cli-debug.	GNU TLS debug client
-+* psktool: (gnutls)psktool.		Simple TLS-Pre-Shared-Keys manager
-+* srptool: (gnutls)srptool.		Simple SRP password tool
++* certtool: (gnutls)Invoking certtool.	Manipulate certificates and keys
++* gnutls-serv: (gnutls)Invoking gnutls-serv.	GNU TLS test server
++* gnutls-cli: (gnutls)Invoking gnutls-cli.	GNU TLS test client
++* gnutls-cli-debug: (gnutls)Invoking gnutls-cli-debug.	GNU TLS debug client
++* psktool: (gnutls)Invoking psktool.	Simple TLS-Pre-Shared-Keys manager
++* srptool: (gnutls)Invoking srptool.	Simple SRP password tool
  @end direntry
  
  @titlepage
-@@ -2524,15 +2524,15 @@
+@@ -2714,15 +2714,15 @@
  application.  The applications are discussed in this chapter.
  
  @menu
@@ -54,7 +51,7 @@
  @section Invoking certtool
  @cindex certtool
  
-@@ -2835,7 +2835,7 @@
+@@ -3031,7 +3031,7 @@
  #time_stamping_key
  @end example
  
@@ -63,7 +60,7 @@
  @section Invoking gnutls-cli
  @cindex gnutls-cli
  
-@@ -2956,7 +2956,7 @@
+@@ -3157,7 +3157,7 @@
  @code{--pskkey} parameter, it will query only for the password during
  the handshake.
  
@@ -72,7 +69,7 @@
  @section Invoking gnutls-cli-debug
  @cindex gnutls-cli-debug
  
-@@ -3004,7 +3004,7 @@
+@@ -3205,7 +3205,7 @@
  Checking for OpenPGP authentication support (TLS extension)... no
  @end smallexample
  
@@ -81,7 +78,7 @@
  @section Invoking gnutls-serv
  @cindex gnutls-serv
  
-@@ -3240,7 +3240,7 @@
+@@ -3450,7 +3450,7 @@
  @cindex PSK server
  
  To set up a PSK server with @code{gnutls-serv} you need to create PSK
@@ -90,7 +87,7 @@
  type @code{password} at the prompt.
  
  @smallexample
-@@ -3264,7 +3264,7 @@
+@@ -3474,7 +3474,7 @@
  You can now connect to the server using a PSK client (@pxref{Example
  client PSK connection}).
  
@@ -99,7 +96,7 @@
  @section Invoking psktool
  @cindex psktool
  
-@@ -3291,9 +3291,8 @@
+@@ -3501,9 +3501,8 @@
  @code{--netconf-hint}.  To derive a PSK key from a password with an
  empty PSK identity hint, using @code{--netconf-hint ""}.
  

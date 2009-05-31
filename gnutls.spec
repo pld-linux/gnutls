@@ -1,17 +1,16 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	2.6.6
+Version:	2.8.0
 Release:	1
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	ca2489e29f9dc313a79b9747bb1090e5
+# Source0-md5:	001c1d778ac7b53118cd5e14c6f9210d
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
-BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	guile-devel >= 5:1.8
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.2.4
@@ -135,15 +134,14 @@ Wiązania Guile do GnuTLS.
 %patch0 -p1
 
 %build
-%{__gettextize}
 %{__libtoolize}
-%{__aclocal} -I m4 -I gl/m4 -I lgl/m4 -I libextra/gl/m4
+%{__aclocal} -I m4 -I gl/m4 -I lib/gl/m4 -I libextra/gl/m4 -I lib/m4 -I libextra/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-dependency-tracking \
 	--with-lzo
+#	--disable-dependency-tracking \
 
 %{__make}
 
@@ -156,7 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libguile-gnutls-*.{la,a}
 
-%find_lang %{name}
+#%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -175,7 +173,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-n guile-gnutls -p /sbin/ldconfig
 %postun	-n guile-gnutls -p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
@@ -197,8 +195,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/libgnutls-config
-%attr(755,root,root) %{_bindir}/libgnutls-extra-config
 %attr(755,root,root) %{_libdir}/libgnutls.so
 %attr(755,root,root) %{_libdir}/libgnutls-extra.so
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so
@@ -207,8 +203,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutls-openssl.la
 %{_includedir}/gnutls
 %exclude %{_includedir}/gnutls/gnutlsxx.h
-%{_aclocaldir}/libgnutls.m4
-%{_aclocaldir}/libgnutls-extra.m4
+# These are not installed
+#%{_aclocaldir}/libgnutls.m4
+#%{_aclocaldir}/libgnutls-extra.m4
 %{_pkgconfigdir}/gnutls.pc
 %{_pkgconfigdir}/gnutls-extra.pc
 %{_mandir}/man3/*gnutls*.3*
