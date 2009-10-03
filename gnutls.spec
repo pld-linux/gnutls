@@ -11,6 +11,8 @@ Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
+BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:1.8
 BuildRequires:	libcfg+-devel
 BuildRequires:	libgcrypt-devel >= 1.2.4
@@ -141,7 +143,6 @@ Wiązania Guile do GnuTLS.
 %{__automake}
 %configure \
 	--with-lzo
-#	--disable-dependency-tracking \
 
 %{__make}
 
@@ -149,12 +150,12 @@ Wiązania Guile do GnuTLS.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=%{_aclocaldir}
+	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/libguile-gnutls-*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libguile-gnutls-*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
-#%find_lang %{name}
+%find_lang libgnutls
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -173,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-n guile-gnutls -p /sbin/ldconfig
 %postun	-n guile-gnutls -p /sbin/ldconfig
 
-%files
+%files -f libgnutls.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
@@ -203,9 +204,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutls-openssl.la
 %{_includedir}/gnutls
 %exclude %{_includedir}/gnutls/gnutlsxx.h
-# These are not installed
-#%{_aclocaldir}/libgnutls.m4
-#%{_aclocaldir}/libgnutls-extra.m4
 %{_pkgconfigdir}/gnutls.pc
 %{_pkgconfigdir}/gnutls-extra.pc
 %{_mandir}/man3/*gnutls*.3*
