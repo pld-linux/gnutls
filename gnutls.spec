@@ -27,6 +27,7 @@ BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
+BuildConflicts:	gnutls-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires:	libgcrypt >= 1.2.4
 Requires:	libtasn1 >= 1.5
