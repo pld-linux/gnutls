@@ -2,13 +2,14 @@ Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	2.10.1
-Release:	1
+Release:	2
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
 # Source0-md5:	b614448d7fb43ea0d4f727e6302bbf0f
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
+Patch2:		non-fatal-handshake.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
@@ -137,6 +138,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}

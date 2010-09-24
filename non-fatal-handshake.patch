@@ -1,0 +1,35 @@
+From 0d07d8432d57805a8354ebd6c1e7829f3ab159cb Mon Sep 17 00:00:00 2001
+From: Nikos Mavrogiannopoulos <nmav@gnutls.org>
+Date: Thu, 23 Sep 2010 22:59:09 +0200
+Subject: [PATCH 1/1] No longer use is_fatal() during handshake. Explicitely treat
+ EAGAIN and INTERRUPTED as non-fatal during handshake. If the check_fatal
+ flag is set then GNUTLS_E_WARNING_ALERT_RECEIVED could interrupt
+ a handshake as well.
+
+---
+ lib/gnutls_handshake.c |    7 ++++++-
+ 1 files changed, 6 insertions(+), 1 deletions(-)
+
+diff --git a/lib/gnutls_handshake.c b/lib/gnutls_handshake.c
+index 84e6773..2bf2e1b 100644
+--- a/lib/gnutls_handshake.c
++++ b/lib/gnutls_handshake.c
+@@ -2731,9 +2731,14 @@ gnutls_handshake (gnutls_session_t session)
+   return 0;
+ }
+ 
++
+ #define IMED_RET( str, ret, check_fatal) do { \
+ 	if (ret < 0) { \
+-		if (check_fatal != 0 && gnutls_error_is_fatal(ret)==0) return ret; \
++		/* EAGAIN and INTERRUPTED are always non-fatal */ \
++		if (ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED) \
++			return ret; \
++                /* a warning alert might interrupt handshake */ \
++		if (check_fatal != 0 && ret==GNUTLS_E_WARNING_ALERT_RECEIVED) return ret; \
+ 		gnutls_assert(); \
+ 		ERR( str, ret); \
+ 		_gnutls_handshake_hash_buffers_clear(session); \
+-- 
+1.7.1
+
