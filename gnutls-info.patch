@@ -29,7 +29,9 @@
  @end direntry
  
  @titlepage
-@@ -2841,15 +2841,15 @@
+--- gnutls-2.12.0/doc/cha-programs.texi.orig	2011-03-02 18:39:11.000000000 +0100
++++ gnutls-2.12.0/doc/cha-programs.texi	2011-04-01 20:42:53.813729730 +0200
+@@ -6,16 +6,16 @@
  application.  The applications are discussed in this chapter.
  
  @menu
@@ -39,12 +41,14 @@
 -* Invoking gnutls-serv::
 -* Invoking psktool::
 -* Invoking srptool::
+-* Invoking p11tool::
 +* certtool::
 +* gnutls-cli::
 +* gnutls-cli-debug::
 +* gnutls-serv::
 +* psktool::
 +* srptool::
++* p11tool::
  @end menu
  
 -@node Invoking certtool
@@ -52,8 +56,8 @@
  @section Invoking certtool
  @cindex certtool
  
-@@ -3169,7 +3169,7 @@
- #time_stamping_key
+@@ -338,7 +338,7 @@
+ #ipsec_ike_key
  @end example
  
 -@node Invoking gnutls-cli
@@ -61,7 +65,7 @@
  @section Invoking gnutls-cli
  @cindex gnutls-cli
  
-@@ -3295,7 +3295,7 @@
+@@ -464,7 +464,7 @@
  @code{--pskkey} parameter, it will query only for the password during
  the handshake.
  
@@ -70,7 +74,7 @@
  @section Invoking gnutls-cli-debug
  @cindex gnutls-cli-debug
  
-@@ -3343,7 +3343,7 @@
+@@ -512,7 +512,7 @@
  Checking for OpenPGP authentication support (TLS extension)... no
  @end smallexample
  
@@ -79,7 +83,7 @@
  @section Invoking gnutls-serv
  @cindex gnutls-serv
  
-@@ -3588,7 +3588,7 @@
+@@ -757,7 +757,7 @@
  @cindex PSK server
  
  To set up a PSK server with @code{gnutls-serv} you need to create PSK
@@ -88,7 +92,7 @@
  type @code{password} at the prompt.
  
  @smallexample
-@@ -3612,7 +3612,7 @@
+@@ -781,7 +781,7 @@
  You can now connect to the server using a PSK client (@pxref{Example
  client PSK connection}).
  
@@ -97,7 +101,7 @@
  @section Invoking psktool
  @cindex psktool
  
-@@ -3639,9 +3639,8 @@
+@@ -808,9 +808,9 @@
  @code{--netconf-hint}.  To derive a PSK key from a password with an
  empty PSK identity hint, using @code{--netconf-hint ""}.
  
@@ -105,6 +109,19 @@
 +@node srptool
  @section Invoking srptool
 -@anchor{srptool}
++@anchor{Invoking srptool}
  @cindex srptool
  
  The @file{srptool} is a very simple program that emulates the programs
+@@ -856,9 +856,9 @@
+ 
+ @end itemize
+ 
+-@node Invoking p11tool
++@node p11tool
+ @section Invoking p11tool
+-@anchor{p11tool}
++@anchor{Invoking p11tool}
+ @cindex p11tool
+ 
+ The @file{p11tool} is a program that helps with accessing tokens

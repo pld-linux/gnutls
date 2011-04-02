@@ -1,14 +1,15 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	2.10.5
+Version:	2.12.0
 Release:	1
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	1b032e07ccd22f71a5df78aa73bd91f2
+# Source0-md5:	15889daca10e7155514eef9053ab5632
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-notestsuite.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
@@ -16,7 +17,7 @@ BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:1.8
 BuildRequires:	libcfg+-devel
-BuildRequires:	libgcrypt-devel >= 1.2.4
+BuildRequires:	libgcrypt-devel >= 1.4.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 2.9
 BuildRequires:	libtool >= 2:1.5
@@ -24,13 +25,14 @@ BuildRequires:	lzo-devel
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
+BuildRequires:	pakchois-devel
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
-Requires:	libgcrypt >= 1.2.4
+Requires:	libgcrypt >= 1.4.0
 Requires:	libtasn1 >= 2.9
 #Requires:	opencdk >= 0.6.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,11 +55,13 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libgcrypt-devel >= 1.2.4
+Requires:	libgcrypt-devel >= 1.4.0
 Requires:	libtasn1-devel >= 2.9
 #Requires:	opencdk-devel >= 0.6.6
+Requires:	pakchois-devel
+# lzo-devel for libgnutls-extra only
+Requires:	lzo-devel
 Requires:	zlib-devel
-# libgnutls-extra R: lzo-devel
 
 %description devel
 Header files etc to develop gnutls applications.
@@ -137,6 +141,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -151,6 +156,8 @@ cd lib
 %{__automake}
 cd ..
 %configure \
+	--disable-silent-rules \
+	--with-libgcrypt \
 	--with-lzo
 
 %{__make}
@@ -188,6 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
 %attr(755,root,root) %{_bindir}/gnutls-*
+%attr(755,root,root) %{_bindir}/p11tool
 %attr(755,root,root) %{_bindir}/psktool
 %attr(755,root,root) %{_bindir}/srptool
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
@@ -195,13 +203,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgnutls-extra.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-extra.so.26
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.26
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*.1*
+%{_mandir}/man1/p11tool.1*
 %{_mandir}/man1/psktool.1*
 %{_mandir}/man1/srptool.1*
 %{_infodir}/gnutls.info*
 %{_infodir}/gnutls-*.png
+%{_infodir}/pkcs11-vision.png
 
 %files devel
 %defattr(644,root,root,755)
@@ -226,7 +236,7 @@ rm -rf $RPM_BUILD_ROOT
 %files c++
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutlsxx.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutlsxx.so.26
+%attr(755,root,root) %ghost %{_libdir}/libgnutlsxx.so.27
 
 %files c++-devel
 %defattr(644,root,root,755)
