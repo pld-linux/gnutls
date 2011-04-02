@@ -10,6 +10,7 @@ Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-notestsuite.patch
+Patch3:		%{name}-pakchois.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
@@ -142,6 +143,7 @@ Wiązania Guile do GnuTLS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -151,6 +153,11 @@ Wiązania Guile do GnuTLS.
 %{__automake}
 cd lib
 %{__aclocal} -I m4 -I gl/m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ../libextra
+%{__aclocal} -I m4 -I gl/m4 -I ../lib/m4 -I ../lib/gl/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
