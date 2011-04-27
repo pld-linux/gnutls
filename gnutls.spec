@@ -1,15 +1,15 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	2.12.2
+Version:	2.12.3
 Release:	1
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
-# Source0-md5:	ca6903d99b2aca2a6a326bc8df805b61
+# Source0-md5:	04b72b022b42b10df12cbbae051e2d55
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
-Patch3:		%{name}-pakchois.patch
+#Patch3:		%{name}-pakchois.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
@@ -25,7 +25,8 @@ BuildRequires:	lzo-devel
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
-BuildRequires:	pakchois-devel
+# pakchois is included in gnutls since 2.12.3
+#BuildRequires:	pakchois-devel
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
@@ -58,7 +59,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libgcrypt-devel >= 1.4.0
 Requires:	libtasn1-devel >= 2.9
 #Requires:	opencdk-devel >= 0.6.6
-Requires:	pakchois-devel
+#Requires:	pakchois-devel
 # lzo-devel for libgnutls-extra only
 Requires:	lzo-devel
 Requires:	zlib-devel
@@ -141,7 +142,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch3 -p1
+#%patch3 -p1
 
 %build
 %{__libtoolize}
