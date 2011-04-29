@@ -9,7 +9,6 @@ Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.bz2
 # Source0-md5:	04b72b022b42b10df12cbbae051e2d55
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
-#Patch3:		%{name}-pakchois.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10.2-2
@@ -25,7 +24,7 @@ BuildRequires:	lzo-devel
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
-# pakchois is included in gnutls since 2.12.3
+# since 2.12.3 only internal pakchois is supported
 #BuildRequires:	pakchois-devel
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
@@ -142,7 +141,6 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch3 -p1
 
 %build
 %{__libtoolize}
