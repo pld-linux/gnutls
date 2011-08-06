@@ -169,7 +169,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# although libgnutls{,-extra}.la are obsoleted by pkg-config, there are
+# .pc files missing for libgnutls{-openssl,xx}, and they need libgnutls.la
+
+# guile module - dynamic only
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libguile-gnutls-*.{la,a}
+
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %find_lang %{name}
@@ -226,7 +231,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_includedir}/gnutls/gnutlsxx.h
 %{_pkgconfigdir}/gnutls.pc
 %{_pkgconfigdir}/gnutls-extra.pc
-%{_mandir}/man3/*gnutls*.3*
+%{_mandir}/man3/gnutls*.3*
 
 %files static
 %defattr(644,root,root,755)
