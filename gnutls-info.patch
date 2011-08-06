@@ -83,15 +83,6 @@
  @section Invoking gnutls-serv
  @cindex gnutls-serv
  
-@@ -757,7 +757,7 @@
- @cindex PSK server
- 
- To set up a PSK server with @code{gnutls-serv} you need to create PSK
--password file (@pxref{Invoking psktool}).  In the example below, I
-+password file (@pxref{psktool}).  In the example below, I
- type @code{password} at the prompt.
- 
- @smallexample
 @@ -781,7 +781,7 @@
  You can now connect to the server using a PSK client (@pxref{Example
  client PSK connection}).
@@ -125,3 +116,17 @@
  @cindex p11tool
  
  The @file{p11tool} is a program that helps with accessing tokens
+--- gnutls-3.0.0/doc/gnutls-guile.texi.orig	2011-05-27 18:09:02.000000000 +0200
++++ gnutls-3.0.0/doc/gnutls-guile.texi	2011-08-04 16:39:19.246496322 +0200
+@@ -29,9 +29,9 @@
+ @end quotation
+ @end copying
+ 
+-@dircategory Software libraries
++@dircategory Libraries:
+ @direntry
+-* GnuTLS-Guile: (gnutls-guile).		GNU Transport Layer Security Library. Guile bindings.
++* GnuTLS-Guile: (gnutls-guile).		GNU Transport Layer Security Library. Guile bindings
+ @end direntry
+ 
+ @titlepage

@@ -1,0 +1,372 @@
+--- gnutls-3.0.0/po/pl.po.orig	2011-07-29 21:37:27.000000000 +0200
++++ gnutls-3.0.0/po/pl.po	2011-08-05 21:35:22.753110785 +0200
+@@ -1,14 +1,14 @@
+ # Polish translation for gnutls.
+-# Copyright (C) 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
++# Copyright (C) 2006, 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
+ # This file is distributed under the same license as the libgnutls package.
+-# Jakub Bogusz <qboosh@pld-linux.org>, 2006-2010.
++# Jakub Bogusz <qboosh@pld-linux.org>, 2006-2011.
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: libgnutls-2.8.5\n"
++"Project-Id-Version: libgnutls-3.0.0\n"
+ "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
+ "POT-Creation-Date: 2011-07-29 21:37+0200\n"
+-"PO-Revision-Date: 2010-01-04 15:09+0100\n"
++"PO-Revision-Date: 2011-08-03 18:46+0200\n"
+ "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "Language: pl\n"
+@@ -66,7 +66,7 @@
+ 
+ #: lib/gnutls_errors.c:75
+ msgid "The TLS connection was non-properly terminated."
+-msgstr ""
++msgstr "Po³±czenie TLS nie zosta³o w³a¶ciwie zakoñczone."
+ 
+ #: lib/gnutls_errors.c:78
+ msgid "The specified session has been invalidated for some reason."
+@@ -102,7 +102,7 @@
+ 
+ #: lib/gnutls_errors.c:95
+ msgid "The given DSA key is incompatible with the selected TLS protocol."
+-msgstr ""
++msgstr "Podany klucz DSA jest niezgodny z wybranym protoko³em TLS."
+ 
+ #: lib/gnutls_errors.c:98
+ msgid "There is already a crypto algorithm with lower priority."
+@@ -272,7 +272,7 @@
+ 
+ #: lib/gnutls_errors.c:176
+ msgid "The cookie was bad."
+-msgstr ""
++msgstr "B³êdne ciasteczko."
+ 
+ #: lib/gnutls_errors.c:177
+ msgid "An illegal parameter has been received."
+@@ -331,9 +331,8 @@
+ msgstr "Odebrano zbyt du¿o pustych pakietów rekordów."
+ 
+ #: lib/gnutls_errors.c:205
+-#, fuzzy
+ msgid "Too many handshake packets have been received."
+-msgstr "Odebrano zbyt du¿o pustych pakietów rekordów."
++msgstr "Odebrano zbyt du¿o pakietów nawi±zania po³±czenia."
+ 
+ #: lib/gnutls_errors.c:207
+ msgid "The initialization of GnuTLS-extra has failed."
+@@ -346,9 +345,8 @@
+ "Wersja biblioteki GnuTLS nie zgadza siê z wersj± biblioteki GnuTLS-extra."
+ 
+ #: lib/gnutls_errors.c:212
+-#, fuzzy
+ msgid "The crypto library version is too old."
+-msgstr "Wersja biblioteki gcrypt jest zbyt stara."
++msgstr "Wersja biblioteki kryptograficznej jest zbyt stara."
+ 
+ #: lib/gnutls_errors.c:215
+ msgid "The tasn1 library version is too old."
+@@ -360,16 +358,15 @@
+ 
+ #: lib/gnutls_errors.c:219
+ msgid "The OpenPGP key has not a preferred key set."
+-msgstr ""
++msgstr "Klucz OpenPGP nie ma ustawionego preferowanego klucza."
+ 
+ #: lib/gnutls_errors.c:221
+ msgid "Error loading the keyring."
+ msgstr "B³±d przy wczytywaniu zbioru kluczy."
+ 
+ #: lib/gnutls_errors.c:223
+-#, fuzzy
+ msgid "The initialization of crypto backend has failed."
+-msgstr "Inicjalizacja LZO nie powiod³a siê."
++msgstr "Inicjalizacja backendu kryptograficznego nie powiod³a siê."
+ 
+ #: lib/gnutls_errors.c:225
+ msgid "No supported compression algorithms have been found."
+@@ -388,32 +385,28 @@
+ msgstr "Nie uda³o siê odnale¼æ podklucza OpenPGP."
+ 
+ #: lib/gnutls_errors.c:233
+-#, fuzzy
+ msgid "Safe renegotiation failed."
+-msgstr "Renegocjacja niedozwolona"
++msgstr "Bezpieczna renegocjacja nie powiod³a siê."
+ 
+ #: lib/gnutls_errors.c:235
+-#, fuzzy
+ msgid "Unsafe renegotiation denied."
+-msgstr "Renegocjacja niedozwolona"
++msgstr "Odmowa niebiezpiecznej renegocjacji."
+ 
+ #: lib/gnutls_errors.c:238
+ msgid "The SRP username supplied is illegal."
+ msgstr "Podana nazwa u¿ytkownika SRP nie jest dozwolona."
+ 
+ #: lib/gnutls_errors.c:240
+-#, fuzzy
+ msgid "The SRP username supplied is unknown."
+-msgstr "Podana nazwa u¿ytkownika SRP nie jest dozwolona."
++msgstr "Podana nazwa u¿ytkownika SRP jest nieznana."
+ 
+ #: lib/gnutls_errors.c:243
+ msgid "The OpenPGP fingerprint is not supported."
+ msgstr "Odcisk klucza OpenPGP nie jest obs³ugiwany."
+ 
+ #: lib/gnutls_errors.c:245
+-#, fuzzy
+ msgid "The signature algorithm is not supported."
+-msgstr "Ten typ certyfikatu nie jest obs³ugiwany."
++msgstr "Ten algorytm podpisu nie jest obs³ugiwany."
+ 
+ #: lib/gnutls_errors.c:247
+ msgid "The certificate has unsupported attributes."
+@@ -469,116 +462,111 @@
+ 
+ #: lib/gnutls_errors.c:276
+ msgid "The handshake data size is too large."
+-msgstr ""
++msgstr "Rozmiar danych nawi±zania po³±czenia jest zbyt du¿y."
+ 
+ #: lib/gnutls_errors.c:279
+ msgid "Error opening /dev/crypto"
+-msgstr ""
++msgstr "B³±d otwierania /dev/crypto"
+ 
+ #: lib/gnutls_errors.c:282
+ msgid "Error interfacing with /dev/crypto"
+-msgstr ""
++msgstr "B³±d komunikacji z /dev/crypto"
+ 
+ #: lib/gnutls_errors.c:285
+-#, fuzzy
+ msgid "Channel binding data not available"
+-msgstr "¯±dane dane nie by³y dostêpne."
++msgstr "Dane wi±¿±ce kana³ nie s± dostêpne."
+ 
+ #: lib/gnutls_errors.c:288
+ msgid "PKCS #11 error."
+-msgstr ""
++msgstr "B³±d PKCS #11."
+ 
+ #: lib/gnutls_errors.c:290
+ msgid "PKCS #11 initialization error."
+-msgstr ""
++msgstr "B³±d inicjalizacji PKCS #11."
+ 
+ #: lib/gnutls_errors.c:292
+-#, fuzzy
+ msgid "Error in parsing."
+-msgstr "B³±d w pliku hase³."
++msgstr "B³±d w trakcie analizy."
+ 
+ #: lib/gnutls_errors.c:294
+ msgid "PKCS #11 error in PIN."
+-msgstr ""
++msgstr "B³±d PKCS #11 w PIN-ie."
+ 
+ #: lib/gnutls_errors.c:296
+ msgid "PKCS #11 PIN should be saved."
+-msgstr ""
++msgstr "PIN PKCS #11 powinien byæ zapisany."
+ 
+ #: lib/gnutls_errors.c:298
+ msgid "PKCS #11 error in slot"
+-msgstr ""
++msgstr "B³±d PKCS #11 w slocie"
+ 
+ #: lib/gnutls_errors.c:300
+ msgid "Thread locking error"
+-msgstr ""
++msgstr "B³±d blokowania w±tku"
+ 
+ #: lib/gnutls_errors.c:302
+ msgid "PKCS #11 error in attribute"
+-msgstr ""
++msgstr "B³±d PKCS #11 w atrybucie"
+ 
+ #: lib/gnutls_errors.c:304
+ msgid "PKCS #11 error in device"
+-msgstr ""
++msgstr "B³±d PKCS #11 w urz±dzeniu"
+ 
+ #: lib/gnutls_errors.c:306
+ msgid "PKCS #11 error in data"
+-msgstr ""
++msgstr "B³±d PKCS #11 w danych"
+ 
+ #: lib/gnutls_errors.c:308
+ msgid "PKCS #11 unsupported feature"
+-msgstr ""
++msgstr "Nieobs³ugiwana w³a¶ciwo¶æ PKCS #11"
+ 
+ #: lib/gnutls_errors.c:310
+ msgid "PKCS #11 error in key"
+-msgstr ""
++msgstr "B³±d PKCS #11 w kluczu"
+ 
+ #: lib/gnutls_errors.c:312
+ msgid "PKCS #11 PIN expired"
+-msgstr ""
++msgstr "PIN PKCS #11 wygas³"
+ 
+ #: lib/gnutls_errors.c:314
+ msgid "PKCS #11 PIN locked"
+-msgstr ""
++msgstr "PIN PKCS #11 zablokowany"
+ 
+ #: lib/gnutls_errors.c:316
+ msgid "PKCS #11 error in session"
+-msgstr ""
++msgstr "B³±d PKCS #11 w sesji"
+ 
+ #: lib/gnutls_errors.c:318
+ msgid "PKCS #11 error in signature"
+-msgstr ""
++msgstr "B³±d PKCS #11 w podpisie"
+ 
+ #: lib/gnutls_errors.c:320
+ msgid "PKCS #11 error in token"
+-msgstr ""
++msgstr "B³±d PKCS #11 w tokenie"
+ 
+ #: lib/gnutls_errors.c:322
+ msgid "PKCS #11 user error"
+-msgstr ""
++msgstr "B³±d u¿ytkownika PKCS #11"
+ 
+ #: lib/gnutls_errors.c:324
+ msgid "The operation timed out"
+-msgstr ""
++msgstr "Up³yn±³ limit czasu operacji"
+ 
+ #: lib/gnutls_errors.c:326
+ msgid "The operation was cancelled due to user error"
+-msgstr ""
++msgstr "Operacja zosta³± przerwana z powodu b³êdu u¿ytkownika"
+ 
+ #: lib/gnutls_errors.c:328
+-#, fuzzy
+ msgid "No supported ECC curves were found"
+-msgstr "Nie znaleziono obs³ugiwanego zestawu certyfikatów."
++msgstr "Nie znaleziono obs³ugiwanych krzywych ECC"
+ 
+ #: lib/gnutls_errors.c:330
+-#, fuzzy
+ msgid "The curve is unsupported"
+-msgstr "Ten typ certyfikatu nie jest obs³ugiwany."
++msgstr "Ta krzywa nie jest obs³ugiwana"
+ 
+ #: lib/gnutls_errors.c:332
+-#, fuzzy
+ msgid "The requested PKCS #11 object is not available"
+-msgstr "¯±dane dane nie by³y dostêpne."
++msgstr "¯±dany obiekt PKCS #11 nie jest dostêpny"
+ 
+ #: lib/gnutls_errors.c:419
+ msgid "(unknown error code)"
+@@ -669,9 +657,8 @@
+ msgstr "Anulowane przez u¿ytkownika"
+ 
+ #: lib/gnutls_alert.c:66
+-#, fuzzy
+ msgid "No certificate (SSL 3.0)"
+-msgstr "\tUniewa¿nione certyfikaty (%d):\n"
++msgstr "Brak certyfikatu (SSL 3.0)"
+ 
+ #: lib/gnutls_alert.c:67
+ msgid "Internal error"
+@@ -806,7 +793,7 @@
+ #: lib/x509/output.c:472
+ #, c-format
+ msgid "%s\t\t\tIpsec IKE.\n"
+-msgstr ""
++msgstr "%s\t\t\tIpsec IKE.\n"
+ 
+ #: lib/x509/output.c:474
+ #, c-format
+@@ -829,9 +816,8 @@
+ msgstr "%s\t\t\tOgraniczenie d³ugo¶ci ¶cie¿ki: %d\n"
+ 
+ #: lib/x509/output.c:586 lib/x509/output.c:676
+-#, fuzzy
+ msgid "warning: altname contains an embedded NUL, replacing with '!'\n"
+-msgstr "warning: SAN zawiera znak NUL, zast±piono znakiem '!'\n"
++msgstr "uwaga: alternatywna nazwa zawiera znak NUL, zast±piono znakiem '!'\n"
+ 
+ #: lib/x509/output.c:682
+ #, c-format
+@@ -909,9 +895,9 @@
+ msgstr "%s\t\tAlternatywna nazwa przedmiotu (%s):\n"
+ 
+ #: lib/x509/output.c:920
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s\t\tIssuer Alternative Name (%s):\n"
+-msgstr "%s\t\tAlternatywna nazwa przedmiotu (%s):\n"
++msgstr "%s\t\tAlternatywna nazwa wystawcy (%s):\n"
+ 
+ #: lib/x509/output.c:935
+ #, c-format
+@@ -985,7 +971,7 @@
+ #: lib/x509/output.c:1164
+ #, c-format
+ msgid "\tCertificate Security Level: %s (%d bits)\n"
+-msgstr ""
++msgstr "\tPoziom bezpieczeñstwa certyfikatu: %s (bitów: %d)\n"
+ 
+ #: lib/x509/output.c:1194 lib/x509/output.c:2010 lib/openpgp/output.c:260
+ #, c-format
+@@ -998,19 +984,17 @@
+ msgstr "\t\tWyk³adnik (bitów: %d):\n"
+ 
+ #: lib/x509/output.c:1217
+-#, fuzzy, c-format
++#, c-format
+ msgid "\t\tCurve:\t%s\n"
+-msgstr "\t\tUtworzenie: %s\n"
++msgstr "\t\tKrzywa:\t%s\n"
+ 
+ #: lib/x509/output.c:1218
+-#, fuzzy
+ msgid "\t\tX:\n"
+-msgstr "\t\tP:\n"
++msgstr "\t\tX:\n"
+ 
+ #: lib/x509/output.c:1220
+-#, fuzzy
+ msgid "\t\tY:\n"
+-msgstr "\t\tP:\n"
++msgstr "\t\tY:\n"
+ 
+ #: lib/x509/output.c:1239 lib/x509/output.c:2032 lib/openpgp/output.c:287
+ #, c-format
+@@ -1246,7 +1230,7 @@
+ #: lib/openpgp/output.c:239
+ #, c-format
+ msgid "\tKey Security Level: %s\n"
+-msgstr ""
++msgstr "\tPoziom bezpieczeñstwa klucza: %s\n"
+ 
+ #: lib/openpgp/output.c:357
+ #, c-format
+@@ -1308,16 +1292,3 @@
+ #: lib/openpgp/output.c:527
+ msgid "OpenPGP Certificate Information:\n"
+ msgstr "Informacja o certyfikacie OpenPGP:\n"
+-
+-#~ msgid ""
+-#~ "The handshake data size is too large (DoS?), check "
+-#~ "gnutls_handshake_set_max_packet_length()."
+-#~ msgstr ""
+-#~ "Rozmiar danych nawi±zania jest zbyt du¿y (DoS?), proszê sprawdziæ "
+-#~ "gnutls_handshake_set_max_packet_length()."
+-
+-#~ msgid "Inner application negotiation failed"
+-#~ msgstr "Negocjacja w ramach aplikacji nie powiod³a siê"
+-
+-#~ msgid "Inner application verification failed"
+-#~ msgstr "Weryfikacja w ramach aplikacji nie powiod³a siê"
