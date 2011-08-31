@@ -5,14 +5,15 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.0
+Version:	3.0.1
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.xz
-# Source0-md5:	0677a66667f48810ff8df8335a9a9f9b
+# Source0-md5:	23d86dbb3ef9985ce7d2b8dc37fa17a3
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
+# where is this patch comming from?
 Patch2:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
@@ -147,7 +148,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 
 %{__rm} po/stamp-po
 
@@ -200,6 +201,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
+%attr(755,root,root) %{_bindir}/crywrap
 %attr(755,root,root) %{_bindir}/gnutls-*
 %attr(755,root,root) %{_bindir}/p11tool
 %attr(755,root,root) %{_bindir}/psktool
@@ -215,6 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/p11tool.1*
 %{_mandir}/man1/psktool.1*
 %{_mandir}/man1/srptool.1*
+%{_mandir}/man8/crywrap.8*
 %{_infodir}/gnutls.info*
 %{_infodir}/gnutls-*.png
 %{_infodir}/pkcs11-vision.png
