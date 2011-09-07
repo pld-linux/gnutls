@@ -5,15 +5,14 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.1
+Version:	3.0.2
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.xz
-# Source0-md5:	23d86dbb3ef9985ce7d2b8dc37fa17a3
+# Source0-md5:	1f8c3b74b2c6faa9b08f84a422f93863
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
-# where is this patch comming from?
 Patch2:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
@@ -23,6 +22,7 @@ BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:1.8
 BuildRequires:	libcfg+-devel
 %{?with_gcrypt:BuildRequires:	libgcrypt-devel >= 1.4.0}
+BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 2.9
 BuildRequires:	libtool >= 2:1.5
@@ -30,7 +30,7 @@ BuildRequires:	libtool >= 2:1.5
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
-BuildRequires:	p11-kit-devel >= 0.2
+BuildRequires:	p11-kit-devel >= 0.4
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
@@ -67,7 +67,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libtasn1-devel >= 2.9
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.2}
 #Requires:	opencdk-devel >= 0.6.6
-Requires:	p11-kit-devel >= 0.2
+Requires:	p11-kit-devel >= 0.4
 Requires:	zlib-devel
 
 %description devel
@@ -148,7 +148,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
+%patch2 -p1
 
 %{__rm} po/stamp-po
 
@@ -217,7 +217,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/p11tool.1*
 %{_mandir}/man1/psktool.1*
 %{_mandir}/man1/srptool.1*
-%{_mandir}/man8/crywrap.8*
 %{_infodir}/gnutls.info*
 %{_infodir}/gnutls-*.png
 %{_infodir}/pkcs11-vision.png
