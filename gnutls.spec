@@ -6,7 +6,7 @@ Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	3.0.4
-Release:	1
+Release:	2
 License:	LGPL v3+ (libgnutls), GPL v3+ (extra libs and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.xz
@@ -26,7 +26,7 @@ BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 2.9
 BuildRequires:	libtool >= 2:1.5
-%{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.2}
+%{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.4}
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
@@ -41,7 +41,7 @@ BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 %{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
 Requires:	libtasn1 >= 2.9
-%{!?with_gcrypt:Requires:	nettle >= 2.2}
+%{!?with_gcrypt:Requires:	nettle >= 2.4}
 #Requires:	opencdk >= 0.6.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -65,7 +65,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
 Requires:	libtasn1-devel >= 2.9
-%{!?with_gcrypt:Requires:	nettle-devel >= 2.2}
+%{!?with_gcrypt:Requires:	nettle-devel >= 2.4}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.4
 Requires:	zlib-devel
