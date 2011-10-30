@@ -5,15 +5,16 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.4
-Release:	2
-License:	LGPL v3+ (libgnutls), GPL v3+ (extra libs and tools)
+Version:	3.0.5
+Release:	1
+License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.xz
-# Source0-md5:	748d537027978abcb7dd33ec396dc511
+# Source0-md5:	c2d4e6344974545c228a1df2147bf334
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
+Patch3:		%{name}-guile.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
@@ -24,7 +25,7 @@ BuildRequires:	libcfg+-devel
 %{?with_gcrypt:BuildRequires:	libgcrypt-devel >= 1.4.0}
 BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 2.9
+BuildRequires:	libtasn1-devel >= 2.10
 BuildRequires:	libtool >= 2:1.5
 %{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.4}
 # miniopencdk is included in sources and currently maintained
@@ -40,7 +41,7 @@ BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 %{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
-Requires:	libtasn1 >= 2.9
+Requires:	libtasn1 >= 2.10
 %{!?with_gcrypt:Requires:	nettle >= 2.4}
 #Requires:	opencdk >= 0.6.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -60,11 +61,11 @@ grupę roboczą IETF TLS.
 %package devel
 Summary:	Header files etc to develop gnutls applications
 Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
-License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs)
+License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
-Requires:	libtasn1-devel >= 2.9
+Requires:	libtasn1-devel >= 2.10
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.4}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.4
@@ -79,7 +80,7 @@ Pliki nagłówkowe i inne do gnutls.
 %package static
 Summary:	Static gnutls library
 Summary(pl.UTF-8):	Biblioteka statyczna gnutls
-License:	LGPL v2.1+ (libgnutls), GPL v3+ (extra libs)
+License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -133,7 +134,7 @@ Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 %package -n guile-gnutls
 Summary:	Guile bindings for GnuTLS
 Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
-License:	LGPL v2.1+ (gnutls binding), GPL v3+ (gnutls-extra binding)
+License:	LGPL v2.1+
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 Requires:	guile >= 5:1.8
@@ -149,6 +150,7 @@ Wiązania Guile do GnuTLS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__rm} po/stamp-po
 
@@ -170,8 +172,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# although libgnutls{,-extra}.la are obsoleted by pkg-config, there are
-# .pc files missing for libgnutls{-openssl,xx}, and they need libgnutls.la
+# although libgnutls.la is obsoleted by pkg-config, there is
+# .pc file missing for libgnutls-openssl, and it needs libgnutls.la
 
 # guile module - dynamic only
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libguile-gnutls-*.{la,a}
@@ -208,8 +210,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/srptool
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
-%attr(755,root,root) %{_libdir}/libgnutls-extra.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-extra.so.28
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 %{_mandir}/man1/certtool.1*
@@ -224,21 +224,17 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so
-%attr(755,root,root) %{_libdir}/libgnutls-extra.so
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so
 %{_libdir}/libgnutls.la
-%{_libdir}/libgnutls-extra.la
 %{_libdir}/libgnutls-openssl.la
 %{_includedir}/gnutls
 %exclude %{_includedir}/gnutls/gnutlsxx.h
 %{_pkgconfigdir}/gnutls.pc
-%{_pkgconfigdir}/gnutls-extra.pc
 %{_mandir}/man3/gnutls*.3*
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls.a
-%{_libdir}/libgnutls-extra.a
 %{_libdir}/libgnutls-openssl.a
 
 %files c++
@@ -261,10 +257,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libguile-gnutls-v-1.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libguile-gnutls-v-1.so.0
 %attr(755,root,root) %{_libdir}/libguile-gnutls-v-1.so
-%attr(755,root,root) %{_libdir}/libguile-gnutls-extra-v-1.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libguile-gnutls-extra-v-1.so.0
-%attr(755,root,root) %{_libdir}/libguile-gnutls-extra-v-1.so
 %{_datadir}/guile/site/gnutls.scm
-%dir %{_datadir}/guile/site/gnutls
-%{_datadir}/guile/site/gnutls/extra.scm
 %{_infodir}/gnutls-guile.info*

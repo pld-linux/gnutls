@@ -1,0 +1,48 @@
+--- gnutls-3.0.5/guile/modules/gnutls/build/enums.scm.orig	2011-09-13 22:31:57.000000000 +0200
++++ gnutls-3.0.5/guile/modules/gnutls/build/enums.scm	2011-10-29 20:40:21.289055938 +0200
+@@ -513,8 +513,6 @@
+ file-error
+ too-many-empty-packets
+ unknown-pk-algorithm
+-init-libextra
+-library-version-mismatch
+ no-temporary-rsa-params
+ no-compression-algorithms
+ no-cipher-suites
+--- gnutls-3.0.5/guile/src/Makefile.am.orig	2011-10-20 21:14:57.000000000 +0200
++++ gnutls-3.0.5/guile/src/Makefile.am	2011-10-29 22:17:33.739251230 +0200
+@@ -33,7 +33,7 @@
+ 
+ CLEANFILES = $(BUILT_SOURCES)
+ 
+-lib_LTLIBRARIES = libguile-gnutls-v-1.la libguile-gnutls-extra-v-1.la
++lib_LTLIBRARIES = libguile-gnutls-v-1.la
+ 
+ # Linking against GnuTLS.
+ GNUTLS_CORE_LIBS  = $(top_builddir)/lib/libgnutls.la
+@@ -50,14 +50,6 @@
+ 	$(GNUTLS_CORE_LIBS) $(GNULIB_LIBS) \
+ 	$(GUILE_LDFLAGS)
+ 
+-libguile_gnutls_extra_v_1_la_SOURCES = extra.c
+-libguile_gnutls_extra_v_1_la_CFLAGS =		\
+-  $(AM_CFLAGS) $(GNULIB_CFLAGS) $(GUILE_CFLAGS)
+-libguile_gnutls_extra_v_1_la_LIBADD =		\
+-  $(GNUTLS_CORE_LIBS) \
+-  $(builddir)/libguile-gnutls-v-1.la		\
+-  $(GNULIB_LIBS) $(GUILE_LDFLAGS)
+-
+ AM_CPPFLAGS = \
+ 	-I$(top_srcdir)/lib/includes \
+ 	-I$(top_builddir)/lib/includes	\
+--- gnutls-3.0.5/guile/modules/Makefile.am.orig	2011-09-13 22:31:57.000000000 +0200
++++ gnutls-3.0.5/guile/modules/Makefile.am	2011-10-29 21:20:35.982470124 +0200
+@@ -17,7 +17,7 @@
+ 
+ guilemoduledir = $(GUILE_SITE)
+ 
+-nobase_dist_guilemodule_DATA = gnutls.scm gnutls/extra.scm
++nobase_dist_guilemodule_DATA = gnutls.scm
+ 
+ documentation_modules = system/documentation/README		\
+ 		        system/documentation/c-snarf.scm	\

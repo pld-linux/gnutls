@@ -1,28 +1,28 @@
---- gnutls-3.0.4/po/pl.po.orig	2011-10-13 17:06:45.000000000 +0200
-+++ gnutls-3.0.4/po/pl.po	2011-10-16 08:33:10.372427725 +0200
+--- gnutls-3.0.5/po/pl.po.orig	2011-10-27 20:24:53.000000000 +0200
++++ gnutls-3.0.5/po/pl.po	2011-10-29 07:14:24.007436758 +0200
 @@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.0\n"
-+"Project-Id-Version: libgnutls-3.0.4\n"
++"Project-Id-Version: libgnutls-3.0.5\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2011-10-13 17:06+0200\n"
+ "POT-Creation-Date: 2011-10-27 20:24+0200\n"
 -"PO-Revision-Date: 2011-08-03 18:46+0200\n"
-+"PO-Revision-Date: 2011-10-16 08:28+0200\n"
++"PO-Revision-Date: 2011-10-29 07:12+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
-@@ -572,7 +572,7 @@
+@@ -562,7 +562,7 @@
  msgid ""
  "The provided X.509 certificate list is not sorted (in subject to issuer "
  "order)"
 -msgstr ""
 +msgstr "Przekazana lista certyfikatów X.509 nie jest posortowana (w kolejno¶ci wystawcy)"
  
- #: lib/gnutls_errors.c:421
+ #: lib/gnutls_errors.c:416
  msgid "(unknown error code)"
-@@ -719,7 +719,7 @@
+@@ -709,7 +709,7 @@
  #: lib/x509/output.c:192
  #, c-format
  msgid "\t\t\tAccess Method: %.*s"
@@ -31,7 +31,7 @@
  
  #: lib/x509/output.c:357
  #, c-format
-@@ -921,9 +921,9 @@
+@@ -911,9 +911,9 @@
  msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
  
  #: lib/x509/output.c:1020
