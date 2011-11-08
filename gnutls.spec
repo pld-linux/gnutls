@@ -5,22 +5,21 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.5
+Version:	3.0.7
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.xz
-# Source0-md5:	c2d4e6344974545c228a1df2147bf334
+# Source0-md5:	840c96c75817c0f800a47805e275db7e
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
-Patch3:		%{name}-guile.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	gtk-doc >= 1.1
-BuildRequires:	guile-devel >= 5:1.8
+BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
 %{?with_gcrypt:BuildRequires:	libgcrypt-devel >= 1.4.0}
 BuildRequires:	libidn-devel
@@ -137,7 +136,7 @@ Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
 License:	LGPL v2.1+
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
-Requires:	guile >= 5:1.8
+Requires:	guile >= 5:2.0
 
 %description -n guile-gnutls
 Guile bindings for GnuTLS.
@@ -150,7 +149,6 @@ Wiązania Guile do GnuTLS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %{__rm} po/stamp-po
 
@@ -176,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 # .pc file missing for libgnutls-openssl, and it needs libgnutls.la
 
 # guile module - dynamic only
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libguile-gnutls-*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.{la,a}
 
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
@@ -254,8 +252,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n guile-gnutls
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libguile-gnutls-v-1.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libguile-gnutls-v-1.so.0
-%attr(755,root,root) %{_libdir}/libguile-gnutls-v-1.so
+%attr(755,root,root) %{_libdir}/guile/2.0/guile-gnutls-v-2.so*
 %{_datadir}/guile/site/gnutls.scm
+%{_datadir}/guile/site/gnutls
 %{_infodir}/gnutls-guile.info*

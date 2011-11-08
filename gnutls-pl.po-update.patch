@@ -1,15 +1,15 @@
---- gnutls-3.0.5/po/pl.po.orig	2011-10-27 20:24:53.000000000 +0200
-+++ gnutls-3.0.5/po/pl.po	2011-10-29 07:14:24.007436758 +0200
+--- gnutls-3.0.7/po/pl.po.orig	2011-11-08 08:20:07.000000000 +0100
++++ gnutls-3.0.7/po/pl.po	2011-11-08 19:50:09.154060402 +0100
 @@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.0\n"
-+"Project-Id-Version: libgnutls-3.0.5\n"
++"Project-Id-Version: libgnutls-3.0.7\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2011-10-27 20:24+0200\n"
+ "POT-Creation-Date: 2011-11-08 08:20+0100\n"
 -"PO-Revision-Date: 2011-08-03 18:46+0200\n"
-+"PO-Revision-Date: 2011-10-29 07:12+0200\n"
++"PO-Revision-Date: 2011-11-08 19:49+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
@@ -23,23 +23,23 @@
  #: lib/gnutls_errors.c:416
  msgid "(unknown error code)"
 @@ -709,7 +709,7 @@
- #: lib/x509/output.c:192
+ #: lib/x509/output.c:152
  #, c-format
  msgid "\t\t\tAccess Method: %.*s"
 -msgstr ""
 +msgstr "\t\t\tMetoda dostêpu: %.*s"
  
- #: lib/x509/output.c:357
+ #: lib/x509/output.c:317
  #, c-format
 @@ -911,9 +911,9 @@
  msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
  
- #: lib/x509/output.c:1020
+ #: lib/x509/output.c:980
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tAuthority Information Access Information (%s):\n"
 -msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
 +msgstr "%s\t\tInformacja Authority Information Access (%s):\n"
  
- #: lib/x509/output.c:1032
+ #: lib/x509/output.c:992
  #, c-format
