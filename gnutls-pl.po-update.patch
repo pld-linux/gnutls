@@ -1,45 +1,56 @@
---- gnutls-3.0.7/po/pl.po.orig	2011-11-08 08:20:07.000000000 +0100
-+++ gnutls-3.0.7/po/pl.po	2011-11-08 19:50:09.154060402 +0100
+--- gnutls-3.0.8/po/pl.po.orig	2011-11-11 22:47:09.000000000 +0100
++++ gnutls-3.0.8/po/pl.po	2011-11-14 17:18:01.207779369 +0100
 @@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.0\n"
-+"Project-Id-Version: libgnutls-3.0.7\n"
++"Project-Id-Version: libgnutls-3.0.8\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2011-11-08 08:20+0100\n"
+ "POT-Creation-Date: 2011-11-11 22:47+0100\n"
 -"PO-Revision-Date: 2011-08-03 18:46+0200\n"
-+"PO-Revision-Date: 2011-11-08 19:49+0100\n"
++"PO-Revision-Date: 2011-11-14 17:15+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
-@@ -562,7 +562,7 @@
+@@ -279,9 +279,8 @@
+ msgstr "Odebrano niedozwolony parametr."
+ 
+ #: lib/gnutls_errors.c:179
+-#, fuzzy
+ msgid "An illegal parameter was found."
+-msgstr "Odebrano niedozwolony parametr."
++msgstr "Napotkano niedozwolony parametr."
+ 
+ #: lib/gnutls_errors.c:181
+ msgid "Error while reading file."
+@@ -567,7 +566,7 @@
  msgid ""
  "The provided X.509 certificate list is not sorted (in subject to issuer "
  "order)"
 -msgstr ""
 +msgstr "Przekazana lista certyfikatów X.509 nie jest posortowana (w kolejno¶ci wystawcy)"
  
- #: lib/gnutls_errors.c:416
+ #: lib/gnutls_errors.c:418
  msgid "(unknown error code)"
-@@ -709,7 +709,7 @@
- #: lib/x509/output.c:152
+@@ -714,7 +713,7 @@
+ #: lib/x509/output.c:139
  #, c-format
  msgid "\t\t\tAccess Method: %.*s"
 -msgstr ""
 +msgstr "\t\t\tMetoda dostêpu: %.*s"
  
- #: lib/x509/output.c:317
+ #: lib/x509/output.c:304
  #, c-format
-@@ -911,9 +911,9 @@
+@@ -916,9 +915,9 @@
  msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
  
- #: lib/x509/output.c:980
+ #: lib/x509/output.c:967
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tAuthority Information Access Information (%s):\n"
 -msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
 +msgstr "%s\t\tInformacja Authority Information Access (%s):\n"
  
- #: lib/x509/output.c:992
+ #: lib/x509/output.c:979
  #, c-format
