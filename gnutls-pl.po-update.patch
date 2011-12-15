@@ -1,15 +1,15 @@
---- gnutls-3.0.8/po/pl.po.orig	2011-11-11 22:47:09.000000000 +0100
-+++ gnutls-3.0.8/po/pl.po	2011-11-14 17:18:01.207779369 +0100
+--- gnutls-3.0.9/po/pl.po.orig	2011-12-13 23:07:19.000000000 +0100
++++ gnutls-3.0.9/po/pl.po	2011-12-15 18:43:38.024300707 +0100
 @@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.0\n"
-+"Project-Id-Version: libgnutls-3.0.8\n"
++"Project-Id-Version: libgnutls-3.0.9\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2011-11-11 22:47+0100\n"
+ "POT-Creation-Date: 2011-12-13 23:07+0100\n"
 -"PO-Revision-Date: 2011-08-03 18:46+0200\n"
-+"PO-Revision-Date: 2011-11-14 17:15+0100\n"
++"PO-Revision-Date: 2011-12-15 18:38+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"

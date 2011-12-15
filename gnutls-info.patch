@@ -29,61 +29,18 @@
  @end direntry
  
  @titlepage
---- gnutls-3.0.3/doc/cha-programs.texi.orig	2011-09-13 22:31:56.000000000 +0200
-+++ gnutls-3.0.3/doc/cha-programs.texi	2011-09-19 18:36:27.591108094 +0200
-@@ -6,16 +6,16 @@
- application.  The applications are discussed in this chapter.
+--- gnutls-3.0.9/doc/cha-programs.texi.orig	2011-11-24 17:38:52.000000000 +0100
++++ gnutls-3.0.9/doc/cha-programs.texi	2011-12-15 18:36:00.397618719 +0100
+@@ -304,7 +304,7 @@
+ @end smallexample
  
- @menu
--* Invoking certtool::
--* Invoking gnutls-cli::
--* Invoking gnutls-cli-debug::
--* Invoking gnutls-serv::
--* Invoking psktool::
--* Invoking srptool::
--* Invoking p11tool::
-+* certtool::
-+* gnutls-cli::
-+* gnutls-cli-debug::
-+* gnutls-serv::
-+* psktool::
-+* srptool::
-+* p11tool::
- @end menu
+ The next step is to add support for SRP authentication. This requires
+-an SRP password file (see @ref{Invoking srptool}).
++an SRP password file (see @ref{srptool}).
+ To start the server with SRP support:
  
--@node Invoking certtool
-+@node certtool
- @section Invoking certtool
- @cindex certtool
- 
-@@ -355,7 +355,7 @@
- #ipsec_ike_key
- @end example
- 
--@node Invoking gnutls-cli
-+@node gnutls-cli
- @section Invoking gnutls-cli
- @cindex gnutls-cli
- 
-@@ -450,7 +450,7 @@
- @code{--pskkey} parameter, it will query only for the password during
- the handshake.
- 
--@node Invoking gnutls-cli-debug
-+@node gnutls-cli-debug
- @section Invoking gnutls-cli-debug
- @cindex gnutls-cli-debug
- 
-@@ -496,7 +496,7 @@
- Checking for OpenPGP authentication support (TLS extension)... no
- @end example
- 
--@node Invoking gnutls-serv
-+@node gnutls-serv
- @section Invoking gnutls-serv
- @cindex gnutls-serv
- 
-@@ -699,7 +699,7 @@
+ @smallexample
+@@ -314,7 +314,7 @@
  @end smallexample
  
  Let's also start a server with support for PSK. This would require
@@ -92,39 +49,6 @@
  
  @smallexample
  gnutls-serv --http \
-@@ -723,7 +723,7 @@
-             --pskpasswd psk-passwd.txt
- @end smallexample
- 
--@node Invoking psktool
-+@node psktool
- @section Invoking psktool
- @cindex psktool
- 
-@@ -754,9 +754,9 @@
- $
- @end smallexample
- 
--@node Invoking srptool
-+@node srptool
- @section Invoking srptool
--@anchor{srptool}
-+@anchor{Invoking srptool}
- @cindex srptool
- 
- The @file{srptool} is a very simple program that emulates the programs
-@@ -795,9 +795,9 @@
-     --passwd-conf /etc/tpasswd.conf --verify -u test
- @end smallexample
- 
--@node Invoking p11tool
-+@node p11tool
- @section Invoking p11tool
--@anchor{p11tool}
-+@anchor{Invoking p11tool}
- @cindex p11tool
- 
- The @file{p11tool} is a program that helps with accessing tokens
 --- gnutls-3.0.0/doc/gnutls-guile.texi.orig	2011-05-27 18:09:02.000000000 +0200
 +++ gnutls-3.0.0/doc/gnutls-guile.texi	2011-08-04 16:39:19.246496322 +0200
 @@ -29,9 +29,9 @@
@@ -139,3 +63,42 @@
  @end direntry
  
  @titlepage
+--- gnutls-3.0.9/doc/cha-shared-key.texi.orig	2011-11-14 16:41:38.000000000 +0100
++++ gnutls-3.0.9/doc/cha-shared-key.texi	2011-12-15 18:37:14.547621201 +0100
+@@ -12,7 +12,7 @@
+ 
+ @menu
+ * Authentication using SRP::
+-* Invoking srptool::
++* srptool::
+ @end menu
+ 
+ @node Authentication using SRP
+@@ -69,7 +69,7 @@
+ 
+ @showfuncB{gnutls_srp_base64_encode,gnutls_srp_base64_decode}
+ 
+-@node Invoking srptool
++@node srptool
+ @subsection Invoking srptool
+-@anchor{srptool}
++@anchor{Invoking srptool}
+ @cindex srptool
+@@ -109,7 +109,7 @@
+ 
+ @menu
+ * Authentication using PSK::
+-* Invoking psktool::
++* psktool::
+ @end menu
+ 
+ @node Authentication using PSK
+@@ -145,7 +145,7 @@
+ 
+ @showfuncC{gnutls_key_generate,gnutls_hex_encode,gnutls_hex_decode}
+ 
+-@node Invoking psktool
++@node psktool
+ @subsection Invoking psktool
+ @cindex psktool
+ 
