@@ -1,19 +1,30 @@
---- gnutls-3.0.9/po/pl.po.orig	2011-12-13 23:07:19.000000000 +0100
-+++ gnutls-3.0.9/po/pl.po	2011-12-15 18:43:38.024300707 +0100
+--- gnutls-3.0.10/po/pl.po.orig	2012-01-04 19:04:07.000000000 +0100
++++ gnutls-3.0.10/po/pl.po	2012-01-05 19:08:36.751770337 +0100
 @@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.0\n"
-+"Project-Id-Version: libgnutls-3.0.9\n"
++"Project-Id-Version: libgnutls-3.0.10\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2011-12-13 23:07+0100\n"
+ "POT-Creation-Date: 2012-01-04 19:04+0100\n"
 -"PO-Revision-Date: 2011-08-03 18:46+0200\n"
-+"PO-Revision-Date: 2011-12-15 18:38+0100\n"
++"PO-Revision-Date: 2012-01-05 19:02+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
-@@ -279,9 +279,8 @@
+@@ -97,9 +97,8 @@
+ msgstr "Wykryto b³±d przy obliczaniu pakietu TLS Finished."
+ 
+ #: lib/gnutls_errors.c:93
+-#, fuzzy
+ msgid "No certificate was found."
+-msgstr "Certyfikat zosta³ anulowany"
++msgstr "Nie znaleziono certyfikatu."
+ 
+ #: lib/gnutls_errors.c:95
+ msgid "The given DSA key is incompatible with the selected TLS protocol."
+@@ -280,9 +279,8 @@
  msgstr "Odebrano niedozwolony parametr."
  
  #: lib/gnutls_errors.c:179
@@ -24,7 +35,7 @@
  
  #: lib/gnutls_errors.c:181
  msgid "Error while reading file."
-@@ -567,7 +566,7 @@
+@@ -568,7 +566,7 @@
  msgid ""
  "The provided X.509 certificate list is not sorted (in subject to issuer "
  "order)"
@@ -33,24 +44,44 @@
  
  #: lib/gnutls_errors.c:418
  msgid "(unknown error code)"
-@@ -714,7 +713,7 @@
- #: lib/x509/output.c:139
+@@ -715,7 +713,7 @@
+ #: lib/x509/output.c:140
  #, c-format
  msgid "\t\t\tAccess Method: %.*s"
 -msgstr ""
 +msgstr "\t\t\tMetoda dostêpu: %.*s"
  
- #: lib/x509/output.c:304
+ #: lib/x509/output.c:305
  #, c-format
-@@ -916,9 +915,9 @@
+@@ -917,9 +915,9 @@
  msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
  
- #: lib/x509/output.c:967
+ #: lib/x509/output.c:968
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tAuthority Information Access Information (%s):\n"
 -msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
 +msgstr "%s\t\tInformacja Authority Information Access (%s):\n"
  
- #: lib/x509/output.c:979
+ #: lib/x509/output.c:980
  #, c-format
+@@ -1065,9 +1063,8 @@
+ "\t\t"
+ 
+ #: lib/x509/output.c:1401
+-#, fuzzy
+ msgid "\tPublic key's random art:\n"
+-msgstr "\t\tKlucz publiczny (bitów: %d):\n"
++msgstr "\t\tLosowy obrazek klucza publicznego:\n"
+ 
+ #: lib/x509/output.c:1498
+ #, c-format
+@@ -1215,7 +1212,7 @@
+ 
+ #: lib/openpgp/output.c:130
+ msgid "\tFingerprint's random art:\n"
+-msgstr ""
++msgstr "\tLosowy obrazek odcisku klucza:\n"
+ 
+ #: lib/openpgp/output.c:148
+ msgid "\tRevoked: True\n"
