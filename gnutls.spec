@@ -5,17 +5,19 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.12
+Version:	3.0.13
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.xz
-# Source0-md5:	685fe5c00786c04b39e9aac362fa0cac
+# Source0-md5:	ec549be557f31ea8c1738cb441ef23ec
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
+BuildRequires:	autogen >= 5.14
+BuildRequires:	autogen-devel >= 5.14
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-devel >= 0.18
 BuildRequires:	gtk-doc >= 1.1
@@ -30,7 +32,7 @@ BuildRequires:	libtool >= 2:1.5
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
-BuildRequires:	p11-kit-devel >= 0.4
+BuildRequires:	p11-kit-devel >= 0.11
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
@@ -43,6 +45,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires:	libtasn1 >= 2.10
 %{!?with_gcrypt:Requires:	nettle >= 2.4}
 #Requires:	opencdk >= 0.6.6
+Requires:	p11-kit >= 0.11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -67,7 +70,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	libtasn1-devel >= 2.10
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.4}
 #Requires:	opencdk-devel >= 0.6.6
-Requires:	p11-kit-devel >= 0.4
+Requires:	p11-kit-devel >= 0.11
 Requires:	zlib-devel
 
 %description devel
@@ -151,10 +154,12 @@ Wiązania Guile do GnuTLS.
 %patch2 -p1
 
 %{__rm} po/stamp-po
+# regenerate autogen stuff
+%{__rm} src/{ocsptool-args,p11tool-args,psk-args,cli-debug-args,cli-args,serv-args,srptool-args,certtool-args}.[ch]
 
 %build
 %{__libtoolize}
-%{__aclocal} -I m4 -I gl/m4
+%{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -214,6 +219,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*.1*
+%{_mandir}/man1/ocsptool.1*
 %{_mandir}/man1/p11tool.1*
 %{_mandir}/man1/psktool.1*
 %{_mandir}/man1/srptool.1*

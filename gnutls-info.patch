@@ -29,26 +29,6 @@
  @end direntry
  
  @titlepage
---- gnutls-3.0.9/doc/cha-programs.texi.orig	2011-11-24 17:38:52.000000000 +0100
-+++ gnutls-3.0.9/doc/cha-programs.texi	2011-12-15 18:36:00.397618719 +0100
-@@ -304,7 +304,7 @@
- @end smallexample
- 
- The next step is to add support for SRP authentication. This requires
--an SRP password file (see @ref{Invoking srptool}).
-+an SRP password file (see @ref{srptool}).
- To start the server with SRP support:
- 
- @smallexample
-@@ -314,7 +314,7 @@
- @end smallexample
- 
- Let's also start a server with support for PSK. This would require
--a password file created with @code{psktool} (see @ref{Invoking psktool}).
-+a password file created with @code{psktool} (see @ref{psktool}).
- 
- @smallexample
- gnutls-serv --http \
 --- gnutls-3.0.0/doc/gnutls-guile.texi.orig	2011-05-27 18:09:02.000000000 +0200
 +++ gnutls-3.0.0/doc/gnutls-guile.texi	2011-08-04 16:39:19.246496322 +0200
 @@ -29,9 +29,9 @@
@@ -63,42 +43,3 @@
  @end direntry
  
  @titlepage
---- gnutls-3.0.9/doc/cha-shared-key.texi.orig	2011-11-14 16:41:38.000000000 +0100
-+++ gnutls-3.0.9/doc/cha-shared-key.texi	2011-12-15 18:37:14.547621201 +0100
-@@ -12,7 +12,7 @@
- 
- @menu
- * Authentication using SRP::
--* Invoking srptool::
-+* srptool::
- @end menu
- 
- @node Authentication using SRP
-@@ -69,7 +69,7 @@
- 
- @showfuncB{gnutls_srp_base64_encode,gnutls_srp_base64_decode}
- 
--@node Invoking srptool
-+@node srptool
- @subsection Invoking srptool
--@anchor{srptool}
-+@anchor{Invoking srptool}
- @cindex srptool
-@@ -109,7 +109,7 @@
- 
- @menu
- * Authentication using PSK::
--* Invoking psktool::
-+* psktool::
- @end menu
- 
- @node Authentication using PSK
-@@ -145,7 +145,7 @@
- 
- @showfuncC{gnutls_key_generate,gnutls_hex_encode,gnutls_hex_decode}
- 
--@node Invoking psktool
-+@node psktool
- @subsection Invoking psktool
- @cindex psktool
- 
