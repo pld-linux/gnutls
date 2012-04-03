@@ -5,12 +5,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.17
+Version:	3.0.18
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.xz
-# Source0-md5:	5e87bd73a237749e2acbbb7161f11d5e
+Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.lz
+# Source0-md5:	c18ed079fb80d86e9e514320dd21674d
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -24,8 +24,9 @@ BuildRequires:	libcfg+-devel
 %{?with_gcrypt:BuildRequires:	libgcrypt-devel >= 1.4.0}
 BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 2.10
+BuildRequires:	libtasn1-devel >= 2.12
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	lzip
 %{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.4}
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
@@ -36,11 +37,10 @@ BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.8
-BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 %{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
-Requires:	libtasn1 >= 2.10
+Requires:	libtasn1 >= 2.12
 %{!?with_gcrypt:Requires:	nettle >= 2.4}
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.11
@@ -65,7 +65,7 @@ License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
-Requires:	libtasn1-devel >= 2.10
+Requires:	libtasn1-devel >= 2.12
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.4}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11
