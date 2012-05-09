@@ -5,12 +5,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.18
+Version:	3.0.19
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.lz
-# Source0-md5:	c18ed079fb80d86e9e514320dd21674d
+# Source0-md5:	a1307837e12d4317b136eb23fbf987f2
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -35,6 +35,7 @@ BuildRequires:	p11-kit-devel >= 0.11
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
+BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.8
 BuildRequires:	zlib-devel
@@ -152,6 +153,10 @@ Wiązania Guile do GnuTLS.
 %patch2 -p1
 
 %{__rm} po/stamp-po
+
+# remove it when "linking libtool libraries using a non-POSIX archiver ..." warning is gone
+# (after gnutls or libtool change)
+%{__sed} -i -e '/AM_INIT_AUTOMAKE/s/-Werror//' configure.ac
 
 %build
 %{__libtoolize}

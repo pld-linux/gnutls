@@ -1,44 +1,19 @@
---- gnutls-3.0.18/po/pl.po.orig	2012-04-01 07:57:06.000000000 +0200
-+++ gnutls-3.0.18/po/pl.po	2012-04-03 17:26:18.046911241 +0200
-@@ -1,14 +1,14 @@
- # Polish translation for gnutls.
- # Copyright (C) 2006, 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
- # This file is distributed under the same license as the libgnutls package.
--# Jakub Bogusz <qboosh@pld-linux.org>, 2006-2011.
-+# Jakub Bogusz <qboosh@pld-linux.org>, 2006-2012.
+--- gnutls-3.0.19/po/pl.po.orig	2012-04-22 17:00:29.000000000 +0200
++++ gnutls-3.0.19/po/pl.po	2012-05-09 18:27:19.544654934 +0200
+@@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
--"Project-Id-Version: libgnutls-3.0.0\n"
-+"Project-Id-Version: libgnutls-3.0.18\n"
+-"Project-Id-Version: libgnutls-3.0.12\n"
++"Project-Id-Version: libgnutls-3.0.19\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2012-04-01 07:57+0200\n"
--"PO-Revision-Date: 2011-08-03 18:46+0200\n"
-+"PO-Revision-Date: 2012-04-03 17:19+0200\n"
+ "POT-Creation-Date: 2012-04-22 17:00+0200\n"
+-"PO-Revision-Date: 2012-01-20 20:45+0100\n"
++"PO-Revision-Date: 2012-05-09 18:25+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
-@@ -138,7 +138,7 @@
- 
- #: lib/gnutls_errors.c:54
- msgid "No or insufficient priorities were set."
--msgstr ""
-+msgstr "Nie ustawiono wystarczaj±cych priorytetów."
- 
- #: lib/gnutls_errors.c:56
- msgid "The cipher type is unsupported."
-@@ -213,9 +213,8 @@
- msgstr "Wykryto b³±d przy obliczaniu pakietu TLS Finished."
- 
- #: lib/gnutls_errors.c:94
--#, fuzzy
- msgid "No certificate was found."
--msgstr "Certyfikat zosta³ anulowany"
-+msgstr "Nie znaleziono certyfikatu."
- 
- #: lib/gnutls_errors.c:96
- msgid "The given DSA key is incompatible with the selected TLS protocol."
-@@ -352,9 +351,8 @@
+@@ -351,9 +351,8 @@
  msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
  
  #: lib/gnutls_errors.c:161
@@ -49,18 +24,7 @@
  
  #: lib/gnutls_errors.c:163
  msgid "Key usage violation in certificate has been detected."
-@@ -401,9 +399,8 @@
- msgstr "Odebrano niedozwolony parametr."
- 
- #: lib/gnutls_errors.c:182
--#, fuzzy
- msgid "An illegal parameter was found."
--msgstr "Odebrano niedozwolony parametr."
-+msgstr "Napotkano niedozwolony parametr."
- 
- #: lib/gnutls_errors.c:184
- msgid "Error while reading file."
-@@ -591,7 +588,7 @@
+@@ -589,7 +588,7 @@
  
  #: lib/gnutls_errors.c:284
  msgid "Peer has terminated the connection"
@@ -69,91 +33,7 @@
  
  #: lib/gnutls_errors.c:286
  msgid "Channel binding data not available"
-@@ -693,7 +690,7 @@
- msgid ""
- "The provided X.509 certificate list is not sorted (in subject to issuer "
- "order)"
--msgstr ""
-+msgstr "Przekazana lista certyfikatów X.509 nie jest posortowana (w kolejno¶ci wystawcy)"
- 
- #: lib/gnutls_errors.c:422
- msgid "(unknown error code)"
-@@ -738,7 +735,7 @@
- 
- #: lib/openpgp/output.c:130
- msgid "\tFingerprint's random art:\n"
--msgstr ""
-+msgstr "\tLosowy obrazek odcisku klucza:\n"
- 
- #: lib/openpgp/output.c:148
- msgid "\tRevoked: True\n"
-@@ -887,34 +884,33 @@
- msgstr "\t\t\tZrzut hex: "
- 
- #: lib/x509/ocsp_output.c:188
--#, fuzzy
- msgid "OCSP Request Information:\n"
--msgstr "Inne informacje:\n"
-+msgstr "Informacje o ¿±daniu OCSP:\n"
- 
- #: lib/x509/ocsp_output.c:298
--#, fuzzy, c-format
-+#, c-format
- msgid "\tResponder ID: %.*s\n"
--msgstr "%s\t\t\tOID otherName: %.*s\n"
-+msgstr "\tID odpowiadaj±cego: %.*s\n"
- 
- #: lib/x509/ocsp_output.c:316
--#, fuzzy, c-format
-+#, c-format
- msgid "\tProduced At: %s\n"
--msgstr "\t\tUniewa¿niono: %s\n"
-+msgstr "\tUtworzono: %s\n"
- 
- #: lib/x509/ocsp_output.c:410
--#, fuzzy, c-format
-+#, c-format
- msgid "\t\tRevocation time: %s\n"
--msgstr "\t\tUtworzenie: %s\n"
-+msgstr "\t\tCzas uniewa¿nienia: %s\n"
- 
- #: lib/x509/ocsp_output.c:425
--#, fuzzy, c-format
-+#, c-format
- msgid "\t\tThis Update: %s\n"
--msgstr "\t\tNastêpnie: %s\n"
-+msgstr "\t\tTo uaktualnienie: %s\n"
- 
- #: lib/x509/ocsp_output.c:440
--#, fuzzy, c-format
-+#, c-format
- msgid "\t\tNext Update: %s\n"
--msgstr "\t\tNastêpnie: %s\n"
-+msgstr "\t\tNastêpne uaktualnienie: %s\n"
- 
- #: lib/x509/ocsp_output.c:514 lib/x509/output.c:1425 lib/x509/output.c:2042
- #, c-format
-@@ -932,9 +928,8 @@
- msgstr "\tPodpis:\n"
- 
- #: lib/x509/ocsp_output.c:614
--#, fuzzy
- msgid "OCSP Response Information:\n"
--msgstr "Inne informacje:\n"
-+msgstr "Informacje o odpowiedzi OCSP:\n"
- 
- #: lib/x509/output.c:94 lib/x509/output.c:796
- msgid "warning: altname contains an embedded NUL, replacing with '!'\n"
-@@ -969,7 +964,7 @@
- #: lib/x509/output.c:188
- #, c-format
- msgid "\t\t\tAccess Method: %.*s"
--msgstr ""
-+msgstr "\t\t\tMetoda dostêpu: %.*s"
- 
- #: lib/x509/output.c:421
- #, c-format
-@@ -1017,14 +1012,14 @@
+@@ -1015,14 +1014,14 @@
  msgstr "%s\t\t\tTylko deszyfrowanie klucza.\n"
  
  #: lib/x509/output.c:470
@@ -172,7 +52,7 @@
  
  #: lib/x509/output.c:527
  msgid ""
-@@ -1152,9 +1147,9 @@
+@@ -1150,9 +1149,9 @@
  msgstr "%s\t\tU¿ycie klucza (%s):\n"
  
  #: lib/x509/output.c:1004
@@ -183,27 +63,4 @@
 +msgstr "%s\t\tOkres u¿ycia klucza prywatnego (%s):\n"
  
  #: lib/x509/output.c:1019
- #, c-format
-@@ -1182,9 +1177,9 @@
- msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
- 
- #: lib/x509/output.c:1088
--#, fuzzy, c-format
-+#, c-format
- msgid "%s\t\tAuthority Information Access (%s):\n"
--msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
-+msgstr "%s\t\tInformacja Authority Information Access (%s):\n"
- 
- #: lib/x509/output.c:1100
- #, c-format
-@@ -1282,9 +1277,8 @@
- "\t\t"
- 
- #: lib/x509/output.c:1519
--#, fuzzy
- msgid "\tPublic key's random art:\n"
--msgstr "\t\tKlucz publiczny (bitów: %d):\n"
-+msgstr "\tLosowy obrazek klucza publicznego:\n"
- 
- #: lib/x509/output.c:1616
  #, c-format
