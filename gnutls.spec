@@ -16,7 +16,7 @@ Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/gnutls/
 BuildRequires:	autoconf >= 2.61
-BuildRequires:	automake >= 1:1.11
+BuildRequires:	automake >= 1:1.11.3
 BuildRequires:	gettext-devel >= 0.18
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:2.0
