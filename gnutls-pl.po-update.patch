@@ -1,29 +1,38 @@
---- gnutls-3.0.20/po/pl.po.orig	2012-06-05 18:16:30.000000000 +0200
-+++ gnutls-3.0.20/po/pl.po	2012-06-13 17:29:04.916139484 +0200
+--- gnutls-3.0.21/po/pl.po.orig	2012-07-03 00:02:33.000000000 +0200
++++ gnutls-3.0.21/po/pl.po	2012-07-04 21:32:27.696050174 +0200
 @@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.12\n"
-+"Project-Id-Version: libgnutls-3.0.20\n"
++"Project-Id-Version: libgnutls-3.0.21\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2012-05-26 09:46+0200\n"
+ "POT-Creation-Date: 2012-07-03 00:02+0200\n"
 -"PO-Revision-Date: 2012-01-20 20:45+0100\n"
-+"PO-Revision-Date: 2012-06-13 17:38+0200\n"
++"PO-Revision-Date: 2012-07-04 21:30+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
-@@ -351,9 +351,8 @@
+@@ -347,9 +347,8 @@
  msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
  
- #: lib/gnutls_errors.c:161
+ #: lib/gnutls_errors.c:159
 -#, fuzzy
  msgid "Unsupported extension in X.509 certificate."
 -msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
 +msgstr "Nieobs³ugiwane rozszerzenie w certyfikacie X.509."
  
- #: lib/gnutls_errors.c:163
+ #: lib/gnutls_errors.c:161
  msgid "Key usage violation in certificate has been detected."
+@@ -361,7 +360,7 @@
+ 
+ #: lib/gnutls_errors.c:165
+ msgid "The transmitted packet is too large (EMSGSIZE)."
+-msgstr ""
++msgstr "Przesy³any pakiet jest zbyt du¿y (EMSGSIZE)."
+ 
+ #: lib/gnutls_errors.c:167
+ msgid "Function was interrupted."
 @@ -589,7 +588,7 @@
  
  #: lib/gnutls_errors.c:284
@@ -64,3 +73,10 @@
  
  #: lib/x509/output.c:1019
  #, c-format
+@@ -1377,6 +1376,3 @@
+ #: lib/x509/output.c:2421
+ msgid "PKCS #10 Certificate Request Information:\n"
+ msgstr "Informacja o ¿±daniu certyfikatu PKCS #10:\n"
+-
+-#~ msgid "A large TLS record packet was received."
+-#~ msgstr "Odebrano du¿y pakiet rekordu TLS."
