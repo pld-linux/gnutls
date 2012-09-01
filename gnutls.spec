@@ -1,16 +1,16 @@
 #
 # Conditional build:
-%bcond_with	gcrypt	# use gcrypt crypto backend instead of nettle (broken or withdrawn?)
+%bcond_with	gcrypt	# use gcrypt crypto backend instead of nettle (withdrawn?)
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.0.22
+Version:	3.1.0
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.lz
-# Source0-md5:	129bd38ad023c599df4d4b5dd359a445
+# Source0-md5:	902f120ae7eabf00154281236ff3695f
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -27,7 +27,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 2.12
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzip
-%{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.4}
+%{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.5}
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
@@ -38,11 +38,12 @@ BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.8
+BuildRequires:	trousers-devel
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 %{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
 Requires:	libtasn1 >= 2.12
-%{!?with_gcrypt:Requires:	nettle >= 2.4}
+%{!?with_gcrypt:Requires:	nettle >= 2.5}
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -67,7 +68,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
 Requires:	libtasn1-devel >= 2.12
-%{!?with_gcrypt:Requires:	nettle-devel >= 2.4}
+%{!?with_gcrypt:Requires:	nettle-devel >= 2.5}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11
 Requires:	zlib-devel
@@ -166,6 +167,7 @@ Wiązania Guile do GnuTLS.
 %{__automake}
 %configure \
 	--disable-silent-rules \
+	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
 	%{?with_gcrypt:--with-libgcrypt}
 
 # docs build is broken with -jN
@@ -214,6 +216,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/p11tool
 %attr(755,root,root) %{_bindir}/psktool
 %attr(755,root,root) %{_bindir}/srptool
+%attr(755,root,root) %{_bindir}/tpmtool
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
@@ -224,6 +227,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/p11tool.1*
 %{_mandir}/man1/psktool.1*
 %{_mandir}/man1/srptool.1*
+%{_mandir}/man1/tpmtool.1*
 %{_infodir}/gnutls.info*
 %{_infodir}/gnutls-*.png
 %{_infodir}/pkcs11-vision.png
