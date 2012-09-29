@@ -5,12 +5,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.1.1
+Version:	3.1.2
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnu.org/gnu/gnutls/%{name}-%{version}.tar.lz
-# Source0-md5:	cceec8c2f13b6877a6bad0e4938bc716
+Source0:	http://ftp.gnu.org/gnu/gnutls/%{name}-%{version}.tar.lz
+# Source0-md5:	f5b5ce62b0e5532acf912a020759fa5b
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -24,7 +24,7 @@ BuildRequires:	libcfg+-devel
 %{?with_gcrypt:BuildRequires:	libgcrypt-devel >= 1.4.0}
 BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 2.12
+BuildRequires:	libtasn1-devel >= 2.14
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzip
 %{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.5}
@@ -42,7 +42,7 @@ BuildRequires:	trousers-devel
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 %{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
-Requires:	libtasn1 >= 2.12
+Requires:	libtasn1 >= 2.14
 %{!?with_gcrypt:Requires:	nettle >= 2.5}
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.11
@@ -67,7 +67,7 @@ License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
-Requires:	libtasn1-devel >= 2.12
+Requires:	libtasn1-devel >= 2.14
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.5}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11

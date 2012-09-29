@@ -1,82 +1,108 @@
---- gnutls-3.1.0/po/pl.po.orig	2012-08-05 11:56:22.000000000 +0200
-+++ gnutls-3.1.0/po/pl.po	2012-09-01 20:25:59.383128083 +0200
-@@ -347,9 +347,8 @@
+--- gnutls-3.1.2/po/pl.po.orig	2012-09-25 16:53:42.000000000 +0200
++++ gnutls-3.1.2/po/pl.po	2012-09-29 19:35:54.072767034 +0200
+@@ -5,7 +5,7 @@
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: libgnutls-3.0.12\n"
++"Project-Id-Version: libgnutls-3.1.2\n"
+ "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
+ "POT-Creation-Date: 2012-09-25 16:53+0200\n"
+ "PO-Revision-Date: 2012-01-20 20:45+0100\n"
+@@ -217,14 +217,12 @@
+ msgstr "Podany klucz DSA jest niezgodny z wybranym protoko³em TLS."
+ 
+ #: lib/gnutls_errors.c:96
+-#, fuzzy
+ msgid "A heartbeat pong message was received."
+-msgstr "Odebrano du¿y pakiet rekordu TLS."
++msgstr "Odebrano komunikat heartbeat pong."
+ 
+ #: lib/gnutls_errors.c:98
+-#, fuzzy
+ msgid "A heartbeat ping message was received."
+-msgstr "Odebrano du¿y pakiet rekordu TLS."
++msgstr "Odebrano pakiet heartbeat ping."
+ 
+ #: lib/gnutls_errors.c:100
+ msgid "There is already a crypto algorithm with lower priority."
+@@ -357,9 +355,8 @@
  msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
  
- #: lib/gnutls_errors.c:159
+ #: lib/gnutls_errors.c:162
 -#, fuzzy
  msgid "Unsupported extension in X.509 certificate."
 -msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
 +msgstr "Nieobs³ugiwane rozszerzenie w certyfikacie X.509."
  
- #: lib/gnutls_errors.c:161
+ #: lib/gnutls_errors.c:164
  msgid "Key usage violation in certificate has been detected."
-@@ -361,7 +360,7 @@
+@@ -371,7 +368,7 @@
  
- #: lib/gnutls_errors.c:165
+ #: lib/gnutls_errors.c:168
  msgid "The transmitted packet is too large (EMSGSIZE)."
 -msgstr ""
 +msgstr "Przesy³any pakiet jest zbyt du¿y (EMSGSIZE)."
  
- #: lib/gnutls_errors.c:167
+ #: lib/gnutls_errors.c:170
  msgid "Function was interrupted."
-@@ -589,28 +588,27 @@
+@@ -599,28 +596,27 @@
  
- #: lib/gnutls_errors.c:284
+ #: lib/gnutls_errors.c:287
  msgid "Peer has terminated the connection"
 -msgstr ""
 +msgstr "Druga strona zakoñczy³a po³±czenie"
  
- #: lib/gnutls_errors.c:286
+ #: lib/gnutls_errors.c:289
  msgid "Channel binding data not available"
  msgstr "Dane wi±¿±ce kana³ nie s± dostêpne."
  
- #: lib/gnutls_errors.c:289
+ #: lib/gnutls_errors.c:292
 -#, fuzzy
  msgid "TPM error."
 -msgstr "B³±d PKCS #11."
 +msgstr "B³±d TPM."
  
- #: lib/gnutls_errors.c:291
+ #: lib/gnutls_errors.c:294
  msgid "TPM is not initialized."
 -msgstr ""
 +msgstr "TPM nie zainicjowany."
  
- #: lib/gnutls_errors.c:293
+ #: lib/gnutls_errors.c:296
  msgid "TPM key was not found in persistent storage."
 -msgstr ""
 +msgstr "Nie znaleziono klucza TPM w trwa³ych danych."
  
- #: lib/gnutls_errors.c:295
+ #: lib/gnutls_errors.c:298
  msgid "Cannot initialize a session with the TPM."
 -msgstr ""
 +msgstr "Nie mo¿na zainicjowaæ sesji z TPM."
  
- #: lib/gnutls_errors.c:297
+ #: lib/gnutls_errors.c:300
  msgid "PKCS #11 error."
-@@ -625,18 +623,16 @@
+@@ -635,18 +631,16 @@
  msgstr "B³±d w trakcie analizy."
  
- #: lib/gnutls_errors.c:303
+ #: lib/gnutls_errors.c:306
 -#, fuzzy
  msgid "Error in provided PIN."
 -msgstr "B³±d w trakcie analizy."
 +msgstr "B³±d w podanym PIN-ie."
  
- #: lib/gnutls_errors.c:305
+ #: lib/gnutls_errors.c:308
 -#, fuzzy
  msgid "Error in provided SRK password for TPM."
 -msgstr "B³±d w pliku hase³."
 +msgstr "B³±d w podanym ha¶le SRK dla TPM."
  
- #: lib/gnutls_errors.c:307
+ #: lib/gnutls_errors.c:310
  msgid "Error in provided password for key to be loaded in TPM."
 -msgstr ""
 +msgstr "B³±d w podanym ha¶le dla klucza do wczytania w TPM."
  
- #: lib/gnutls_errors.c:309
+ #: lib/gnutls_errors.c:312
  msgid "PKCS #11 error in slot"
-@@ -1038,14 +1034,14 @@
+@@ -1048,14 +1042,14 @@
  msgstr "%s\t\t\tTylko deszyfrowanie klucza.\n"
  
  #: lib/x509/output.c:470
@@ -95,7 +121,7 @@
  
  #: lib/x509/output.c:527
  msgid ""
-@@ -1173,9 +1169,9 @@
+@@ -1183,9 +1177,9 @@
  msgstr "%s\t\tU¿ycie klucza (%s):\n"
  
  #: lib/x509/output.c:1004
@@ -107,13 +133,10 @@
  
  #: lib/x509/output.c:1019
  #, c-format
-@@ -1400,12 +1396,3 @@
+@@ -1410,9 +1404,3 @@
  #: lib/x509/output.c:2421
  msgid "PKCS #10 Certificate Request Information:\n"
  msgstr "Informacja o ¿±daniu certyfikatu PKCS #10:\n"
--
--#~ msgid "A large TLS record packet was received."
--#~ msgstr "Odebrano du¿y pakiet rekordu TLS."
 -
 -#~ msgid "PKCS #11 error in PIN."
 -#~ msgstr "B³±d PKCS #11 w PIN-ie."
