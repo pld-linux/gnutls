@@ -1,16 +1,17 @@
 #
 # Conditional build:
 %bcond_with	gcrypt	# use gcrypt crypto backend instead of nettle (withdrawn?)
+%bcond_without	dane	# libdane (DANE with DNSSEC certificate verification)
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.1.2
+Version:	3.1.3
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/gnutls/%{name}-%{version}.tar.lz
-# Source0-md5:	f5b5ce62b0e5532acf912a020759fa5b
+# Source0-md5:	c630948a59d3951a4edb756cfc0d8bdb
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -39,6 +40,7 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.8
 BuildRequires:	trousers-devel
+%{?with_dane:BuildRequires:	unbound-devel}
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 %{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
@@ -71,6 +73,7 @@ Requires:	libtasn1-devel >= 2.14
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.5}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11
+%{?with_dane:Requires:	unbound-devel}
 Requires:	zlib-devel
 
 %description devel
@@ -211,6 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
 %attr(755,root,root) %{_bindir}/crywrap
+%{?with_dane:%attr(755,root,root) %{_bindir}/danetool}
 %attr(755,root,root) %{_bindir}/gnutls-*
 %attr(755,root,root) %{_bindir}/ocsptool
 %attr(755,root,root) %{_bindir}/p11tool
@@ -219,9 +223,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/tpmtool
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
+%if %{with dane}
+%attr(755,root,root) %{_libdir}/libgnutls-dane.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-dane.so.0
+%endif
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 %{_mandir}/man1/certtool.1*
+%{?with_dane:%{_mandir}/man1/danetool.1*}
 %{_mandir}/man1/gnutls-*.1*
 %{_mandir}/man1/ocsptool.1*
 %{_mandir}/man1/p11tool.1*
@@ -235,8 +244,10 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so
+%{?with_dane:%attr(755,root,root) %{_libdir}/libgnutls-dane.so}
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so
 %{_libdir}/libgnutls.la
+%{?with_dane:%{_libdir}/libgnutls-dane.la}
 %{_libdir}/libgnutls-openssl.la
 %{_includedir}/gnutls
 %exclude %{_includedir}/gnutls/gnutlsxx.h
@@ -246,6 +257,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls.a
+%{?with_dane:%{_libdir}/libgnutls-dane.a}
 %{_libdir}/libgnutls-openssl.a
 
 %files c++
