@@ -1,13 +1,13 @@
---- gnutls-3.1.2/po/pl.po.orig	2012-09-25 16:53:42.000000000 +0200
-+++ gnutls-3.1.2/po/pl.po	2012-09-29 19:35:54.072767034 +0200
+--- gnutls-3.1.4/po/pl.po.orig	2012-11-02 19:58:21.000000000 +0100
++++ gnutls-3.1.4/po/pl.po	2012-11-12 17:17:51.249474744 +0100
 @@ -5,7 +5,7 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.12\n"
-+"Project-Id-Version: libgnutls-3.1.2\n"
++"Project-Id-Version: libgnutls-3.1.4\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2012-09-25 16:53+0200\n"
+ "POT-Creation-Date: 2012-11-02 19:58+0100\n"
  "PO-Revision-Date: 2012-01-20 20:45+0100\n"
 @@ -217,14 +217,12 @@
  msgstr "Podany klucz DSA jest niezgodny z wybranym protoko³em TLS."
@@ -102,39 +102,55 @@
  
  #: lib/gnutls_errors.c:312
  msgid "PKCS #11 error in slot"
-@@ -1048,14 +1042,14 @@
+@@ -729,13 +723,12 @@
+ "wystawcy)"
+ 
+ #: lib/gnutls_errors.c:350
+-#, fuzzy
+ msgid "The OCSP response is invalid"
+-msgstr "¯±danie jest nieprawid³owe."
++msgstr "Odpowied¼ OCSP jest nieprawid³owa."
+ 
+ #: lib/gnutls_errors.c:352
+ msgid "There is no certificate status (OCSP)."
+-msgstr ""
++msgstr "Brak statusu certyfikatu (OCSP)."
+ 
+ #: lib/gnutls_errors.c:439
+ msgid "(unknown error code)"
+@@ -1057,14 +1050,14 @@
  msgstr "%s\t\t\tTylko deszyfrowanie klucza.\n"
  
- #: lib/x509/output.c:470
+ #: lib/x509/output.c:466
 -#, fuzzy, c-format
 +#, c-format
  msgid "\t\t\tNot Before: %s\n"
 -msgstr "\t\tNie wcze¶niej ni¿: %s\n"
 +msgstr "\t\t\tNie wcze¶niej ni¿: %s\n"
  
- #: lib/x509/output.c:477
+ #: lib/x509/output.c:473
 -#, fuzzy, c-format
 +#, c-format
  msgid "\t\t\tNot After: %s\n"
 -msgstr "\t\tNie pó¼niej ni¿: %s\n"
 +msgstr "\t\t\tNie pó¼niej ni¿: %s\n"
  
- #: lib/x509/output.c:527
+ #: lib/x509/output.c:523
  msgid ""
-@@ -1183,9 +1177,9 @@
+@@ -1192,9 +1185,9 @@
  msgstr "%s\t\tU¿ycie klucza (%s):\n"
  
- #: lib/x509/output.c:1004
+ #: lib/x509/output.c:1000
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tPrivate Key Usage Period (%s):\n"
 -msgstr "%s\t\tU¿ycie klucza (%s):\n"
 +msgstr "%s\t\tOkres u¿ycia klucza prywatnego (%s):\n"
  
- #: lib/x509/output.c:1019
+ #: lib/x509/output.c:1015
  #, c-format
-@@ -1410,9 +1404,3 @@
- #: lib/x509/output.c:2421
+@@ -1419,9 +1412,3 @@
+ #: lib/x509/output.c:2417
  msgid "PKCS #10 Certificate Request Information:\n"
  msgstr "Informacja o ¿±daniu certyfikatu PKCS #10:\n"
 -
