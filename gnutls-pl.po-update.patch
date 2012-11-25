@@ -1,14 +1,18 @@
---- gnutls-3.1.4/po/pl.po.orig	2012-11-02 19:58:21.000000000 +0100
-+++ gnutls-3.1.4/po/pl.po	2012-11-12 17:17:51.249474744 +0100
-@@ -5,7 +5,7 @@
+--- gnutls-3.1.5/po/pl.po.orig	2012-11-24 18:06:01.000000000 +0100
++++ gnutls-3.1.5/po/pl.po	2012-11-25 17:05:46.901906105 +0100
+@@ -5,10 +5,10 @@
  #
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.12\n"
-+"Project-Id-Version: libgnutls-3.1.4\n"
++"Project-Id-Version: libgnutls-3.1.5\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2012-11-02 19:58+0100\n"
- "PO-Revision-Date: 2012-01-20 20:45+0100\n"
+ "POT-Creation-Date: 2012-11-24 18:05+0100\n"
+-"PO-Revision-Date: 2012-01-20 20:45+0100\n"
++"PO-Revision-Date: 2012-11-25 17:02+0100\n"
+ "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "Language: pl\n"
 @@ -217,14 +217,12 @@
  msgstr "Podany klucz DSA jest niezgodny z wybranym protoko³em TLS."
  
@@ -118,44 +122,216 @@
  
  #: lib/gnutls_errors.c:439
  msgid "(unknown error code)"
-@@ -1057,14 +1050,14 @@
- msgstr "%s\t\t\tTylko deszyfrowanie klucza.\n"
+@@ -1011,59 +1004,59 @@
+ msgstr "\t\t\tMetoda dostêpu: %.*s"
  
- #: lib/x509/output.c:466
+ #: lib/x509/output.c:428
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sDigital signature.\n"
+-msgstr "%s\t\t\tPodpis cyfrowy.\n"
++msgstr "%sPodpis cyfrowy.\n"
+ 
+ #: lib/x509/output.c:430
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sNon repudiation.\n"
+-msgstr "%s\t\t\tBez odmowy.\n"
++msgstr "%sBez odmowy.\n"
+ 
+ #: lib/x509/output.c:432
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sKey encipherment.\n"
+-msgstr "%s\t\t\tSzyfrowanie klucza.\n"
++msgstr "%sSzyfrowanie klucza.\n"
+ 
+ #: lib/x509/output.c:434
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sData encipherment.\n"
+-msgstr "%s\t\t\tSzyfrowanie danych.\n"
++msgstr "%sSzyfrowanie danych.\n"
+ 
+ #: lib/x509/output.c:436
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sKey agreement.\n"
+-msgstr "%s\t\t\tUzgodnienie klucza.\n"
++msgstr "%stUzgodnienie klucza.\n"
+ 
+ #: lib/x509/output.c:438
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sCertificate signing.\n"
+-msgstr "%s\t\t\tPodpisanie certyfikatu.\n"
++msgstr "%sPodpisanie certyfikatu.\n"
+ 
+ #: lib/x509/output.c:440
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sCRL signing.\n"
+-msgstr "%s\t\t\tPodpisanie CRL.\n"
++msgstr "%sPodpisanie CRL.\n"
+ 
+ #: lib/x509/output.c:442
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sKey encipher only.\n"
+-msgstr "%s\t\t\tTylko szyfrowanie klucza.\n"
++msgstr "%sTylko szyfrowanie klucza.\n"
+ 
+ #: lib/x509/output.c:444
+-#, fuzzy, c-format
++#, c-format
+ msgid "%sKey decipher only.\n"
+-msgstr "%s\t\t\tTylko deszyfrowanie klucza.\n"
++msgstr "%sTylko deszyfrowanie klucza.\n"
+ 
+ #: lib/x509/output.c:482
 -#, fuzzy, c-format
 +#, c-format
  msgid "\t\t\tNot Before: %s\n"
 -msgstr "\t\tNie wcze¶niej ni¿: %s\n"
 +msgstr "\t\t\tNie wcze¶niej ni¿: %s\n"
  
- #: lib/x509/output.c:473
+ #: lib/x509/output.c:489
 -#, fuzzy, c-format
 +#, c-format
  msgid "\t\t\tNot After: %s\n"
 -msgstr "\t\tNie pó¼niej ni¿: %s\n"
 +msgstr "\t\t\tNie pó¼niej ni¿: %s\n"
  
- #: lib/x509/output.c:523
+ #: lib/x509/output.c:539
  msgid ""
-@@ -1192,9 +1185,9 @@
+@@ -1193,9 +1186,9 @@
  msgstr "%s\t\tU¿ycie klucza (%s):\n"
  
- #: lib/x509/output.c:1000
+ #: lib/x509/output.c:1061
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tPrivate Key Usage Period (%s):\n"
 -msgstr "%s\t\tU¿ycie klucza (%s):\n"
 +msgstr "%s\t\tOkres u¿ycia klucza prywatnego (%s):\n"
  
- #: lib/x509/output.c:1015
+ #: lib/x509/output.c:1076
  #, c-format
-@@ -1419,9 +1412,3 @@
- #: lib/x509/output.c:2417
- msgid "PKCS #10 Certificate Request Information:\n"
+@@ -1243,24 +1236,24 @@
+ msgstr "%s\t\t\tZrzut hex: "
+ 
+ #: lib/x509/output.c:1237
+-#, fuzzy, c-format
++#, c-format
+ msgid "\t%sPublic Key Algorithm: %s\n"
+-msgstr "\tAlgorytm klucza publicznego: %s\n"
++msgstr "\t%sAlgorytm klucza publicznego: %s\n"
+ 
+ #: lib/x509/output.c:1238
+-#, fuzzy, c-format
++#, c-format
+ msgid "\tAlgorithm Security Level: %s (%d bits)\n"
+-msgstr "\tPoziom bezpieczeñstwa certyfikatu: %s (bitów: %d)\n"
++msgstr "\tPoziom bezpieczeñstwa algorytmu: %s (bitów: %d)\n"
+ 
+ #: lib/x509/output.c:1254
+-#, fuzzy, c-format
++#, c-format
+ msgid "\t\tModulus (bits %d): "
+-msgstr "\t\tReszta (bitów: %d):\n"
++msgstr "\t\tReszta (bitów: %d): "
+ 
+ #: lib/x509/output.c:1257
+-#, fuzzy, c-format
++#, c-format
+ msgid "\t\tExponent (bits %d): "
+-msgstr "\t\tWyk³adnik (bitów: %d):\n"
++msgstr "\t\tWyk³adnik (bitów: %d): "
+ 
+ #: lib/x509/output.c:1265
+ #, c-format
+@@ -1273,14 +1266,12 @@
+ msgstr "\t\tKrzywa:\t%s\n"
+ 
+ #: lib/x509/output.c:1290
+-#, fuzzy
+ msgid "\t\tX: "
+-msgstr "\t\tX:\n"
++msgstr "\t\tX: "
+ 
+ #: lib/x509/output.c:1293
+-#, fuzzy
+ msgid "\t\tY: "
+-msgstr "\t\tY:\n"
++msgstr "\t\tY: "
+ 
+ #: lib/x509/output.c:1299
+ msgid "\t\tX:\n"
+@@ -1291,29 +1282,25 @@
+ msgstr "\t\tY:\n"
+ 
+ #: lib/x509/output.c:1322
+-#, fuzzy, c-format
++#, c-format
+ msgid "\t\tPublic key (bits %d): "
+-msgstr "\t\tKlucz publiczny (bitów: %d):\n"
++msgstr "\t\tKlucz publiczny (bitów: %d): "
+ 
+ #: lib/x509/output.c:1325
+-#, fuzzy
+ msgid "\t\tP: "
+-msgstr "\t\tP:\n"
++msgstr "\t\tP: "
+ 
+ #: lib/x509/output.c:1328
+-#, fuzzy
+ msgid "\t\tQ: "
+-msgstr "\t\tQ:\n"
++msgstr "\t\tQ: "
+ 
+ #: lib/x509/output.c:1331
+-#, fuzzy
+ msgid "\t\tG: "
+-msgstr "\t\tG:\n"
++msgstr "\t\tG: "
+ 
+ #: lib/x509/output.c:1375 lib/x509/output.c:2234
+-#, fuzzy
+ msgid "Subject "
+-msgstr "\tPrzedmiot: %s\n"
++msgstr "Przedmiot "
+ 
+ #: lib/x509/output.c:1406
+ msgid "\tSerial Number (hex): "
+@@ -1467,29 +1454,13 @@
  msgstr "Informacja o ¿±daniu certyfikatu PKCS #10:\n"
+ 
+ #: lib/x509/output.c:2520
+-#, fuzzy
+ msgid "Public Key Usage:\n"
+-msgstr ""
+-"\tIdentyfikator klucza publicznego:\n"
+-"\t\t"
++msgstr "U¿ycie klucza publicznego:\n"
+ 
+ #: lib/x509/output.c:2531
+-#, fuzzy
+ msgid "Public Key ID: "
+-msgstr ""
+-"\tIdentyfikator klucza publicznego:\n"
+-"\t\t"
++msgstr "Identyfikator klucza publicznego: "
+ 
+ #: lib/x509/output.c:2565
+-#, fuzzy
+ msgid "Public Key Information:\n"
+-msgstr "Inne informacje:\n"
+-
+-#~ msgid "\tSubject Public Key Algorithm: %s\n"
+-#~ msgstr "\tAlgorytm klucza publicznego: %s\n"
 -
 -#~ msgid "PKCS #11 error in PIN."
 -#~ msgstr "B³±d PKCS #11 w PIN-ie."
 -
 -#~ msgid "PKCS #11 PIN should be saved."
 -#~ msgstr "PIN PKCS #11 powinien byæ zapisany."
++msgstr "Informacje o kluczu publicznym:\n"
