@@ -10,12 +10,12 @@ Version:	3.1.5
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/gnutls/%{name}-%{version}.tar.lz
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.1/%{name}-%{version}.tar.lz
 # Source0-md5:	0bc1a96efe34fe7adca7318664ca2922
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
-URL:		http://www.gnu.org/software/gnutls/
+URL:		http://www.gnutls.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11.3
 BuildRequires:	gettext-devel >= 0.18
