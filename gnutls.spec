@@ -2,19 +2,21 @@
 # Conditional build:
 %bcond_with	gcrypt	# use gcrypt crypto backend instead of nettle (withdrawn?)
 %bcond_without	dane	# libdane (DANE with DNSSEC certificate verification)
+%bcond_with	tpm	# TPM support in gnutls (cannot be used with GPL programs)
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.1.5
+Version:	3.1.6
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.1/%{name}-%{version}.tar.lz
-# Source0-md5:	0bc1a96efe34fe7adca7318664ca2922
+# Source0-md5:	770d3ed5adfb67b075b5b398f13f484c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
+Patch3:		%{name}-am.patch
 URL:		http://www.gnutls.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11.3
@@ -39,7 +41,7 @@ BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.8
-BuildRequires:	trousers-devel
+%{?with_tpm:BuildRequires:	trousers-devel}
 %{?with_dane:BuildRequires:	unbound-devel}
 BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
@@ -73,6 +75,7 @@ Requires:	libtasn1-devel >= 2.14
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.5}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11
+%{?with_tpm:Requires:	trousers-devel}
 %{?with_dane:Requires:	unbound-devel}
 Requires:	zlib-devel
 
@@ -155,6 +158,7 @@ Wiązania Guile do GnuTLS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__rm} po/stamp-po
 
@@ -171,7 +175,8 @@ Wiązania Guile do GnuTLS.
 %configure \
 	--disable-silent-rules \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
-	%{?with_gcrypt:--with-libgcrypt}
+	%{?with_gcrypt:--with-libgcrypt} \
+	%{?with_tpm:--with-tpm}
 
 # docs build is broken with -jN
 %{__make} -j1
@@ -220,7 +225,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/p11tool
 %attr(755,root,root) %{_bindir}/psktool
 %attr(755,root,root) %{_bindir}/srptool
-%attr(755,root,root) %{_bindir}/tpmtool
+%{?with_tpm:%attr(755,root,root) %{_bindir}/tpmtool}
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
 %if %{with dane}
