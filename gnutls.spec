@@ -7,16 +7,15 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.1.6
+Version:	3.1.7
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.1/%{name}-%{version}.tar.lz
-# Source0-md5:	770d3ed5adfb67b075b5b398f13f484c
+# Source0-md5:	dc9f58084f926f51df2da4a828b1e3fb
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
-Patch3:		%{name}-am.patch
 URL:		http://www.gnutls.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11.3
@@ -158,7 +157,6 @@ Wiązania Guile do GnuTLS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %{__rm} po/stamp-po
 
@@ -234,6 +232,8 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
+%attr(755,root,root) %{_libdir}/libgnutls-xssl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-xssl.so.0
 %{_mandir}/man1/certtool.1*
 %{?with_dane:%{_mandir}/man1/danetool.1*}
 %{_mandir}/man1/gnutls-*.1*
@@ -251,9 +251,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgnutls.so
 %{?with_dane:%attr(755,root,root) %{_libdir}/libgnutls-dane.so}
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so
+%attr(755,root,root) %{_libdir}/libgnutls-xssl.so
 %{_libdir}/libgnutls.la
 %{?with_dane:%{_libdir}/libgnutls-dane.la}
 %{_libdir}/libgnutls-openssl.la
+%{_libdir}/libgnutls-xssl.la
 %{_includedir}/gnutls
 %exclude %{_includedir}/gnutls/gnutlsxx.h
 %{_pkgconfigdir}/gnutls.pc
@@ -265,6 +267,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutls.a
 %{?with_dane:%{_libdir}/libgnutls-dane.a}
 %{_libdir}/libgnutls-openssl.a
+%{_libdir}/libgnutls-xssl.a
 
 %files c++
 %defattr(644,root,root,755)

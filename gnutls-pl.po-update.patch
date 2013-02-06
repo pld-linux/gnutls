@@ -1,5 +1,5 @@
---- gnutls-3.1.6/po/pl.po.orig	2013-01-01 21:05:59.000000000 +0100
-+++ gnutls-3.1.6/po/pl.po	2013-01-02 21:14:16.388022896 +0100
+--- gnutls-3.1.7/po/pl.po.orig	2013-02-04 09:44:14.000000000 +0100
++++ gnutls-3.1.7/po/pl.po	2013-02-05 21:23:25.743449350 +0100
 @@ -1,14 +1,14 @@
  # Polish translation for gnutls.
  # Copyright (C) 2006, 2007, 2008, 2009, 2011, 2012 Free Software Foundation, Inc.
@@ -10,11 +10,11 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.12\n"
-+"Project-Id-Version: libgnutls-3.1.6\n"
++"Project-Id-Version: libgnutls-3.1.7\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2013-01-01 21:05+0100\n"
+ "POT-Creation-Date: 2013-02-04 09:44+0100\n"
 -"PO-Revision-Date: 2012-01-20 20:45+0100\n"
-+"PO-Revision-Date: 2013-01-02 21:12+0100\n"
++"PO-Revision-Date: 2013-02-05 21:15+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
@@ -35,99 +35,115 @@
  
  #: lib/gnutls_errors.c:100
  msgid "There is already a crypto algorithm with lower priority."
-@@ -357,9 +355,8 @@
+@@ -349,9 +347,8 @@
+ msgstr "B³±d w certyfikacie."
+ 
+ #: lib/gnutls_errors.c:157
+-#, fuzzy
+ msgid "Could not authenticate peer."
+-msgstr "Nie uda³o siê uzyskaæ klucza OpenPGP."
++msgstr "Nie uda³o siê uwierzytelniæ drugiej strony."
+ 
+ #: lib/gnutls_errors.c:159
+ msgid "Unknown Subject Alternative name in X.509 certificate."
+@@ -362,9 +359,8 @@
  msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
  
- #: lib/gnutls_errors.c:162
+ #: lib/gnutls_errors.c:164
 -#, fuzzy
  msgid "Unsupported extension in X.509 certificate."
 -msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
 +msgstr "Nieobs³ugiwane rozszerzenie w certyfikacie X.509."
  
- #: lib/gnutls_errors.c:164
+ #: lib/gnutls_errors.c:166
  msgid "Key usage violation in certificate has been detected."
-@@ -371,7 +368,7 @@
+@@ -376,7 +372,7 @@
  
- #: lib/gnutls_errors.c:168
+ #: lib/gnutls_errors.c:170
  msgid "The transmitted packet is too large (EMSGSIZE)."
 -msgstr ""
 +msgstr "Przesy³any pakiet jest zbyt du¿y (EMSGSIZE)."
  
- #: lib/gnutls_errors.c:170
+ #: lib/gnutls_errors.c:172
  msgid "Function was interrupted."
-@@ -599,28 +596,27 @@
+@@ -604,28 +600,27 @@
  
- #: lib/gnutls_errors.c:287
+ #: lib/gnutls_errors.c:289
  msgid "Peer has terminated the connection"
 -msgstr ""
 +msgstr "Druga strona zakoñczy³a po³±czenie"
  
- #: lib/gnutls_errors.c:289
+ #: lib/gnutls_errors.c:291
  msgid "Channel binding data not available"
  msgstr "Dane wi±¿±ce kana³ nie s± dostêpne."
  
- #: lib/gnutls_errors.c:292
+ #: lib/gnutls_errors.c:294
 -#, fuzzy
  msgid "TPM error."
 -msgstr "B³±d PKCS #11."
 +msgstr "B³±d TPM."
  
- #: lib/gnutls_errors.c:294
+ #: lib/gnutls_errors.c:296
  msgid "TPM is not initialized."
 -msgstr ""
 +msgstr "TPM nie zainicjowany."
  
- #: lib/gnutls_errors.c:296
+ #: lib/gnutls_errors.c:298
  msgid "TPM key was not found in persistent storage."
 -msgstr ""
 +msgstr "Nie znaleziono klucza TPM w trwa³ych danych."
  
- #: lib/gnutls_errors.c:298
+ #: lib/gnutls_errors.c:300
  msgid "Cannot initialize a session with the TPM."
 -msgstr ""
 +msgstr "Nie mo¿na zainicjowaæ sesji z TPM."
  
- #: lib/gnutls_errors.c:300
+ #: lib/gnutls_errors.c:302
  msgid "PKCS #11 error."
-@@ -635,18 +631,16 @@
+@@ -640,18 +635,16 @@
  msgstr "B³±d w trakcie analizy."
  
- #: lib/gnutls_errors.c:306
+ #: lib/gnutls_errors.c:308
 -#, fuzzy
  msgid "Error in provided PIN."
 -msgstr "B³±d w trakcie analizy."
 +msgstr "B³±d w podanym PIN-ie."
  
- #: lib/gnutls_errors.c:308
+ #: lib/gnutls_errors.c:310
 -#, fuzzy
  msgid "Error in provided SRK password for TPM."
 -msgstr "B³±d w pliku hase³."
 +msgstr "B³±d w podanym ha¶le SRK dla TPM."
  
- #: lib/gnutls_errors.c:310
+ #: lib/gnutls_errors.c:312
  msgid "Error in provided password for key to be loaded in TPM."
 -msgstr ""
 +msgstr "B³±d w podanym ha¶le dla klucza do wczytania w TPM."
  
- #: lib/gnutls_errors.c:312
+ #: lib/gnutls_errors.c:314
  msgid "PKCS #11 error in slot"
-@@ -729,13 +723,12 @@
+@@ -734,17 +727,16 @@
  "wystawcy)"
  
- #: lib/gnutls_errors.c:350
+ #: lib/gnutls_errors.c:352
 -#, fuzzy
  msgid "The OCSP response is invalid"
 -msgstr "¯±danie jest nieprawid³owe."
 +msgstr "Odpowied¼ OCSP jest nieprawid³owa."
  
- #: lib/gnutls_errors.c:352
+ #: lib/gnutls_errors.c:354
  msgid "There is no certificate status (OCSP)."
 -msgstr ""
 +msgstr "Brak statusu certyfikatu (OCSP)."
  
- #: lib/gnutls_errors.c:439
+ #: lib/gnutls_errors.c:356
+ msgid "Error in the system's randomness device."
+-msgstr ""
++msgstr "B³±d w systemowym urz±dzeniu danych losowych."
+ 
+ #: lib/gnutls_errors.c:443
  msgid "(unknown error code)"
-@@ -1011,59 +1004,59 @@
+@@ -1020,59 +1012,59 @@
  msgstr "\t\t\tMetoda dostêpu: %.*s"
  
  #: lib/x509/output.c:428
@@ -209,7 +225,7 @@
  
  #: lib/x509/output.c:539
  msgid ""
-@@ -1193,9 +1186,9 @@
+@@ -1202,9 +1194,9 @@
  msgstr "%s\t\tU¿ycie klucza (%s):\n"
  
  #: lib/x509/output.c:1061
@@ -221,7 +237,7 @@
  
  #: lib/x509/output.c:1076
  #, c-format
-@@ -1243,24 +1236,24 @@
+@@ -1252,24 +1244,24 @@
  msgstr "%s\t\t\tZrzut hex: "
  
  #: lib/x509/output.c:1237
@@ -254,7 +270,7 @@
  
  #: lib/x509/output.c:1265
  #, c-format
-@@ -1273,14 +1266,12 @@
+@@ -1282,14 +1274,12 @@
  msgstr "\t\tKrzywa:\t%s\n"
  
  #: lib/x509/output.c:1290
@@ -271,7 +287,7 @@
  
  #: lib/x509/output.c:1299
  msgid "\t\tX:\n"
-@@ -1291,29 +1282,25 @@
+@@ -1300,29 +1290,25 @@
  msgstr "\t\tY:\n"
  
  #: lib/x509/output.c:1322
@@ -307,7 +323,7 @@
  
  #: lib/x509/output.c:1406
  msgid "\tSerial Number (hex): "
-@@ -1467,29 +1454,13 @@
+@@ -1476,29 +1462,13 @@
  msgstr "Informacja o ¿±daniu certyfikatu PKCS #10:\n"
  
  #: lib/x509/output.c:2520
