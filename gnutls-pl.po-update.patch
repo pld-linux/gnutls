@@ -1,5 +1,5 @@
---- gnutls-3.1.7/po/pl.po.orig	2013-02-04 09:44:14.000000000 +0100
-+++ gnutls-3.1.7/po/pl.po	2013-02-05 21:23:25.743449350 +0100
+--- gnutls-3.1.8/po/pl.po.orig	2013-02-10 11:24:23.000000000 +0100
++++ gnutls-3.1.8/po/pl.po	2013-02-12 18:05:14.232840713 +0100
 @@ -1,14 +1,14 @@
  # Polish translation for gnutls.
  # Copyright (C) 2006, 2007, 2008, 2009, 2011, 2012 Free Software Foundation, Inc.
@@ -10,11 +10,11 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.12\n"
-+"Project-Id-Version: libgnutls-3.1.7\n"
++"Project-Id-Version: libgnutls-3.1.8\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2013-02-04 09:44+0100\n"
+ "POT-Creation-Date: 2013-02-10 11:24+0100\n"
 -"PO-Revision-Date: 2012-01-20 20:45+0100\n"
-+"PO-Revision-Date: 2013-02-05 21:15+0100\n"
++"PO-Revision-Date: 2013-02-12 18:04+0100\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
