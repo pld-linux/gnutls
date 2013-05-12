@@ -1,5 +1,5 @@
---- gnutls-3.1.11/po/pl.po.orig	2013-05-08 12:43:38.000000000 +0200
-+++ gnutls-3.1.11/po/pl.po	2013-05-12 09:25:33.136222956 +0200
+--- gnutls-3.2.0/po/pl.po.orig	2013-05-10 17:49:32.000000000 +0200
++++ gnutls-3.2.0/po/pl.po	2013-05-12 10:20:56.242750165 +0200
 @@ -1,14 +1,14 @@
  # Polish translation for gnutls.
  # Copyright (C) 2006, 2007, 2008, 2009, 2011, 2012 Free Software Foundation, Inc.
@@ -10,15 +10,24 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: libgnutls-3.0.12\n"
-+"Project-Id-Version: libgnutls-3.1.11\n"
++"Project-Id-Version: libgnutls-3.2.0\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2013-05-08 12:43+0200\n"
+ "POT-Creation-Date: 2013-05-10 17:49+0200\n"
 -"PO-Revision-Date: 2012-01-20 20:45+0100\n"
-+"PO-Revision-Date: 2013-05-12 09:24+0200\n"
++"PO-Revision-Date: 2013-05-12 10:15+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
-@@ -217,14 +217,12 @@
+@@ -130,7 +130,7 @@
+ 
+ #: lib/gnutls_alert.c:76
+ msgid "No supported application protocol could be negotiated"
+-msgstr ""
++msgstr "Nie uda³o siê wynegocjowaæ obs³ugiwanego protoko³u aplikacji"
+ 
+ #: lib/gnutls_errors.c:51
+ msgid "Success."
+@@ -221,14 +221,12 @@
  msgstr "Podany klucz DSA jest niezgodny z wybranym protoko³em TLS."
  
  #: lib/gnutls_errors.c:96
@@ -35,7 +44,7 @@
  
  #: lib/gnutls_errors.c:100
  msgid "There is already a crypto algorithm with lower priority."
-@@ -349,9 +347,8 @@
+@@ -353,9 +351,8 @@
  msgstr "B³±d w certyfikacie."
  
  #: lib/gnutls_errors.c:157
@@ -46,7 +55,7 @@
  
  #: lib/gnutls_errors.c:159
  msgid "Unknown Subject Alternative name in X.509 certificate."
-@@ -362,9 +359,8 @@
+@@ -366,9 +363,8 @@
  msgstr "Nieobs³ugiwane rozszerzenie krytyczne w certyfikacie X.509."
  
  #: lib/gnutls_errors.c:164
@@ -57,7 +66,7 @@
  
  #: lib/gnutls_errors.c:166
  msgid "Key usage violation in certificate has been detected."
-@@ -376,7 +372,7 @@
+@@ -380,7 +376,7 @@
  
  #: lib/gnutls_errors.c:170
  msgid "The transmitted packet is too large (EMSGSIZE)."
@@ -66,7 +75,7 @@
  
  #: lib/gnutls_errors.c:172
  msgid "Function was interrupted."
-@@ -604,28 +600,27 @@
+@@ -608,28 +604,27 @@
  
  #: lib/gnutls_errors.c:289
  msgid "Peer has terminated the connection"
@@ -100,7 +109,7 @@
  
  #: lib/gnutls_errors.c:302
  msgid "PKCS #11 error."
-@@ -640,18 +635,16 @@
+@@ -644,18 +639,16 @@
  msgstr "B³±d w trakcie analizy."
  
  #: lib/gnutls_errors.c:308
@@ -122,7 +131,7 @@
  
  #: lib/gnutls_errors.c:314
  msgid "PKCS #11 error in slot"
-@@ -734,17 +727,16 @@
+@@ -738,21 +731,20 @@
  "wystawcy)"
  
  #: lib/gnutls_errors.c:352
@@ -141,9 +150,14 @@
 -msgstr ""
 +msgstr "B³±d w systemowym urz±dzeniu danych losowych."
  
- #: lib/gnutls_errors.c:443
+ #: lib/gnutls_errors.c:358
+ msgid "No common application protocol could be negotiated."
+-msgstr ""
++msgstr "Nie uda³o siê wynegocjowaæ wspólnego protoko³u aplikacji."
+ 
+ #: lib/gnutls_errors.c:445
  msgid "(unknown error code)"
-@@ -1020,59 +1012,59 @@
+@@ -1028,59 +1020,59 @@
  msgstr "\t\t\tMetoda dostêpu: %.*s"
  
  #: lib/x509/output.c:428
@@ -225,7 +239,7 @@
  
  #: lib/x509/output.c:539
  msgid ""
-@@ -1202,9 +1194,9 @@
+@@ -1210,9 +1202,9 @@
  msgstr "%s\t\tU¿ycie klucza (%s):\n"
  
  #: lib/x509/output.c:1061
@@ -237,7 +251,7 @@
  
  #: lib/x509/output.c:1076
  #, c-format
-@@ -1252,24 +1244,24 @@
+@@ -1260,24 +1252,24 @@
  msgstr "%s\t\t\tZrzut hex: "
  
  #: lib/x509/output.c:1237
@@ -270,7 +284,7 @@
  
  #: lib/x509/output.c:1265
  #, c-format
-@@ -1282,14 +1274,12 @@
+@@ -1290,14 +1282,12 @@
  msgstr "\t\tKrzywa:\t%s\n"
  
  #: lib/x509/output.c:1290
@@ -287,7 +301,7 @@
  
  #: lib/x509/output.c:1299
  msgid "\t\tX:\n"
-@@ -1300,29 +1290,25 @@
+@@ -1308,29 +1298,25 @@
  msgstr "\t\tY:\n"
  
  #: lib/x509/output.c:1322
@@ -323,7 +337,7 @@
  
  #: lib/x509/output.c:1406
  msgid "\tSerial Number (hex): "
-@@ -1476,29 +1462,13 @@
+@@ -1484,29 +1470,13 @@
  msgstr "Informacja o ¿±daniu certyfikatu PKCS #10:\n"
  
  #: lib/x509/output.c:2520

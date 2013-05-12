@@ -7,12 +7,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.1.11
+Version:	3.2.0
 Release:	1
 License:	LGPL v3+ (libgnutls), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.1/%{name}-%{version}.tar.lz
-# Source0-md5:	83e71089a58df0a69b295c03c287b2a5
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.2/%{name}-%{version}.tar.lz
+# Source0-md5:	746cacdc1a1f64b74699109dad4ce47a
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -29,7 +29,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 2.14
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzip
-%{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.5}
+%{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.7}
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
@@ -46,7 +46,7 @@ BuildRequires:	zlib-devel
 Requires(post,postun):	/sbin/ldconfig
 %{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
 Requires:	libtasn1 >= 2.14
-%{!?with_gcrypt:Requires:	nettle >= 2.5}
+%{!?with_gcrypt:Requires:	nettle >= 2.7}
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.11
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -71,11 +71,10 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
 Requires:	libtasn1-devel >= 2.14
-%{!?with_gcrypt:Requires:	nettle-devel >= 2.5}
+%{!?with_gcrypt:Requires:	nettle-devel >= 2.7}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11
 %{?with_tpm:Requires:	trousers-devel}
-%{?with_dane:Requires:	unbound-devel}
 Requires:	zlib-devel
 
 %description devel
@@ -137,6 +136,44 @@ Static version of libgnutlsxx, a C++ interface to gnutls library.
 
 %description c++-static -l pl.UTF-8
 Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls.
+
+%package dane
+Summary:	DANE security library
+Summary(pl.UTF-8):	Biblioteka bezpieczeństwa DANE
+Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description dane
+DANE security library.
+
+%description dane -l pl.UTF-8
+Biblioteka bezpieczeństwa DANE.
+
+%package dane-devel
+Summary:	Header file for DANE security library
+Summary(pl.UTF-8):	Plik nagłówkowy biblioteki bezpieczeństwa DANE
+Group:		Development/Libraries
+Requires:	%{name}-dane = %{version}-%{release}
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	unbound-devel
+
+%description dane-devel
+Header file for DANE security library.
+
+%description dane-devel -l pl.UTF-8
+Plik nagłówkowy biblioteki bezpieczeństwa DANE.
+
+%package dane-static
+Summary:	Static DANE security library
+Summary(pl.UTF-8):	Statyczna biblioteka bezpieczeństwa DANE
+Group:		Development/Libraries
+Requires:	%{name}-dane-devel = %{version}-%{release}
+
+%description dane-static
+Static DANE security library.
+
+%description dane-static -l pl.UTF-8
+Statyczna biblioteka bezpieczeństwa DANE.
 
 %package -n guile-gnutls
 Summary:	Guile bindings for GnuTLS
@@ -218,7 +255,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS
 %attr(755,root,root) %{_bindir}/certtool
 %attr(755,root,root) %{_bindir}/crywrap
-%{?with_dane:%attr(755,root,root) %{_bindir}/danetool}
 %attr(755,root,root) %{_bindir}/gnutls-*
 %attr(755,root,root) %{_bindir}/ocsptool
 %attr(755,root,root) %{_bindir}/p11tool
@@ -227,16 +263,11 @@ rm -rf $RPM_BUILD_ROOT
 %{?with_tpm:%attr(755,root,root) %{_bindir}/tpmtool}
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
-%if %{with dane}
-%attr(755,root,root) %{_libdir}/libgnutls-dane.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-dane.so.0
-%endif
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 %attr(755,root,root) %{_libdir}/libgnutls-xssl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-xssl.so.0
 %{_mandir}/man1/certtool.1*
-%{?with_dane:%{_mandir}/man1/danetool.1*}
 %{_mandir}/man1/gnutls-*.1*
 %{_mandir}/man1/ocsptool.1*
 %{_mandir}/man1/p11tool.1*
@@ -250,23 +281,20 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so
-%{?with_dane:%attr(755,root,root) %{_libdir}/libgnutls-dane.so}
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so
 %attr(755,root,root) %{_libdir}/libgnutls-xssl.so
 %{_libdir}/libgnutls.la
-%{?with_dane:%{_libdir}/libgnutls-dane.la}
 %{_libdir}/libgnutls-openssl.la
 %{_libdir}/libgnutls-xssl.la
 %{_includedir}/gnutls
+%{?with_dane:%exclude %{_includedir}/gnutls/dane.h}
 %exclude %{_includedir}/gnutls/gnutlsxx.h
 %{_pkgconfigdir}/gnutls.pc
-%{?with_dane:%{_pkgconfigdir}/gnutls-dane.pc}
 %{_mandir}/man3/gnutls_*.3*
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls.a
-%{?with_dane:%{_libdir}/libgnutls-dane.a}
 %{_libdir}/libgnutls-openssl.a
 %{_libdir}/libgnutls-xssl.a
 
@@ -284,6 +312,26 @@ rm -rf $RPM_BUILD_ROOT
 %files c++-static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutlsxx.a
+
+%if %{with dane}
+%files dane
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/danetool
+%attr(755,root,root) %{_libdir}/libgnutls-dane.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-dane.so.0
+%{_mandir}/man1/danetool.1*
+
+%files dane-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnutls-dane.so
+%{_libdir}/libgnutls-dane.la
+%{_includedir}/gnutls/dane.h
+%{_pkgconfigdir}/gnutls-dane.pc
+
+%files dane-static
+%defattr(644,root,root,755)
+%{_libdir}/libgnutls-dane.a
+%endif
 
 %files -n guile-gnutls
 %defattr(644,root,root,755)
