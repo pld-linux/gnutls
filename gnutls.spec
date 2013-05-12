@@ -43,12 +43,8 @@ BuildRequires:	texinfo >= 4.8
 %{?with_tpm:BuildRequires:	trousers-devel}
 %{?with_dane:BuildRequires:	unbound-devel}
 BuildRequires:	zlib-devel
-Requires(post,postun):	/sbin/ldconfig
-%{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
-Requires:	libtasn1 >= 2.14
-%{!?with_gcrypt:Requires:	nettle >= 2.7}
-#Requires:	opencdk >= 0.6.6
-Requires:	p11-kit >= 0.11
+Requires:	%{name}-libs = %{version}-%{release}
+%{?with_dane:Requires:	%{name}-dane = %{version}-%{release}}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -63,12 +59,29 @@ powłokę bezpieczeństwa ponad powłoką transportową (np. TCP/IP).
 Aktualnie biblioteka gnuTLS implementuje standardy proponowane przez
 grupę roboczą IETF TLS.
 
+%package libs
+Summary:	GnuTLS shared libraries
+Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
+Group:		Libraries
+%{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
+Requires:	libtasn1 >= 2.14
+%{!?with_gcrypt:Requires:	nettle >= 2.7}
+#Requires:	opencdk >= 0.6.6
+Requires:	p11-kit >= 0.11
+Conflicts:	gnutls < 3.2.0
+
+%description libs
+GnuTLS shared libraries.
+
+%description libs -l pl.UTF-8
+Biblioteki współdzielone GnuTLS.
+
 %package devel
 Summary:	Header files etc to develop gnutls applications
 Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 %{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
 Requires:	libtasn1-devel >= 2.14
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.7}
@@ -101,7 +114,7 @@ Summary:	libgnutlsxx - C++ interface to gnutls library
 Summary(pl.UTF-8):	libgnutlsxx - interfejs C++ do biblioteki gnutls
 License:	LGPL v2.1+
 Group:		Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description c++
 libgnutlsxx - C++ interface to gnutls library.
@@ -141,7 +154,7 @@ Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 Summary:	DANE security library
 Summary(pl.UTF-8):	Biblioteka bezpieczeństwa DANE
 Group:		Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description dane
 DANE security library.
@@ -180,7 +193,7 @@ Summary:	Guile bindings for GnuTLS
 Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
 License:	LGPL v2.1+
 Group:		Development/Languages
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	guile >= 5:2.0
 
 %description -n guile-gnutls
@@ -237,12 +250,13 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %postun
-/sbin/ldconfig
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %post	c++ -p /sbin/ldconfig
 %postun	c++ -p /sbin/ldconfig
@@ -261,12 +275,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/psktool
 %attr(755,root,root) %{_bindir}/srptool
 %{?with_tpm:%attr(755,root,root) %{_bindir}/tpmtool}
-%attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
-%attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
-%attr(755,root,root) %{_libdir}/libgnutls-xssl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-xssl.so.0
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*.1*
 %{_mandir}/man1/ocsptool.1*
@@ -277,6 +285,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/gnutls.info*
 %{_infodir}/gnutls-*.png
 %{_infodir}/pkcs11-vision.png
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
+%attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
+%attr(755,root,root) %{_libdir}/libgnutls-xssl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-xssl.so.0
 
 %files devel
 %defattr(644,root,root,755)
