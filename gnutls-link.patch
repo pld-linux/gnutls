@@ -12,14 +12,3 @@
              if test "X$found_so" != "X"; then
                dnl Linking with a shared library. We attempt to hardcode its
                dnl directory into the executable's runpath, unless it's the
---- gnutls-3.2.1/lib/Makefile.am.orig	2013-05-31 20:58:51.000000000 +0200
-+++ gnutls-3.2.1/lib/Makefile.am	2013-06-07 22:22:54.017559367 +0200
-@@ -140,7 +140,7 @@
- endif
- 
- if ENABLE_NETTLE
--thirdparty_libadd += $(NETTLE_LIBS) $(HOGWEED_LIBS)
-+thirdparty_libadd += $(NETTLE_LIBS) $(HOGWEED_LIBS) -lgmp
- libgnutls_la_LIBADD += nettle/libcrypto.la
- endif
- 
