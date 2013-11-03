@@ -2,17 +2,17 @@
 # Conditional build:
 %bcond_with	gcrypt	# use gcrypt crypto backend instead of nettle (withdrawn?)
 %bcond_without	dane	# libdane (DANE with DNSSEC certificate verification)
-%bcond_with	tpm	# TPM support in gnutls (cannot be used with GPL programs)
+%bcond_without	tpm	# TPM support in gnutls
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.2.5
+Version:	3.2.6
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.2/%{name}-%{version}.tar.lz
-# Source0-md5:	667a9e8d7a9a6cc02d16bd348f25e914
+# Source0-md5:	9195a4435892ef740b140325e56ae6bd
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -39,7 +39,7 @@ BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.8
-%{?with_tpm:BuildRequires:	trousers-devel}
+%{?with_tpm:BuildRequires:	trousers-devel >= 0.3.11}
 %{?with_dane:BuildRequires:	unbound-devel}
 BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
@@ -67,6 +67,7 @@ Requires:	libtasn1 >= 2.14
 %{!?with_gcrypt:Requires:	nettle >= 2.7}
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.11
+%{?with_tpm:Requires:	trousers >= 0.3.11}
 Conflicts:	gnutls < 3.2.0
 
 %description libs
@@ -86,7 +87,7 @@ Requires:	libtasn1-devel >= 2.14
 %{!?with_gcrypt:Requires:	nettle-devel >= 2.7}
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11
-%{?with_tpm:Requires:	trousers-devel}
+%{?with_tpm:Requires:	trousers-devel >= 0.3.11}
 Requires:	zlib-devel
 
 %description devel
@@ -223,7 +224,7 @@ Wiązania Guile do GnuTLS.
 	--enable-heartbeat-support \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
 	%{?with_gcrypt:--with-libgcrypt} \
-	%{?with_tpm:--with-tpm}
+	%{!?with_tpm:--without-tpm}
 
 # docs build is broken with -jN
 %{__make} -j1
