@@ -209,10 +209,6 @@ Wiązania Guile do GnuTLS.
 
 %{__rm} po/stamp-po
 
-# remove it when "linking libtool libraries using a non-POSIX archiver ..." warning is gone
-# (after gnutls or libtool change)
-%{__sed} -i -e '/AM_INIT_AUTOMAKE/s/-Werror//' configure.ac
-
 %build
 %{__libtoolize}
 %{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4
