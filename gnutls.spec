@@ -1,18 +1,17 @@
 #
 # Conditional build:
-%bcond_with	gcrypt	# use gcrypt crypto backend instead of nettle (withdrawn?)
 %bcond_without	dane	# libdane (DANE with DNSSEC certificate verification)
 %bcond_without	tpm	# TPM support in gnutls
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.2.9
+Version:	3.2.10
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.2/%{name}-%{version}.tar.lz
-# Source0-md5:	cc6a533dff6b560bf5f6d25a5257eef7
+# Source0-md5:	2c82c1ad28990d47bdf8f07a1166374d
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -22,13 +21,12 @@ BuildRequires:	gettext-devel >= 0.18
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
-%{?with_gcrypt:BuildRequires:	libgcrypt-devel >= 1.4.0}
 BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 2.14
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzip
-%{!?with_gcrypt:BuildRequires:	nettle-devel >= 2.7}
+BuildRequires:	nettle-devel >= 2.7
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
@@ -62,9 +60,8 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-%{?with_gcrypt:Requires:	libgcrypt >= 1.4.0}
 Requires:	libtasn1 >= 2.14
-%{!?with_gcrypt:Requires:	nettle >= 2.7}
+Requires:	nettle >= 2.7
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.11
 %{?with_tpm:Requires:	trousers-libs >= 0.3.11}
@@ -82,9 +79,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-%{?with_gcrypt:Requires:	libgcrypt-devel >= 1.4.0}
 Requires:	libtasn1-devel >= 2.14
-%{!?with_gcrypt:Requires:	nettle-devel >= 2.7}
+Requires:	nettle-devel >= 2.7
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.11
 %{?with_tpm:Requires:	trousers-devel >= 0.3.11}
@@ -211,7 +207,7 @@ Wiązania Guile do GnuTLS.
 
 %build
 %{__libtoolize}
-%{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4
+%{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4 -I src/gl/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -219,7 +215,6 @@ Wiązania Guile do GnuTLS.
 	--disable-silent-rules \
 	--enable-heartbeat-support \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
-	%{?with_gcrypt:--with-libgcrypt} \
 	%{!?with_tpm:--without-tpm}
 
 # docs build is broken with -jN
