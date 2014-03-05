@@ -1,0 +1,55 @@
+--- gnutls-3.2.12/guile/src/core.c.orig	2014-03-05 11:15:18.553666903 +0100
++++ gnutls-3.2.12/guile/src/core.c	2014-03-05 11:15:22.743666728 +0100
+@@ -1314,6 +1314,7 @@
+ #undef FUNC_NAME
+ 
+ 
++#ifdef ENABLE_RSA_EXPORT
+ /* RSA parameters.  */
+ 
+ SCM_DEFINE (scm_gnutls_make_rsa_parameters, "make-rsa-parameters", 1, 0, 0,
+@@ -1413,6 +1414,7 @@
+ }
+ 
+ #undef FUNC_NAME
++#endif
+ 
+ 
+ /* Certificate credentials.  */
+@@ -1537,6 +1539,7 @@
+ 
+ #undef FUNC_NAME
+ 
++#ifdef ENABLE_RSA_EXPORT
+ SCM_DEFINE (scm_gnutls_set_certificate_credentials_rsa_export_params_x,
+             "set-certificate-credentials-rsa-export-parameters!",
+             2, 0, 0,
+@@ -1558,6 +1561,7 @@
+ }
+ 
+ #undef FUNC_NAME
++#endif
+ 
+ SCM_DEFINE (scm_gnutls_set_certificate_credentials_x509_key_files_x,
+             "set-certificate-credentials-x509-key-files!",
+--- gnutls-3.2.12/guile/modules/gnutls/build/smobs.scm.orig	2013-11-10 18:59:14.000000000 +0100
++++ gnutls-3.2.12/guile/modules/gnutls/build/smobs.scm	2014-03-05 11:35:54.030281722 +0100
+@@ -169,10 +169,6 @@
+   (make-smob-type "gnutls_dh_params_t" 'dh-parameters
+                   "gnutls_dh_params_deinit"))
+ 
+-(define %rsa-parameters-smob
+-  (make-smob-type "gnutls_rsa_params_t" 'rsa-parameters
+-                  "gnutls_rsa_params_deinit"))
+-
+ (define %certificate-credentials-smob
+   (make-smob-type "gnutls_certificate_credentials_t" 'certificate-credentials
+                   "gnutls_certificate_free_credentials"))
+@@ -218,7 +214,6 @@
+   ;; All SMOB types.
+   (list %session-smob %anonymous-client-credentials-smob
+         %anonymous-server-credentials-smob %dh-parameters-smob
+-        %rsa-parameters-smob
+         %certificate-credentials-smob
+         %srp-server-credentials-smob %srp-client-credentials-smob
+         %psk-server-credentials-smob %psk-client-credentials-smob

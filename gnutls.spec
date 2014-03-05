@@ -14,6 +14,7 @@ Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.2/%{name}-%{version}.tar.lz
 # Source0-md5:	06de5fb89e5593e59a66039b11e7acc6
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-guile-rsa-export.patch
 URL:		http://www.gnutls.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.12.2
@@ -43,8 +44,6 @@ BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
 %{?with_dane:Requires:	%{name}-dane = %{version}-%{release}}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		skip_post_check_so	guile-gnutls-v-.*.so.*
 
 %description
 GnuTLS is a project that aims to develop a library which provides a
@@ -204,6 +203,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__rm} po/stamp-po
 
