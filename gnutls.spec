@@ -63,7 +63,7 @@ Group:		Libraries
 Requires:	libtasn1 >= 2.14
 Requires:	nettle >= 2.7
 #Requires:	opencdk >= 0.6.6
-Requires:	p11-kit >= 0.11
+Requires:	p11-kit >= 0.20.0
 %{?with_tpm:Requires:	trousers-libs >= 0.3.11}
 Conflicts:	gnutls < 3.2.0
 
@@ -82,7 +82,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libtasn1-devel >= 2.14
 Requires:	nettle-devel >= 2.7
 #Requires:	opencdk-devel >= 0.6.6
-Requires:	p11-kit-devel >= 0.11
+Requires:	p11-kit-devel >= 0.20.0
 %{?with_tpm:Requires:	trousers-devel >= 0.3.11}
 Requires:	zlib-devel
 
