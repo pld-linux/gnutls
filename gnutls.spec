@@ -30,7 +30,7 @@ BuildRequires:	nettle-devel >= 2.7
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
-BuildRequires:	p11-kit-devel >= 0.11
+BuildRequires:	p11-kit-devel >= 0.20.0
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
