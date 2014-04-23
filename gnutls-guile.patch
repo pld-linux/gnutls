@@ -1,0 +1,10 @@
+--- gnutls-3.3.1/guile/src/core.c.orig	2013-10-10 13:10:49.000000000 +0200
++++ gnutls-3.3.1/guile/src/core.c	2014-04-23 18:45:41.268343009 +0200
+@@ -3366,7 +3366,6 @@
+   /* Use Guile's allocation routines, which will run the GC if need be.  */
+   gnutls_malloc = scm_malloc;
+   gnutls_realloc = scm_realloc;
+-  gnutls_secure_malloc = scm_malloc;
+   gnutls_free = free;
+ 
+   (void) gnutls_global_init ();
