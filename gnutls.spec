@@ -6,12 +6,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.2.19
+Version:	3.2.20
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.2/%{name}-%{version}.tar.lz
-# Source0-md5:	dded6aa04f5978d0a98ce1ad6b470e41
+# Source0-md5:	798f7d2233e9292ea0e5c961e561fefd
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -206,7 +206,9 @@ Wiązania Guile do GnuTLS.
 %{__rm} po/stamp-po
 
 %build
+%{__mv} build-aux/snippet{,.save}
 %{__libtoolize}
+%{__mv} build-aux/snippet{.save,}
 %{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4 -I src/gl/m4
 %{__autoconf}
 %{__autoheader}
