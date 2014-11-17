@@ -1,36 +1,40 @@
 #
 # Conditional build:
-%bcond_without	dane	# libdane (DANE with DNSSEC certificate verification)
-%bcond_without	tpm	# TPM support in gnutls
+%bcond_without	dane		# libdane (DANE with DNSSEC certificate verification)
+%bcond_without	tpm		# TPM support in gnutls
+%bcond_without	static_libs	# static libraries
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.2.20
+Version:	3.3.10
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.2/%{name}-%{version}.tar.lz
-# Source0-md5:	798f7d2233e9292ea0e5c961e561fefd
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.3/%{name}-%{version}.tar.lz
+# Source0-md5:	d212f3b03f19b04e67b25574e581be22
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
 BuildRequires:	autoconf >= 2.61
+BuildRequires:	autogen
+BuildRequires:	autogen-devel
 BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	gettext-devel >= 0.18
+BuildRequires:	gmp-devel
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 2.14
+BuildRequires:	libtasn1-devel >= 3.1
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	lzip
 BuildRequires:	nettle-devel >= 2.7
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
-BuildRequires:	p11-kit-devel >= 0.20.0
+BuildRequires:	p11-kit-devel >= 0.20.7
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
@@ -60,10 +64,10 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-Requires:	libtasn1 >= 2.14
+Requires:	libtasn1 >= 3.1
 Requires:	nettle >= 2.7
 #Requires:	opencdk >= 0.6.6
-Requires:	p11-kit >= 0.20.0
+Requires:	p11-kit >= 0.20.7
 %{?with_tpm:Requires:	trousers-libs >= 0.3.11}
 Conflicts:	gnutls < 3.2.0
 
@@ -79,10 +83,10 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libtasn1-devel >= 2.14
+Requires:	libtasn1-devel >= 3.1
 Requires:	nettle-devel >= 2.7
 #Requires:	opencdk-devel >= 0.6.6
-Requires:	p11-kit-devel >= 0.20.0
+Requires:	p11-kit-devel >= 0.20.7
 %{?with_tpm:Requires:	trousers-devel >= 0.3.11}
 Requires:	zlib-devel
 
@@ -215,7 +219,7 @@ Wiązania Guile do GnuTLS.
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	--enable-heartbeat-support \
+	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
 	%{!?with_tpm:--without-tpm}
 
@@ -232,9 +236,12 @@ rm -rf $RPM_BUILD_ROOT
 # .pc file missing for libgnutls-openssl, and it needs libgnutls.la
 
 # guile module - dynamic only
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.la
+%if %{with static_libs}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.a
+%endif
 
-rm -f $RPM_BUILD_ROOT%{_infodir}/dir
+%{__rm} -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %find_lang %{name}
 
@@ -284,29 +291,25 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
-%attr(755,root,root) %{_libdir}/libgnutls-xssl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-xssl.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so
-%attr(755,root,root) %{_libdir}/libgnutls-xssl.so
 %{_libdir}/libgnutls.la
 %{_libdir}/libgnutls-openssl.la
-%{_libdir}/libgnutls-xssl.la
 %{_includedir}/gnutls
 %{?with_dane:%exclude %{_includedir}/gnutls/dane.h}
 %exclude %{_includedir}/gnutls/gnutlsxx.h
 %{_pkgconfigdir}/gnutls.pc
 %{_mandir}/man3/gnutls_*.3*
-%{_mandir}/man3/xssl_*.3*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls.a
 %{_libdir}/libgnutls-openssl.a
-%{_libdir}/libgnutls-xssl.a
+%endif
 
 %files c++
 %defattr(644,root,root,755)
@@ -319,9 +322,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutlsxx.la
 %{_includedir}/gnutls/gnutlsxx.h
 
+%if %{with static_libs}
 %files c++-static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutlsxx.a
+%endif
 
 %if %{with dane}
 %files dane
@@ -338,9 +343,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gnutls/dane.h
 %{_pkgconfigdir}/gnutls-dane.pc
 
+%if %{with static_libs}
 %files dane-static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls-dane.a
+%endif
 %endif
 
 %files -n guile-gnutls
