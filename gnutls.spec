@@ -20,7 +20,7 @@ BuildRequires:	autoconf >= 2.61
 BuildRequires:	autogen
 BuildRequires:	autogen-devel
 BuildRequires:	automake >= 1:1.12.2
-BuildRequires:	gettext-devel >= 0.18
+BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	gmp-devel
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:2.0
