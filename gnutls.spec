@@ -7,14 +7,15 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.3.14
+Version:	3.4.0
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.3/%{name}-%{version}.tar.lz
-# Source0-md5:	3865e9798865790910d8b4af446717d1
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/%{name}-%{version}.tar.lz
+# Source0-md5:	604362fb57bae7e6deba63c4e4a07a69
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-install.patch
 URL:		http://www.gnutls.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	autogen
@@ -25,16 +26,16 @@ BuildRequires:	gmp-devel
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
-BuildRequires:	libidn-devel
+BuildRequires:	libidn-devel >= 0.5.6
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 3.9
+BuildRequires:	libtasn1-devel >= 4.3
 BuildRequires:	libtool >= 2:2
 BuildRequires:	lzip
-BuildRequires:	nettle-devel >= 2.7
+BuildRequires:	nettle-devel >= 3.1
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
-BuildRequires:	p11-kit-devel >= 0.20.7
+BuildRequires:	p11-kit-devel >= 0.23.1
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
@@ -64,10 +65,11 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-Requires:	libtasn1 >= 3.9
-Requires:	nettle >= 2.7
+Requires:	libidn >= 0.5.6
+Requires:	libtasn1 >= 4.3
+Requires:	nettle >= 3.1
 #Requires:	opencdk >= 0.6.6
-Requires:	p11-kit >= 0.20.7
+Requires:	p11-kit >= 0.23.1
 %{?with_tpm:Requires:	trousers-libs >= 0.3.11}
 Conflicts:	gnutls < 3.2.0
 
@@ -83,10 +85,11 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libtasn1-devel >= 3.9
-Requires:	nettle-devel >= 2.7
+Requires:	libidn-devel >= 0.5.6
+Requires:	libtasn1-devel >= 4.3
+Requires:	nettle-devel >= 3.1
 #Requires:	opencdk-devel >= 0.6.6
-Requires:	p11-kit-devel >= 0.20.7
+Requires:	p11-kit-devel >= 0.23.1
 %{?with_tpm:Requires:	trousers-devel >= 0.3.11}
 Requires:	zlib-devel
 
@@ -206,6 +209,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__rm} po/stamp-po
 
@@ -218,6 +222,7 @@ Wiązania Guile do GnuTLS.
 %{__autoheader}
 %{__automake}
 %configure \
+	--enable-openssl-compatibility \
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
@@ -288,7 +293,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls.so.28
+%attr(755,root,root) %ghost %{_libdir}/libgnutls.so.30
 %attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 
