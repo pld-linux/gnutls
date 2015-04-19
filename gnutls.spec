@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	dane		# libdane (DANE with DNSSEC certificate verification)
+%bcond_without	openssl		# libgnutls-openssl compatibility library
 %bcond_without	tpm		# TPM support in gnutls
 %bcond_without	static_libs	# static libraries
 #
@@ -191,6 +192,43 @@ Static DANE security library.
 %description dane-static -l pl.UTF-8
 Statyczna biblioteka bezpieczeństwa DANE.
 
+%package openssl
+Summary:	OpenSSL compatibility library for GnuTLS
+Summary(pl.UTF-8):	Biblioteka zgodności z OpenSSL dla GnuTLS
+Group:		Libraries
+Requires:	%{name}-libs = %{version}-%{release}
+
+%description openssl
+OpenSSL compatibility library for GnuTLS.
+
+%description openssl -l pl.UTF-8
+Biblioteka zgodności z OpenSSL dla GnuTLS.
+
+%package openssl-devel
+Summary:	Header file for gnutls-openssl library
+Summary(pl.UTF-8):	Plik nagłówkowy biblioteki gnutls-openssl
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-openssl = %{version}-%{release}
+
+%description openssl-devel
+Header file for gnutls-openssl library.
+
+%description openssl-devel -l pl.UTF-8
+Plik nagłówkowy biblioteki gnutls-openssl.
+
+%package openssl-static
+Summary:	Static gnutls-openssl library
+Summary(pl.UTF-8):	Statyczna biblioteka gnutls-openssl
+Group:		Development/Libraries
+Requires:	%{name}-openssl-devel = %{version}-%{release}
+
+%description openssl-static
+Static gnutls-openssl library.
+
+%description openssl-static -l pl.UTF-8
+Statyczna biblioteka gnutls-openssl.
+
 %package -n guile-gnutls
 Summary:	Guile bindings for GnuTLS
 Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
@@ -222,7 +260,7 @@ Wiązania Guile do GnuTLS.
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-openssl-compatibility \
+	%{?with_openssl:--enable-openssl-compatibility} \
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
@@ -265,6 +303,12 @@ rm -rf $RPM_BUILD_ROOT
 %post	c++ -p /sbin/ldconfig
 %postun	c++ -p /sbin/ldconfig
 
+%post	dane -p /sbin/ldconfig
+%postun	dane -p /sbin/ldconfig
+
+%post	openssl -p /sbin/ldconfig
+%postun	openssl -p /sbin/ldconfig
+
 %post	-n guile-gnutls -p /sbin/ldconfig
 %postun	-n guile-gnutls -p /sbin/ldconfig
 
@@ -294,18 +338,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.30
-%attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so
-%attr(755,root,root) %{_libdir}/libgnutls-openssl.so
 %{_libdir}/libgnutls.la
-%{_libdir}/libgnutls-openssl.la
 %{_includedir}/gnutls
 %{?with_dane:%exclude %{_includedir}/gnutls/dane.h}
 %exclude %{_includedir}/gnutls/gnutlsxx.h
+%{?with_openssl:%exclude %{_includedir}/gnutls/openssl.h}
 %{_pkgconfigdir}/gnutls.pc
 %{_mandir}/man3/gnutls_*.3*
 
@@ -313,7 +354,6 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls.a
-%{_libdir}/libgnutls-openssl.a
 %endif
 
 %files c++
@@ -353,6 +393,23 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls-dane.a
 %endif
+%endif
+
+%if %{with openssl}
+%files openssl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
+
+%files openssl-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnutls-openssl.so
+%{_libdir}/libgnutls-openssl.la
+%{_includedir}/gnutls/openssl.h
+
+%files openssl-static
+%defattr(644,root,root,755)
+%{_libdir}/libgnutls-openssl.a
 %endif
 
 %files -n guile-gnutls
