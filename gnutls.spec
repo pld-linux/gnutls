@@ -264,7 +264,7 @@ Wiązania Guile do GnuTLS.
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-openssl-compatibility \
+	%{?with_openssl:--enable-openssl-compatibility} \
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
@@ -346,8 +346,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutls.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls.so.30
-%attr(755,root,root) %{_libdir}/libgnutls-openssl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutls-openssl.so.27
 
 %files devel
 %defattr(644,root,root,755)
