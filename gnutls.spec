@@ -12,7 +12,7 @@ Version:	3.3.18
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.3/%{name}-%{version}.tar.lz
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.3/%{name}-%{version}.tar.xz
 # Source0-md5:	34b2fea9d8ba031ef75d2563561ab754
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
@@ -30,7 +30,6 @@ BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 3.9
 BuildRequires:	libtool >= 2:2
-BuildRequires:	lzip
 BuildRequires:	nettle-devel >= 2.7.1
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
