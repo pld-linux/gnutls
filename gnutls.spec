@@ -8,12 +8,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.3.19
+Version:	3.3.21
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.3/%{name}-%{version}.tar.lz
-# Source0-md5:	2ed23db280c25914ea78f0d3d4a70456
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.3/%{name}-%{version}.tar.xz
+# Source0-md5:	b698ee3814ff0d4415e9a60e99656204
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -30,7 +30,6 @@ BuildRequires:	libidn-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 3.9
 BuildRequires:	libtool >= 2:2
-BuildRequires:	lzip
 BuildRequires:	nettle-devel >= 2.7.1
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
@@ -44,6 +43,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.8
 %{?with_tpm:BuildRequires:	trousers-devel >= 0.3.11}
 %{?with_dane:BuildRequires:	unbound-devel}
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
 %{?with_dane:Requires:	%{name}-dane = %{version}-%{release}}
