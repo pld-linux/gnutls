@@ -4,12 +4,13 @@
 %bcond_without	openssl		# libgnutls-openssl compatibility library
 %bcond_without	tpm		# TPM support in gnutls
 %bcond_without	static_libs	# static libraries
+%bcond_without	doc		# do not generate documentation
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	3.3.21
-Release:	2
+Release:	2.1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.3/%{name}-%{version}.tar.xz
@@ -23,7 +24,7 @@ BuildRequires:	autogen-devel
 BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	gettext-tools >= 0.18
 BuildRequires:	gmp-devel
-BuildRequires:	gtk-doc >= 1.1
+%{?with_doc:BuildRequires:	gtk-doc >= 1.1}
 BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
 BuildRequires:	libidn-devel
@@ -40,7 +41,7 @@ BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.383
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	texinfo >= 4.8
+%{?with_doc:BuildRequires:	texinfo >= 4.8}
 %{?with_tpm:BuildRequires:	trousers-devel >= 0.3.11}
 %{?with_dane:BuildRequires:	unbound-devel}
 BuildRequires:	xz
@@ -260,7 +261,8 @@ Wiązania Guile do GnuTLS.
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
-	%{!?with_tpm:--without-tpm}
+	%{!?with_tpm:--without-tpm} \
+	%{!?with_doc:--disable-doc}
 
 # docs build is broken with -jN
 %{__make} -j1
@@ -319,6 +321,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/psktool
 %attr(755,root,root) %{_bindir}/srptool
 %{?with_tpm:%attr(755,root,root) %{_bindir}/tpmtool}
+%if %{with doc}
 %{_mandir}/man1/certtool.1*
 %{_mandir}/man1/gnutls-*.1*
 %{_mandir}/man1/ocsptool.1*
@@ -329,6 +332,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/gnutls.info*
 %{_infodir}/gnutls-*.png
 %{_infodir}/pkcs11-vision.png
+%endif
 
 %files libs
 %defattr(644,root,root,755)
@@ -344,7 +348,7 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_includedir}/gnutls/gnutlsxx.h
 %{?with_openssl:%exclude %{_includedir}/gnutls/openssl.h}
 %{_pkgconfigdir}/gnutls.pc
-%{_mandir}/man3/gnutls_*.3*
+%{?with_doc:%{_mandir}/man3/gnutls_*.3*}
 
 %if %{with static_libs}
 %files static
@@ -375,7 +379,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/danetool
 %attr(755,root,root) %{_libdir}/libgnutls-dane.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnutls-dane.so.0
-%{_mandir}/man1/danetool.1*
+%{?with_doc:%{_mandir}/man1/danetool.1*}
 
 %files dane-devel
 %defattr(644,root,root,755)
@@ -413,4 +417,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/guile/2.0/guile-gnutls-v-2.so*
 %{_datadir}/guile/site/gnutls.scm
 %{_datadir}/guile/site/gnutls
-%{_infodir}/gnutls-guile.info*
+%{?with_doc:%{_infodir}/gnutls-guile.info*}
