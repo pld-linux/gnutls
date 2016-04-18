@@ -1,3 +1,4 @@
+# NOTE: for 3.4.x see DEVEL branch
 #
 # Conditional build:
 %bcond_without	dane		# libdane (DANE with DNSSEC certificate verification)
