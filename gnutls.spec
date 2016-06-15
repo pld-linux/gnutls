@@ -8,12 +8,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.4.11
+Version:	3.4.13
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	4da148b5a0048aaac4961e2d9ba95798
+# Source0-md5:	bdaccae1942c643fe907090438ec942a
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -385,6 +385,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutls-dane.la
 %{_includedir}/gnutls/dane.h
 %{_pkgconfigdir}/gnutls-dane.pc
+%{_mandir}/man3/dane_*.3*
 
 %if %{with static_libs}
 %files dane-static
