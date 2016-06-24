@@ -1,4 +1,6 @@
-# NOTE: for 3.4.x see DEVEL branch
+# NOTE: 3.3.x is previous-stable line
+# - for 3.4.x (current stable) see gnutls-3.4 branch (requires DEVEL p11-kit)
+# - for 3.5.x (next-stable) see DEVEL branch (requires DEVEL p11-kit)
 #
 # Conditional build:
 %bcond_without	dane		# libdane (DANE with DNSSEC certificate verification)
