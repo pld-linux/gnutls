@@ -11,12 +11,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.4.13
+Version:	3.5.1
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	bdaccae1942c643fe907090438ec942a
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/%{name}-%{version}.tar.xz
+# Source0-md5:	cb48bb0cf36d329f7321c6cdc0d7ae36
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -24,12 +24,12 @@ BuildRequires:	autoconf >= 2.61
 BuildRequires:	autogen
 BuildRequires:	autogen-devel
 BuildRequires:	automake >= 1:1.12.2
-BuildRequires:	gettext-tools >= 0.18
+BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.1}
 BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
-BuildRequires:	libidn-devel >= 0.5.6
+BuildRequires:	libidn-devel >= 1.31
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 4.3
 BuildRequires:	libtool >= 2:2
@@ -68,7 +68,7 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-Requires:	libidn >= 0.5.6
+Requires:	libidn >= 1.31
 Requires:	libtasn1 >= 4.3
 Requires:	nettle >= 3.1
 #Requires:	opencdk >= 0.6.6
@@ -88,7 +88,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libidn-devel >= 0.5.6
+Requires:	libidn-devel >= 1.31
 Requires:	libtasn1-devel >= 4.3
 Requires:	nettle-devel >= 3.1
 #Requires:	opencdk-devel >= 0.6.6
@@ -317,9 +317,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README THANKS
+%doc AUTHORS ChangeLog NEWS README.md THANKS
 %attr(755,root,root) %{_bindir}/certtool
-%attr(755,root,root) %{_bindir}/crywrap
 %attr(755,root,root) %{_bindir}/gnutls-*
 %attr(755,root,root) %{_bindir}/ocsptool
 %attr(755,root,root) %{_bindir}/p11tool
@@ -421,6 +420,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n guile-gnutls
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/guile/2.0/guile-gnutls-v-2.so*
-%{_datadir}/guile/site/gnutls.scm
-%{_datadir}/guile/site/gnutls
-%{?with_doc:%{_infodir}/gnutls-guile.info*}
+%{_libdir}/guile/2.0/site-ccache/gnutls.go
+%{_libdir}/guile/2.0/site-ccache/gnutls
+%{_datadir}/guile/site/2.0/gnutls.scm
+%{_datadir}/guile/site/2.0/gnutls
+%{_infodir}/gnutls-guile.info*
