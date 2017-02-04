@@ -1,5 +1,5 @@
---- gnutls-3.5.6/gl/m4/lib-link.m4.orig	2008-05-17 07:44:04.000000000 +0200
-+++ gnutls-3.5.6/gl/m4/lib-link.m4	2011-04-02 11:29:18.159546509 +0200
+--- gnutls-3.5.6/m4/lib-link.m4.orig	2008-05-17 07:44:04.000000000 +0200
++++ gnutls-3.5.6/m4/lib-link.m4	2011-04-02 11:29:18.159546509 +0200
 @@ -322,7 +322,11 @@
            fi
            if test "X$found_dir" != "X"; then
@@ -12,24 +12,3 @@
              if test "X$found_so" != "X"; then
                dnl Linking with a shared library. We attempt to hardcode its
                dnl directory into the executable's runpath, unless it's the
---- gnutls-3.4.4.1/configure.ac.orig	2015-09-08 18:38:30.228498005 +0200
-+++ gnutls-3.4.4.1/configure.ac	2015-09-08 18:38:32.501831080 +0200
-@@ -515,6 +515,7 @@
- 		   Trspi_Error_String(err);])],
- 		  [AC_MSG_RESULT(yes)
- 		   AC_SUBST([TSS_LIBS], [-ltspi])
-+		   AC_SUBST([TSS_DL_LIBS], [-ldl])
- 		   AC_SUBST([TSS_CFLAGS], [])
- 		   AC_DEFINE([HAVE_TROUSERS], 1, [Enable TPM])
- 		   with_tpm=yes],
---- gnutls-3.4.4.1/lib/Makefile.am.orig	2015-07-21 11:42:08.000000000 +0200
-+++ gnutls-3.4.4.1/lib/Makefile.am	2015-09-08 18:38:26.635165277 +0200
-@@ -137,7 +137,7 @@
- 	auth/libgnutls_auth.la algorithms/libgnutls_alg.la \
- 	extras/libgnutls_extras.la
- thirdparty_libadd = $(LTLIBZ) $(LTLIBINTL) $(LIBSOCKET) $(LTLIBNSL) \
--	$(LTLIBICONV) $(P11_KIT_LIBS) $(LIB_SELECT)
-+	$(LTLIBICONV) $(P11_KIT_LIBS) $(LIB_SELECT) $(TSS_DL_LIBS)
- 
- if HAVE_LIBIDN
- thirdparty_libadd += $(LIBIDN_LIBS)

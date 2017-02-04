@@ -11,12 +11,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.5.6
+Version:	3.5.8
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/%{name}-%{version}.tar.xz
-# Source0-md5:	7a38b23757aae009c3eb5bb12fb0afda
+# Source0-md5:	113e892e51acdb11b81804cd355adfee
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -31,9 +31,10 @@ BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
 BuildRequires:	libidn-devel >= 1.31
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtasn1-devel >= 4.3
+BuildRequires:	libtasn1-devel >= 4.9
+BuildRequires:	libunistring-devel
 BuildRequires:	libtool >= 2:2
-BuildRequires:	nettle-devel >= 3.1
+BuildRequires:	nettle-devel >= 3.3
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
@@ -69,8 +70,8 @@ Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
 Requires:	libidn >= 1.31
-Requires:	libtasn1 >= 4.3
-Requires:	nettle >= 3.1
+Requires:	libtasn1 >= 4.9
+Requires:	nettle >= 3.3
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.23.1
 %{?with_tpm:Requires:	trousers-libs >= 0.3.11}
@@ -89,8 +90,9 @@ License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libidn-devel >= 1.31
-Requires:	libtasn1-devel >= 4.3
-Requires:	nettle-devel >= 3.1
+Requires:	libtasn1-devel >= 4.9
+Requires:	libunistring-devel
+Requires:	nettle-devel >= 3.3
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.23.1
 %{?with_tpm:Requires:	trousers-devel >= 0.3.11}
@@ -256,7 +258,7 @@ Wiązania Guile do GnuTLS.
 %{__mv} build-aux/snippet{,.save}
 %{__libtoolize}
 %{__mv} build-aux/snippet{.save,}
-%{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4 -I src/gl/m4
+%{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4 -I src/gl/m4 -I lib/unistring/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
