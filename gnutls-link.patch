@@ -12,3 +12,25 @@
              if test "X$found_so" != "X"; then
                dnl Linking with a shared library. We attempt to hardcode its
                dnl directory into the executable's runpath, unless it's the
+--- gnutls-3.3.26/lib/Makefile.am.orig	2017-01-09 08:11:25.000000000 +0100
++++ gnutls-3.3.26/lib/Makefile.am	2017-02-04 10:47:27.231553284 +0100
+@@ -149,7 +149,7 @@
+ endif
+ 
+ if ENABLE_TROUSERS
+-thirdparty_libadd += $(LIBDL)
++thirdparty_libadd += $(LTLIBDL)
+ endif
+ 
+ if ENABLE_OPENPGP
+--- gnutls-3.3.26/configure.ac.orig	2017-01-09 07:42:13.000000000 +0100
++++ gnutls-3.3.26/configure.ac	2017-02-04 10:47:15.884886746 +0100
+@@ -329,7 +329,7 @@
+ 
+     AC_DEFINE([ENABLE_FIPS140], 1, [Enable FIPS140-2 mode])
+ 
+-    AC_SUBST([FIPS140_LIBS], $LIBDL)
++    AC_SUBST([FIPS140_LIBS], $LTLIBDL)
+   else
+     enable_fips=no
+     AC_MSG_WARN([[
