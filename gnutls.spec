@@ -11,12 +11,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.5.8
+Version:	3.5.10
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/%{name}-%{version}.tar.xz
-# Source0-md5:	113e892e51acdb11b81804cd355adfee
+# Source0-md5:	336c03a71ba90184ffd0388075dde504
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -29,7 +29,7 @@ BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.1}
 BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libcfg+-devel
-BuildRequires:	libidn-devel >= 1.31
+BuildRequires:	libidn2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 4.9
 BuildRequires:	libunistring-devel
@@ -69,7 +69,6 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-Requires:	libidn >= 1.31
 Requires:	libtasn1 >= 4.9
 Requires:	nettle >= 3.3
 #Requires:	opencdk >= 0.6.6
@@ -89,7 +88,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libidn-devel >= 1.31
+Requires:	libidn2-devel
 Requires:	libtasn1-devel >= 4.9
 Requires:	libunistring-devel
 Requires:	nettle-devel >= 3.3
@@ -288,6 +287,9 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with static_libs}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.a
 %endif
+
+# images for (not installed) htmlized infos - already packaged with infos
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/gnutls/*.png
 
 %{__rm} -f $RPM_BUILD_ROOT%{_infodir}/dir
 
