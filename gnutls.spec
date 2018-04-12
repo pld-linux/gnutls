@@ -26,7 +26,6 @@ BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.1}
 BuildRequires:	guile-devel >= 5:2.0
-BuildRequires:	libcfg+-devel
 BuildRequires:	libidn2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 4.11
