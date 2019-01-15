@@ -1,5 +1,5 @@
---- gnutls-2.10.0/doc/gnutls.texi.orig	2010-06-21 09:50:55.000000000 +0200
-+++ gnutls-2.10.0/doc/gnutls.texi	2010-06-30 22:40:46.073398443 +0200
+--- gnutls-3.6.5/doc/gnutls.texi.orig	2019-01-15 18:11:57.529996191 +0100
++++ gnutls-3.6.5/doc/gnutls.texi	2019-01-15 18:19:26.313324399 +0100
 @@ -29,19 +29,19 @@
  @end quotation
  @end copying
@@ -14,12 +14,12 @@
 -@dircategory System Administration
 +@dircategory Net utilities:
  @direntry
--* certtool: (gnutls)Invoking certtool.	Manipulate certificates and keys.
--* gnutls-serv: (gnutls)Invoking gnutls-serv.	GnuTLS test server.
--* gnutls-cli: (gnutls)Invoking gnutls-cli.	GnuTLS test client.
--* gnutls-cli-debug: (gnutls)Invoking gnutls-cli-debug.	GnuTLS debug client.
--* psktool: (gnutls)Invoking psktool.	Simple TLS-Pre-Shared-Keys manager.
--* srptool: (gnutls)Invoking srptool.	Simple SRP password tool.
+-* certtool: (gnutls)certtool Invocation.	Manipulate certificates and keys.
+-* gnutls-serv: (gnutls)gnutls-serv Invocation.	GnuTLS test server.
+-* gnutls-cli: (gnutls)gnutls-cli Invocation.	GnuTLS test client.
+-* gnutls-cli-debug: (gnutls)gnutls-cli-debug Invocation.	GnuTLS debug client.
+-* psktool: (gnutls)psktool Invocation.	Simple TLS-Pre-Shared-Keys manager.
+-* srptool: (gnutls)srptool Invocation.	Simple SRP password tool.
 +* certtool: (gnutls)certtool.		Manipulate certificates and keys
 +* gnutls-serv: (gnutls)gnutls-serv.	GnuTLS test server
 +* gnutls-cli: (gnutls)gnutls-cli.	GnuTLS test client

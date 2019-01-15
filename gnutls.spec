@@ -24,7 +24,7 @@ BuildRequires:	autogen-devel
 BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	gmp-devel
-%{?with_doc:BuildRequires:	gtk-doc >= 1.1}
+%{?with_doc:BuildRequires:	gtk-doc >= 1.14}
 BuildRequires:	guile-devel >= 5:2.0
 BuildRequires:	libidn2-devel
 BuildRequires:	libstdc++-devel
@@ -251,10 +251,8 @@ Wiązania Guile do GnuTLS.
 %{__rm} po/stamp-po
 
 %build
-%{__mv} build-aux/snippet{,.save}
 %{__libtoolize}
-%{__mv} build-aux/snippet{.save,}
-%{__aclocal} -I m4 -I gl/m4 -I src/libopts/m4 -I src/gl/m4 -I lib/unistring/m4
+%{__aclocal} -I m4 -I src/libopts/m4 -I src/gl/m4 -I lib/unistring/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
