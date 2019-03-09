@@ -11,7 +11,7 @@ Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	3.6.6
-Release:	1
+Release:	2
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.6/%{name}-%{version}.tar.xz
@@ -50,6 +50,8 @@ BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
 %{?with_dane:Requires:	%{name}-dane = %{version}-%{release}}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautostrip	.*\.go
 
 %description
 GnuTLS is a project that aims to develop a library which provides a
@@ -281,9 +283,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with guile}
 # guile module - dynamic only
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.*/guile-gnutls-*.la
 %if %{with static_libs}
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.a
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.*/guile-gnutls-*.a
 %endif
 %endif
 
@@ -423,10 +425,10 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with guile}
 %files -n guile-gnutls
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/guile/2.0/guile-gnutls-v-2.so*
-%{_libdir}/guile/2.0/site-ccache/gnutls.go
-%{_libdir}/guile/2.0/site-ccache/gnutls
-%{_datadir}/guile/site/2.0/gnutls.scm
-%{_datadir}/guile/site/2.0/gnutls
+%attr(755,root,root) %{_libdir}/guile/2.*/guile-gnutls-v-2.so*
+%{_libdir}/guile/2.*/site-ccache/gnutls.go
+%{_libdir}/guile/2.*/site-ccache/gnutls
+%{_datadir}/guile/site/2.*/gnutls.scm
+%{_datadir}/guile/site/2.*/gnutls
 %{_infodir}/gnutls-guile.info*
 %endif
