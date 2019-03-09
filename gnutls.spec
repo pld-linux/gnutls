@@ -5,16 +5,17 @@
 %bcond_without	tpm		# TPM support in gnutls
 %bcond_without	static_libs	# static libraries
 %bcond_without	doc		# do not generate documentation
+%bcond_without	guile
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.6.5
-Release:	6
+Version:	3.6.6
+Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	3474849e1bbd4d16403b82ab2579000b
+# Source0-md5:	30c5b63686edcd260d87d8fb8a06977f
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -25,7 +26,7 @@ BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.14}
-BuildRequires:	guile-devel >= 5:2.0
+%{?with_guile:BuildRequires:	guile-devel >= 5:2.2.0}
 BuildRequires:	libidn2-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 4.11
@@ -235,7 +236,7 @@ Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
 License:	LGPL v2.1+
 Group:		Development/Languages
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	guile >= 5:2.0
+Requires:	guile >= 5:2.2.0
 
 %description -n guile-gnutls
 Guile bindings for GnuTLS.
@@ -262,6 +263,7 @@ Wiązania Guile do GnuTLS.
 	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
 	%{!?with_tpm:--without-tpm} \
+	%{!?with_guile:--enable-guile=no} \
 	--with-trousers-lib=%{_libdir}/libtspi.so.1 \
 	%{!?with_doc:--disable-doc}
 
@@ -277,10 +279,12 @@ rm -rf $RPM_BUILD_ROOT
 # although libgnutls.la is obsoleted by pkg-config, there is
 # .pc file missing for libgnutls-openssl, and it needs libgnutls.la
 
+%if %{with guile}
 # guile module - dynamic only
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.la
 %if %{with static_libs}
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.0/guile-gnutls-*.a
+%endif
 %endif
 
 # images for (not installed) htmlized infos - already packaged with infos
@@ -416,6 +420,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutls-openssl.a
 %endif
 
+%if %{with guile}
 %files -n guile-gnutls
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/guile/2.0/guile-gnutls-v-2.so*
@@ -424,3 +429,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/guile/site/2.0/gnutls.scm
 %{_datadir}/guile/site/2.0/gnutls
 %{_infodir}/gnutls-guile.info*
+%endif
