@@ -5,7 +5,7 @@
 %bcond_without	tpm		# TPM support in gnutls
 %bcond_without	static_libs	# static libraries
 %bcond_without	doc		# do not generate documentation
-%bcond_without	guile
+%bcond_without	guile		# Guile binding
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
@@ -260,14 +260,14 @@ Wiązania Guile do GnuTLS.
 %{__autoheader}
 %{__automake}
 %configure \
+	%{!?with_doc:--disable-doc} \
+	%{!?with_guile:--disable-guile} \
 	%{?with_openssl:--enable-openssl-compatibility} \
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
 	%{!?with_tpm:--without-tpm} \
-	%{!?with_guile:--enable-guile=no} \
-	--with-trousers-lib=%{_libdir}/libtspi.so.1 \
-	%{!?with_doc:--disable-doc}
+	--with-trousers-lib=%{_libdir}/libtspi.so.1
 
 # docs build is broken with -jN
 %{__make} -j1
