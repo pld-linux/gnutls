@@ -10,12 +10,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.6.7
+Version:	3.6.8
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	c4ac669c500df939d4fbfea722367929
+# Source0-md5:	9dcf0aa45d1a42e1b3ca5d39ec7c61a8
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnutls.org/
@@ -283,9 +283,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with guile}
 # guile module - dynamic only
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.*/guile-gnutls-*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.*/extensions/guile-gnutls-*.la
 %if %{with static_libs}
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.*/guile-gnutls-*.a
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/2.*/extensions/guile-gnutls-*.a
 %endif
 %endif
 
@@ -425,7 +425,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with guile}
 %files -n guile-gnutls
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/guile/2.*/guile-gnutls-v-2.so*
+%attr(755,root,root) %{_libdir}/guile/2.*/extensions/guile-gnutls-v-2.so*
 %{_libdir}/guile/2.*/site-ccache/gnutls.go
 %{_libdir}/guile/2.*/site-ccache/gnutls
 %{_datadir}/guile/site/2.*/gnutls.scm
