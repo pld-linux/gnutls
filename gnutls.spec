@@ -18,11 +18,13 @@ Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.6/%{name}-%{version}.tar.xz
 # Source0-md5:	9dcf0aa45d1a42e1b3ca5d39ec7c61a8
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-pl.po-update.patch
 URL:		http://www.gnutls.org/
-BuildRequires:	autoconf >= 2.61
+BuildRequires:	autoconf >= 2.63
 BuildRequires:	autogen
 BuildRequires:	autogen-devel
 BuildRequires:	automake >= 1:1.12.2
+BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.14}
@@ -250,6 +252,7 @@ Wiązania Guile do GnuTLS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__rm} po/stamp-po
 
