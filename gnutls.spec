@@ -21,8 +21,8 @@ Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
 URL:		http://www.gnutls.org/
 BuildRequires:	autoconf >= 2.63
-BuildRequires:	autogen
-BuildRequires:	autogen-devel
+BuildRequires:	autogen >= 5.16
+BuildRequires:	autogen-devel >= 5.16
 BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools >= 0.19
