@@ -1,5 +1,5 @@
---- gnutls-3.6.8/po/pl.po.orig	2019-06-05 18:04:01.321168147 +0200
-+++ gnutls-3.6.8/po/pl.po	2019-06-05 18:04:19.064405357 +0200
+--- gnutls-3.6.9/po/pl.po.orig	2019-07-25 20:40:11.000000000 +0200
++++ gnutls-3.6.9/po/pl.po	2019-07-27 18:45:03.892290549 +0200
 @@ -1,14 +1,14 @@
  # Polish translation for gnutls.
  # Copyright (C) 2006, 2007, 2008, 2009, 2011, 2012, 2013 Free Software Foundation, Inc.
@@ -9,11 +9,12 @@
  #
  msgid ""
  msgstr ""
- "Project-Id-Version: libgnutls-3.2.1\n"
+-"Project-Id-Version: libgnutls-3.2.1\n"
++"Project-Id-Version: libgnutls-3.6.9\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2019-05-25 22:49+0200\n"
+ "POT-Creation-Date: 2019-07-25 20:40+0200\n"
 -"PO-Revision-Date: 2013-06-07 20:50+0200\n"
-+"PO-Revision-Date: 2019-06-01 08:22+0200\n"
++"PO-Revision-Date: 2019-07-27 18:43+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
@@ -269,7 +270,7 @@
  
  #: lib/errors.c:390
  msgid "There is no certificate status (OCSP)."
-@@ -816,98 +800,89 @@
+@@ -816,98 +800,91 @@
  msgstr "Nie udało się wynegocjować wspólnego protokołu aplikacji."
  
  #: lib/errors.c:397
@@ -309,8 +310,8 @@
  
  #: lib/errors.c:409
  msgid "Peer's certificate or username has changed during a rehandshake."
--msgstr ""
-+msgstr "Certyfikat lub nazwa użytkownika partnera zmieniła się w trakcie powitania."
+ msgstr ""
++"Certyfikat lub nazwa użytkownika partnera zmieniła się w trakcie powitania."
  
  #: lib/errors.c:411
  msgid "The provided string has an embedded null."
@@ -374,8 +375,8 @@
  
  #: lib/errors.c:433
  msgid "One of the involved algorithms has insufficient security level."
--msgstr ""
-+msgstr "Jeden z używanych algorytmów ma niewystarczający poziom bezpieczeństwa."
+ msgstr ""
++"Jeden z używanych algorytmów ma niewystarczający poziom bezpieczeństwa."
  
  #: lib/errors.c:435
  msgid "No common key share with peer."
@@ -389,7 +390,7 @@
  
  #: lib/errors.c:443 libdane/errors.c:42
  msgid "Success."
-@@ -938,56 +913,48 @@
+@@ -938,56 +915,48 @@
  msgstr "Druga strona zażądała ponownego nawiązania sesji."
  
  #: lib/errors.c:457
@@ -454,9 +455,9 @@
 -msgstr "Błąd odszyfrowywania"
 +msgstr "Błąd pamięci"
  
- #: lib/x509/ocsp_output.c:50 lib/x509/ocsp_output.c:276 lib/x509/output.c:1575
- #: lib/x509/output.c:2108 lib/x509/output.c:2506
-@@ -1010,14 +977,13 @@
+ #: lib/x509/ocsp_output.c:50 lib/x509/ocsp_output.c:276 lib/x509/output.c:1579
+ #: lib/x509/output.c:2112 lib/x509/output.c:2510
+@@ -1010,14 +979,13 @@
  msgstr "Informacje o żądaniu OCSP:\n"
  
  #: lib/x509/ocsp_output.c:289
@@ -474,7 +475,7 @@
  
  #: lib/x509/ocsp_output.c:320
  #, c-format
-@@ -1069,47 +1035,46 @@
+@@ -1069,52 +1037,51 @@
  #: lib/x509/output.c:54 lib/x509/output.c:84
  #, c-format
  msgid "%s%s: %.*s (contains illegal chars)\n"
@@ -515,135 +516,142 @@
  #: lib/x509/output.c:148
 -#, fuzzy, c-format
 +#, c-format
+ msgid "%sRegistered ID: %.*s\n"
+-msgstr "%s\t\t\tOID otherName: %.*s\n"
++msgstr "%sZarejestrowany ID: %.*s\n"
+ 
+ #: lib/x509/output.c:152
+-#, fuzzy, c-format
++#, c-format
  msgid "%sXMPP Address: %.*s\n"
 -msgstr "%s\t\t\tAdres XMPP: %.*s\n"
 +msgstr "%sAdres XMPP: %.*s\n"
  
- #: lib/x509/output.c:152
+ #: lib/x509/output.c:156
  #, c-format
  msgid "%sKRB5Principal: %.*s\n"
 -msgstr ""
 +msgstr "%sKRB5Principal: %.*s\n"
  
- #: lib/x509/output.c:156
+ #: lib/x509/output.c:160
  #, c-format
  msgid "%sUnknown name: "
 -msgstr ""
 +msgstr "%sNieznana nazwa: "
  
- #: lib/x509/output.c:298
+ #: lib/x509/output.c:302
  #, c-format
-@@ -1140,17 +1105,17 @@
- #: lib/x509/output.c:343
+@@ -1145,17 +1112,17 @@
+ #: lib/x509/output.c:347
  #, c-format
  msgid "%s\t\t\tPermitted:\n"
 -msgstr ""
 +msgstr "%s\t\t\tDozwolone:\n"
  
- #: lib/x509/output.c:355
+ #: lib/x509/output.c:359
  #, c-format
  msgid "%s\t\t\tExcluded:\n"
 -msgstr ""
 +msgstr "%s\t\t\tWykluczone:\n"
  
- #: lib/x509/output.c:395 lib/x509/output.c:397 lib/x509/output.c:399
+ #: lib/x509/output.c:399 lib/x509/output.c:401 lib/x509/output.c:403
 -#, fuzzy, c-format
 +#, c-format
  msgid "\t\t\tAccess Method: %s (%s)\n"
 -msgstr "\t\t\tMetoda dostępu: %.*s"
 +msgstr "\t\t\tMetoda dostępu: %s (%s)\n"
  
- #: lib/x509/output.c:503
+ #: lib/x509/output.c:507
  #, c-format
-@@ -1357,14 +1322,14 @@
+@@ -1362,14 +1329,14 @@
  msgstr "%s\t\tInformacje Authority Information Access (%s):\n"
  
- #: lib/x509/output.c:1114
+ #: lib/x509/output.c:1118
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tName Constraints (%s):\n"
 -msgstr "%s\t\tOgraniczenia podstawowe (%s):\n"
 +msgstr "%s\t\tOgraniczenia nazw (%s):\n"
  
- #: lib/x509/output.c:1124
+ #: lib/x509/output.c:1128
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tTLS Features (%s):\n"
 -msgstr "%s\t\tPrzeznaczenie klucza (%s):\n"
 +msgstr "%s\t\tWłaściwości TLS (%s):\n"
  
- #: lib/x509/output.c:1132
+ #: lib/x509/output.c:1136
  #, c-format
-@@ -1398,7 +1363,7 @@
+@@ -1403,7 +1370,7 @@
  
- #: lib/x509/output.c:1248
+ #: lib/x509/output.c:1252
  msgid "\t\tParameters:\n"
 -msgstr ""
 +msgstr "\t\tParametry:\n"
  
- #: lib/x509/output.c:1268
+ #: lib/x509/output.c:1272
  #, c-format
-@@ -1476,14 +1441,14 @@
+@@ -1481,14 +1448,14 @@
  msgstr "\t\tG:\n"
  
- #: lib/x509/output.c:1439
+ #: lib/x509/output.c:1443
 -#, fuzzy, c-format
 +#, c-format
  msgid "\t\tDigest:\t%s\n"
 -msgstr "\t\tKrzywa:\t%s\n"
 +msgstr "\t\tSkrót:\t%s\n"
  
- #: lib/x509/output.c:1441
+ #: lib/x509/output.c:1445
 -#, fuzzy, c-format
 +#, c-format
  msgid "\t\tParamSet: %s\n"
 -msgstr "\t\tUtworzenie: %s\n"
 +msgstr "\t\tParametry: %s\n"
  
- #: lib/x509/output.c:1554 lib/x509/output.c:2473
+ #: lib/x509/output.c:1558 lib/x509/output.c:2477
  msgid "Subject "
-@@ -1494,9 +1459,8 @@
+@@ -1499,9 +1466,8 @@
  msgstr "\tNumer seryjny (hex): "
  
- #: lib/x509/output.c:1603 lib/x509/output.c:2118
+ #: lib/x509/output.c:1607 lib/x509/output.c:2122
 -#, fuzzy
  msgid "\tIssuer:\n"
 -msgstr "\tWystawca: %s\n"
 +msgstr "\tWystawca:\n"
  
- #: lib/x509/output.c:1608 lib/x509/output.c:2123
+ #: lib/x509/output.c:1612 lib/x509/output.c:2127
  #, c-format
-@@ -1518,9 +1482,8 @@
+@@ -1523,9 +1489,8 @@
  msgstr "\t\tNie później niż: %s\n"
  
- #: lib/x509/output.c:1667 lib/x509/output.c:2516
+ #: lib/x509/output.c:1671 lib/x509/output.c:2520
 -#, fuzzy
  msgid "\tSubject:\n"
 -msgstr "\tPrzedmiot: %s\n"
 +msgstr "\tPrzedmiot:\n"
  
- #: lib/x509/output.c:1672 lib/x509/output.c:2521
+ #: lib/x509/output.c:1676 lib/x509/output.c:2525
  #, c-format
-@@ -1528,42 +1491,42 @@
+@@ -1533,42 +1498,42 @@
  msgstr "\tPrzedmiot: %s\n"
  
- #: lib/x509/output.c:1751
+ #: lib/x509/output.c:1755
 -#, fuzzy
  msgid "\tFingerprint:\n"
 -msgstr "odcisk: "
 +msgstr "\tOdcisk:\n"
  
- #: lib/x509/output.c:1760
+ #: lib/x509/output.c:1764
  msgid "\t\tsha1:"
 -msgstr ""
 +msgstr "\t\tsha1:"
  
- #: lib/x509/output.c:1771
+ #: lib/x509/output.c:1775
  msgid "\t\tsha256:"
 -msgstr ""
 +msgstr "\t\tsha256:"
  
- #: lib/x509/output.c:1805
+ #: lib/x509/output.c:1809
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
@@ -654,7 +662,7 @@
 +"%sID klucza publicznego:\n"
 +"%s\tsha1:"
  
- #: lib/x509/output.c:1811
+ #: lib/x509/output.c:1815
 -#, fuzzy, c-format
 +#, c-format
  msgid ""
@@ -666,20 +674,20 @@
 +"%sPIN klucza publicznego:\n"
 +"%s\tpin-sha256:"
  
- #: lib/x509/output.c:1883
+ #: lib/x509/output.c:1887
 -#, fuzzy
  msgid "no subject,"
 -msgstr "Przedmiot "
 +msgstr "brak przedmiotu,"
  
- #: lib/x509/output.c:1899
+ #: lib/x509/output.c:1903
  msgid "no issuer,"
 -msgstr ""
 +msgstr "brak wystawcy,"
  
- #: lib/x509/output.c:1946
+ #: lib/x509/output.c:1950
  #, c-format
-@@ -1669,197 +1632,69 @@
+@@ -1674,197 +1639,69 @@
  msgstr "Informacje o kluczu publicznym:\n"
  
  #: libdane/dane.c:1050
