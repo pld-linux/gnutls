@@ -11,7 +11,7 @@
 -"Project-Id-Version: gnutls-3.6.8\n"
 +"Project-Id-Version: gnutls-3.6.10\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2020-02-01 00:31+0100\n"
+ "POT-Creation-Date: 2020-03-30 21:03+0200\n"
 -"PO-Revision-Date: 2019-06-01 08:22+0200\n"
 -"Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
 +"PO-Revision-Date: 2019-09-29 20:22+0200\n"
@@ -41,51 +41,51 @@
 -msgstr "%s%s: %.*s\n"
 +msgstr "%s\t\t\t%.*s\n"
  
- #: lib/x509/output.c:920
+ #: lib/x509/output.c:919
  #, c-format
  msgid "%s\t\t\tSignTool: %.*s\n"
 -msgstr ""
 +msgstr "%s\t\t\tSignTool: %.*s\n"
  
- #: lib/x509/output.c:928
+ #: lib/x509/output.c:927
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\t\tCATool: %.*s\n"
 -msgstr "%s%s: %.*s\n"
 +msgstr "%s\t\t\tCATool: %.*s\n"
  
- #: lib/x509/output.c:936
+ #: lib/x509/output.c:935
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\t\tSignToolCert: %.*s\n"
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%s\t\t\tSignToolCert: %.*s\n"
  
- #: lib/x509/output.c:944
+ #: lib/x509/output.c:943
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\t\tCAToolCert: %.*s\n"
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%s\t\t\tCAToolCert: %.*s\n"
  
- #: lib/x509/output.c:988
+ #: lib/x509/output.c:989
  #, c-format
 @@ -1374,14 +1375,14 @@
  msgstr "%s\t\tWłaściwości TLS (%s):\n"
  
- #: lib/x509/output.c:1224
+ #: lib/x509/output.c:1225
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tSubject Signing Tool(%s):\n"
 -msgstr "%s\t\tIdentyfikator klucza przedmiotu (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania podmiotu(%s):\n"
  
- #: lib/x509/output.c:1230
+ #: lib/x509/output.c:1231
 -#, fuzzy, c-format
 +#, c-format
  msgid "%s\t\tIssuer Signing Tool(%s):\n"
 -msgstr "%s\t\tAlternatywna nazwa wystawcy (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania wystawcy (%s):\n"
  
- #: lib/x509/output.c:1236
+ #: lib/x509/output.c:1237
  #, c-format
