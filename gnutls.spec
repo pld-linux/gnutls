@@ -293,7 +293,9 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 # images for (not installed) htmlized infos - already packaged with infos
+%if %{with doc}
 %{__rm} $RPM_BUILD_ROOT%{_docdir}/gnutls/*.png
+%endif
 
 %{__rm} -f $RPM_BUILD_ROOT%{_infodir}/dir
 
@@ -399,7 +401,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutls-dane.la
 %{_includedir}/gnutls/dane.h
 %{_pkgconfigdir}/gnutls-dane.pc
+%if %{with doc}
 %{_mandir}/man3/dane_*.3*
+%endif
 
 %if %{with static_libs}
 %files dane-static
@@ -420,9 +424,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnutls-openssl.la
 %{_includedir}/gnutls/openssl.h
 
+%if %{with static_libs}
 %files openssl-static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls-openssl.a
+%endif
 %endif
 
 %if %{with guile}
@@ -433,5 +439,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/guile/2.*/site-ccache/gnutls
 %{_datadir}/guile/site/2.*/gnutls.scm
 %{_datadir}/guile/site/2.*/gnutls
+%if %{with doc}
 %{_infodir}/gnutls-guile.info*
+%endif
 %endif
