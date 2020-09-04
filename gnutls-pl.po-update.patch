@@ -11,7 +11,7 @@
 -"Project-Id-Version: gnutls-3.6.8\n"
 +"Project-Id-Version: gnutls-3.6.10\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2020-06-03 15:07+0200\n"
+ "POT-Creation-Date: 2020-09-04 09:02+0200\n"
 -"PO-Revision-Date: 2019-06-01 08:22+0200\n"
 -"Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
 +"PO-Revision-Date: 2019-09-29 20:22+0200\n"
@@ -19,24 +19,26 @@
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
  "MIME-Version: 1.0\n"
-@@ -1064,9 +1065,9 @@
+@@ -1064,10 +1065,10 @@
  msgstr "%sdirectoryName: %.*s\n"
  
  #: lib/x509/output.c:148
 -#, fuzzy, c-format
 +#, c-format
+ #| msgid "%s\t\t\totherName OID: %.*s\n"
  msgid "%sRegistered ID: %.*s\n"
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%sZarejestrowany ID: %.*s\n"
  
  #: lib/x509/output.c:152
  #, c-format
-@@ -1264,29 +1265,29 @@
+@@ -1264,33 +1265,33 @@
  msgstr "%s\t\t\tZrzut hex: "
  
  #: lib/x509/output.c:894
 -#, fuzzy, c-format
 +#, c-format
+ #| msgid "%s%s: %.*s\n"
  msgid "%s\t\t\t%.*s\n"
 -msgstr "%s%s: %.*s\n"
 +msgstr "%s\t\t\t%.*s\n"
@@ -50,6 +52,7 @@
  #: lib/x509/output.c:930
 -#, fuzzy, c-format
 +#, c-format
+ #| msgid "%s%s: %.*s\n"
  msgid "%s\t\t\tCATool: %.*s\n"
 -msgstr "%s%s: %.*s\n"
 +msgstr "%s\t\t\tCATool: %.*s\n"
@@ -57,6 +60,7 @@
  #: lib/x509/output.c:938
 -#, fuzzy, c-format
 +#, c-format
+ #| msgid "%s\t\t\totherName OID: %.*s\n"
  msgid "%s\t\t\tSignToolCert: %.*s\n"
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%s\t\t\tSignToolCert: %.*s\n"
@@ -64,18 +68,20 @@
  #: lib/x509/output.c:946
 -#, fuzzy, c-format
 +#, c-format
+ #| msgid "%s\t\t\totherName OID: %.*s\n"
  msgid "%s\t\t\tCAToolCert: %.*s\n"
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%s\t\t\tCAToolCert: %.*s\n"
  
  #: lib/x509/output.c:1013
  #, c-format
-@@ -1374,14 +1375,14 @@
+@@ -1374,16 +1375,16 @@
  msgstr "%s\t\tWłaściwości TLS (%s):\n"
  
  #: lib/x509/output.c:1254
 -#, fuzzy, c-format
 +#, c-format
+ #| msgid "%s\t\tSubject Key Identifier (%s):\n"
  msgid "%s\t\tSubject Signing Tool(%s):\n"
 -msgstr "%s\t\tIdentyfikator klucza przedmiotu (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania podmiotu(%s):\n"
@@ -83,6 +89,7 @@
  #: lib/x509/output.c:1260
 -#, fuzzy, c-format
 +#, c-format
+ #| msgid "%s\t\tIssuer Alternative Name (%s):\n"
  msgid "%s\t\tIssuer Signing Tool(%s):\n"
 -msgstr "%s\t\tAlternatywna nazwa wystawcy (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania wystawcy (%s):\n"
