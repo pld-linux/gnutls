@@ -273,8 +273,7 @@ Wiązania Guile do GnuTLS.
 	%{!?with_tpm:--without-tpm} \
 	--with-trousers-lib=%{_libdir}/libtspi.so.1
 
-# docs build is broken with -jN
-%{__make} -j1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
