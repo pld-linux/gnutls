@@ -13,7 +13,7 @@
 -"Project-Id-Version: gnutls-3.6.8\n"
 +"Project-Id-Version: gnutls-3.6.10\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2020-09-04 09:02+0200\n"
+ "POT-Creation-Date: 2020-12-02 11:09+0100\n"
 -"PO-Revision-Date: 2019-06-01 08:22+0200\n"
 +"PO-Revision-Date: 2020-09-09 21:30+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
@@ -22,14 +22,14 @@
 @@ -412,10 +413,8 @@
  msgstr "Nieobsługiwane rozszerzenie w certyfikacie X.509."
  
- #: lib/errors.c:189
+ #: lib/errors.c:188
 -#, fuzzy
 -#| msgid "Unsupported extension in X.509 certificate."
  msgid "Duplicate extension in X.509 certificate."
 -msgstr "Nieobsługiwane rozszerzenie w certyfikacie X.509."
 +msgstr "Powtórzone rozszerzenie w certyfikacie X.509."
  
- #: lib/errors.c:192
+ #: lib/errors.c:191
  msgid "Key usage violation in certificate has been detected."
 @@ -1070,10 +1069,10 @@
  msgstr "%sdirectoryName: %.*s\n"
