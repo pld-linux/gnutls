@@ -6,16 +6,17 @@
 %bcond_without	static_libs	# static libraries
 %bcond_without	doc		# do not generate documentation
 %bcond_without	guile		# Guile binding
+%bcond_with	af_alg		# Linux kernel AF_ALG based acceleration
 #
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.7.1
+Version:	3.7.2
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.7/%{name}-%{version}.tar.xz
-# Source0-md5:	278e1f50d79cd13727733adbf01fde8f
+# Source0-md5:	95c32a1af583ecfcb280648874c0fbd9
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -30,6 +31,7 @@ BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.14}
 %{?with_guile:BuildRequires:	guile-devel >= 5:2.2.0}
 BuildRequires:	libidn2-devel >= 2.0.0
+%{?with_af_alg:BuildRequires:	libkcapi-devel >= 1.3.0}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 4.11
 BuildRequires:	libunistring-devel
@@ -72,6 +74,7 @@ Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
 Requires:	libidn2 >= 2.0.0
+%{?with_af_alg:Requires:	libkcapi >= 1.3.0}
 Requires:	libtasn1 >= 4.11
 Requires:	nettle >= 3.6
 #Requires:	opencdk >= 0.6.6
@@ -264,6 +267,7 @@ Wiązania Guile do GnuTLS.
 %{__autoheader}
 %{__automake}
 %configure \
+	%{?with_af_alg:--enable-afalg} \
 	%{!?with_doc:--disable-doc} \
 	%{!?with_guile:--disable-guile} \
 	%{?with_openssl:--enable-openssl-compatibility} \
