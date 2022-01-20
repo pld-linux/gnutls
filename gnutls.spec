@@ -3,27 +3,31 @@
 %bcond_without	dane		# libdane (DANE with DNSSEC certificate verification)
 %bcond_without	openssl		# libgnutls-openssl compatibility library
 %bcond_without	tpm		# TPM support in gnutls
+%bcond_without	tpm2		# TPM2 support in gnutls
 %bcond_without	static_libs	# static libraries
 %bcond_without	doc		# do not generate documentation
 %bcond_without	guile		# Guile binding
 %bcond_with	af_alg		# Linux kernel AF_ALG based acceleration
-#
+%bcond_with	ktls		# Kernel TLS support
+
+%if %{with tpm2}
+%undefine	with_tpm
+%endif
+
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.7.2
-Release:	1
+Version:	3.7.3
+Release:	0.1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.7/%{name}-%{version}.tar.xz
-# Source0-md5:	95c32a1af583ecfcb280648874c0fbd9
+# Source0-md5:	3723d8fee66c5d45d780ca64c089ed23
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
 URL:		https://www.gnutls.org/
 BuildRequires:	autoconf >= 2.63
-BuildRequires:	autogen >= 5.16
-BuildRequires:	autogen-devel >= 5.16
 BuildRequires:	automake >= 1:1.12.2
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools >= 0.19
@@ -36,6 +40,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 4.11
 BuildRequires:	libunistring-devel
 BuildRequires:	libtool >= 2:2
+%{?with_ktls:BuildRequires:	linux-libc-headers >= 7:4.13}
 BuildRequires:	nettle-devel >= 3.6
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
@@ -43,10 +48,11 @@ BuildRequires:	nettle-devel >= 3.6
 BuildRequires:	p11-kit-devel >= 0.23.1
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
-BuildRequires:	rpmbuild(macros) >= 1.383
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
 %{?with_doc:BuildRequires:	texinfo >= 4.8}
+%{?with_tpm2:BuildRequires:	tpm2-tss-devel}
 %{?with_tpm:BuildRequires:	trousers-devel >= 0.3.11}
 %{?with_dane:BuildRequires:	unbound-devel}
 BuildRequires:	xz
@@ -262,7 +268,7 @@ Wiązania Guile do GnuTLS.
 
 %build
 %{__libtoolize}
-%{__aclocal} -I m4 -I src/libopts/m4 -I src/gl/m4 -I lib/unistring/m4
+%{__aclocal} -I m4 -I src/gl/m4 -I lib/unistring/m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -270,11 +276,13 @@ Wiązania Guile do GnuTLS.
 	%{?with_af_alg:--enable-afalg} \
 	%{!?with_doc:--disable-doc} \
 	%{!?with_guile:--disable-guile} \
+	%{__enable_disable ktls} \
 	%{?with_openssl:--enable-openssl-compatibility} \
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
 	%{!?with_tpm:--without-tpm} \
+	%{__with_without tpm2} \
 	--with-trousers-lib=%{_libdir}/libtspi.so.1
 
 %{__make}
