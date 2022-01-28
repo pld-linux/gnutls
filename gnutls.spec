@@ -26,6 +26,7 @@ Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.7/%{name}-%{version}.tar.xz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
+Patch3:		ktls.patch
 URL:		https://www.gnutls.org/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.12.2
@@ -263,6 +264,7 @@ Wiązania Guile do GnuTLS.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__rm} po/stamp-po
 

@@ -1,0 +1,93 @@
+From 0a14dc1b7b52abe458bb9c9bd67d89bec7ebb566 Mon Sep 17 00:00:00 2001
+From: Frantisek Krenzelok <krenzelok.frantisek@gmail.com>
+Date: Thu, 27 Jan 2022 13:54:21 +0100
+Subject: [PATCH] KTLS: hotfix
+
+fixed: keys will be set only when both sockets were enabled for ktls
+fixed: session->internals.ktls_enabled left uninitialized for non
+ktls-enabled build
+
+Signed-off-by: Frantisek Krenzelok <krenzelok.frantisek@gmail.com>
+---
+ lib/handshake.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/lib/handshake.c b/lib/handshake.c
+index f65430bbcf..82c895bfde 100644
+--- a/lib/handshake.c
++++ b/lib/handshake.c
+@@ -2910,9 +2910,11 @@ int gnutls_handshake(gnutls_session_t session)
+ 	}
+ 
+ #ifdef ENABLE_KTLS
+-	if (IS_KTLS_ENABLED(session, GNUTLS_KTLS_DUPLEX)) {
++	if (IS_KTLS_ENABLED(session, GNUTLS_KTLS_RECV) || IS_KTLS_ENABLED(session, GNUTLS_KTLS_SEND)) {
+ 		_gnutls_ktls_set_keys(session);
+ 	}
++#else
++	session->internals.ktls_enabled = 0;
+ #endif
+ 
+ 	return 0;
+-- 
+GitLab
+
+From 4828e3923486de2725dc73bf6e6a2db57f94945f Mon Sep 17 00:00:00 2001
+From: Jan Palus <jpalus@fastmail.com>
+Date: Fri, 28 Jan 2022 11:07:02 +0100
+Subject: [PATCH] ktls: fix _gnutls_ktls_send_control_msg return value
+
+always returned 0 on success while contract mandates to return number of
+bytes sent
+
+Fixes #1314
+
+Signed-off-by: Jan Palus <jpalus@fastmail.com>
+---
+ lib/system/ktls.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/lib/system/ktls.c b/lib/system/ktls.c
+index 03c94f6f80..7e3cb875ed 100644
+--- a/lib/system/ktls.c
++++ b/lib/system/ktls.c
+@@ -267,12 +267,13 @@ int _gnutls_ktls_send_control_msg(gnutls_session_t session,
+ 	const char *buf = data;
+ 	ssize_t ret;
+ 	int sockin, sockout;
++	size_t data_to_send = data_size;
+ 
+ 	assert (session != NULL);
+ 
+ 	gnutls_transport_get_int2(session, &sockin, &sockout);
+ 
+-	while (data_size > 0) {
++	while (data_to_send > 0) {
+ 		char cmsg[CMSG_SPACE(sizeof (unsigned char))];
+ 		struct msghdr msg = { 0 };
+ 		struct iovec msg_iov;   /* Vector of data to send/receive into. */
+@@ -291,7 +292,7 @@ int _gnutls_ktls_send_control_msg(gnutls_session_t session,
+ 		msg.msg_controllen = hdr->cmsg_len;
+ 
+ 		msg_iov.iov_base = (void *)buf;
+-		msg_iov.iov_len = data_size;
++		msg_iov.iov_len = data_to_send;
+ 
+ 		msg.msg_iov = &msg_iov;
+ 		msg.msg_iovlen = 1;
+@@ -310,10 +311,10 @@ int _gnutls_ktls_send_control_msg(gnutls_session_t session,
+ 		}
+ 
+ 		buf += ret;
+-		data_size -= ret;
++		data_to_send -= ret;
+ 	}
+ 
+-	return 0;
++	return data_size;
+ }
+ 
+ int _gnutls_ktls_recv_control_msg(gnutls_session_t session,
+-- 
+GitLab
+
