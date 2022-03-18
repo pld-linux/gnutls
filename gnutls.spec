@@ -10,23 +10,19 @@
 %bcond_with	af_alg		# Linux kernel AF_ALG based acceleration
 %bcond_with	ktls		# Kernel TLS support
 
-%if %{with tpm2}
-%undefine	with_tpm
-%endif
-
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.7.3
-Release:	3
+Version:	3.7.4
+Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.7/%{name}-%{version}.tar.xz
-# Source0-md5:	3723d8fee66c5d45d780ca64c089ed23
+# Source0-md5:	4bce06332c525eae540bb237433d4225
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
-Patch3:		ktls.patch
+Patch3:		zstd.patch
 URL:		https://www.gnutls.org/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.12.2
@@ -36,6 +32,7 @@ BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.14}
 %{?with_guile:BuildRequires:	guile-devel >= 5:2.2.0}
 BuildRequires:	libidn2-devel >= 2.0.0
+BuildRequires:	libbrotli-devel >= 1.0.0
 %{?with_af_alg:BuildRequires:	libkcapi-devel >= 1.3.0}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtasn1-devel >= 4.11
@@ -58,6 +55,7 @@ BuildRequires:	tar >= 1:1.22
 %{?with_dane:BuildRequires:	unbound-devel}
 BuildRequires:	xz
 BuildRequires:	zlib-devel
+BuildRequires:	zstd-devel >= 1.3.0
 Requires:	%{name}-libs = %{version}-%{release}
 %{?with_dane:Requires:	%{name}-dane = %{version}-%{release}}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -80,13 +78,18 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
+Requires:	libbrotli >= 1.0.0
 Requires:	libidn2 >= 2.0.0
 %{?with_af_alg:Requires:	libkcapi >= 1.3.0}
 Requires:	libtasn1 >= 4.11
 Requires:	nettle >= 3.6
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.23.1
-%{?with_tpm:Requires:	trousers-libs >= 0.3.11}
+Requires:	zstd >= 1.3.0
+# dlopened libtss2-*
+%{?with_tpm2:Suggests:	tpm2-tss}
+# dlopened libtspi
+%{?with_tpm:Suggests:	trousers-libs >= 0.3.11}
 Conflicts:	gnutls < 3.2.0
 
 %description libs
@@ -102,15 +105,16 @@ License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gmp-devel
+Requires:	libbrotli-devel >= 1.0.0
 Requires:	libidn2-devel
 Requires:	libtasn1-devel >= 4.11
 Requires:	libunistring-devel
 Requires:	nettle-devel >= 3.6
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.23.1
-%{?with_tpm2:Requires:	tpm2-tss-devel}
 %{?with_tpm:Requires:	trousers-devel >= 0.3.11}
 Requires:	zlib-devel
+Requires:	zstd-devel >= 1.3.0
 
 %description devel
 Header files etc to develop gnutls applications.
@@ -389,7 +393,7 @@ rm -rf $RPM_BUILD_ROOT
 %files c++
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnutlsxx.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnutlsxx.so.28
+%attr(755,root,root) %ghost %{_libdir}/libgnutlsxx.so.30
 
 %files c++-devel
 %defattr(644,root,root,755)
