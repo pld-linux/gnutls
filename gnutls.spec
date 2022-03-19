@@ -30,7 +30,7 @@ BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.14}
-%{?with_guile:BuildRequires:	guile-devel >= 5:2.2.0}
+%{?with_guile:BuildRequires:	guile-devel >= 5:3.0}
 BuildRequires:	libidn2-devel >= 2.0.0
 BuildRequires:	libbrotli-devel >= 1.0.0
 %{?with_af_alg:BuildRequires:	libkcapi-devel >= 1.3.0}
@@ -257,7 +257,7 @@ Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
 License:	LGPL v2.1+
 Group:		Development/Languages
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	guile >= 5:2.2.0
+Requires:	guile >= 5:3.0
 
 %description -n guile-gnutls
 Guile bindings for GnuTLS.
