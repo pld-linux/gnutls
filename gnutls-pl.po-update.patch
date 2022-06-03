@@ -1,5 +1,5 @@
---- gnutls-3.7.5/po/pl.po.orig	2022-05-12 14:26:40.000000000 +0200
-+++ gnutls-3.7.5/po/pl.po	2022-05-13 10:00:56.188634102 +0200
+--- gnutls-3.7.6/po/pl.po.orig	2022-05-27 09:42:54.000000000 +0200
++++ gnutls-3.7.6/po/pl.po	2022-06-03 22:40:07.934635778 +0200
 @@ -1,14 +1,15 @@
  # Polish translation for gnutls.
  # Copyright (C) 2006, 2007, 2008, 2009, 2011, 2012, 2013 Free Software Foundation, Inc.
@@ -11,15 +11,15 @@
  msgid ""
  msgstr ""
 -"Project-Id-Version: gnutls-3.6.8\n"
-+"Project-Id-Version: gnutls-3.7.3\n"
++"Project-Id-Version: gnutls-3.7.6\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
  "POT-Creation-Date: 2022-05-27 09:42+0200\n"
 -"PO-Revision-Date: 2019-06-01 08:22+0200\n"
-+"PO-Revision-Date: 2022-01-20 17:00+0100\n"
++"PO-Revision-Date: 2022-06-03 22:30+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "Language: pl\n"
-@@ -412,10 +413,8 @@
+@@ -412,10 +413,8 @@ msgid "Unsupported extension in X.509 ce
  msgstr "Nieobsługiwane rozszerzenie w certyfikacie X.509."
  
  #: lib/errors.c:188
@@ -31,7 +31,7 @@
  
  #: lib/errors.c:191
  msgid "Key usage violation in certificate has been detected."
-@@ -1070,10 +1069,10 @@
+@@ -1070,10 +1069,10 @@ msgid "%sdirectoryName: %.*s\n"
  msgstr "%sdirectoryName: %.*s\n"
  
  #: lib/x509/output.c:149
@@ -44,7 +44,20 @@
  
  #: lib/x509/output.c:153
  #, c-format
-@@ -1138,51 +1137,44 @@
+@@ -1086,10 +1085,9 @@ msgid "%sKRB5Principal: %.*s\n"
+ msgstr "%sKRB5Principal: %.*s\n"
+ 
+ #: lib/x509/output.c:161
+-#, fuzzy, c-format
+-#| msgid "%sKRB5Principal: %.*s\n"
++#, c-format
+ msgid "%sUser Principal Name: %.*s\n"
+-msgstr "%sKRB5Principal: %.*s\n"
++msgstr "%sNazwa zarządcy użytkownika: %.*s\n"
+ 
+ #: lib/x509/output.c:165
+ #, c-format
+@@ -1138,51 +1136,44 @@ msgid "\t\t\tAccess Method: %s (%s)\n"
  msgstr "\t\t\tMetoda dostępu: %s (%s)\n"
  
  #: lib/x509/output.c:484
@@ -111,7 +124,20 @@
  
  #: lib/x509/output.c:608
  #, c-format
-@@ -1330,33 +1322,29 @@
+@@ -1275,10 +1266,9 @@ msgid "%s\t\t\tIpsec IKE.\n"
+ msgstr "%s\t\t\tIpsec IKE.\n"
+ 
+ #: lib/x509/output.c:770
+-#, fuzzy, c-format
+-#| msgid "%s\t\t\tEmail protection.\n"
++#, c-format
+ msgid "%s\t\t\tSmart Card Logon.\n"
+-msgstr "%s\t\t\tOchrona poczty elektronicznej.\n"
++msgstr "%s\t\t\tLogowanie kartą procesorową.\n"
+ 
+ #: lib/x509/output.c:772
+ #, c-format
+@@ -1330,33 +1320,29 @@ msgid "%s\t\t\tHexdump: "
  msgstr "%s\t\t\tZrzut hex: "
  
  #: lib/x509/output.c:994
@@ -154,7 +180,7 @@
  
  #: lib/x509/output.c:1113
  #, c-format
-@@ -1436,10 +1424,9 @@
+@@ -1436,10 +1422,9 @@ msgid "%s\t\tAuthority Information Acces
  msgstr "%s\t\tInformacje Authority Information Access (%s):\n"
  
  #: lib/x509/output.c:1330
@@ -167,7 +193,7 @@
  
  #: lib/x509/output.c:1341
  #, c-format
-@@ -1452,22 +1439,20 @@
+@@ -1452,22 +1437,20 @@ msgid "%s\t\tTLS Features (%s):\n"
  msgstr "%s\t\tWłaściwości TLS (%s):\n"
  
  #: lib/x509/output.c:1359
@@ -196,7 +222,7 @@
  
  #: lib/x509/output.c:1387
  #, c-format
-@@ -1822,6 +1807,3 @@
+@@ -1822,6 +1805,3 @@ msgstr "Wystąpił błąd w kluczu publi
  #: libdane/errors.c:69
  msgid "Error in file."
  msgstr "Błąd w pliku."
