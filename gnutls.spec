@@ -6,19 +6,20 @@
 %bcond_without	tpm2		# TPM2 support in gnutls
 %bcond_without	static_libs	# static libraries
 %bcond_without	doc		# do not generate documentation
-%bcond_without	guile		# Guile binding
 %bcond_with	af_alg		# Linux kernel AF_ALG based acceleration
+%bcond_with	heartbeat	# heartbeat extension support
 %bcond_with	ktls		# Kernel TLS support
+%bcond_with	srp		# SRP authentication support
 
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.7.8
-Release:	2
+Version:	3.8.0
+Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
-Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.7/%{name}-%{version}.tar.xz
-# Source0-md5:	c7b749bae243c341e6be717baf7ffbad
+Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	20a662caf20112b6b9ad1f4a64db3a97
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -29,7 +30,6 @@ BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools >= 0.19
 BuildRequires:	gmp-devel
 %{?with_doc:BuildRequires:	gtk-doc >= 1.14}
-%{?with_guile:BuildRequires:	guile-devel >= 5:3.0}
 BuildRequires:	libidn2-devel >= 2.0.0
 BuildRequires:	libbrotli-devel >= 1.0.0
 %{?with_af_alg:BuildRequires:	libkcapi-devel >= 1.3.0}
@@ -250,20 +250,6 @@ Static gnutls-openssl library.
 %description openssl-static -l pl.UTF-8
 Statyczna biblioteka gnutls-openssl.
 
-%package -n guile-gnutls
-Summary:	Guile bindings for GnuTLS
-Summary(pl.UTF-8):	Wiązania Guile do GnuTLS
-License:	LGPL v2.1+
-Group:		Development/Languages
-Requires:	%{name}-libs = %{version}-%{release}
-Requires:	guile >= 5:3.0
-
-%description -n guile-gnutls
-Guile bindings for GnuTLS.
-
-%description -n guile-gnutls -l pl.UTF-8
-Wiązania Guile do GnuTLS.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -281,8 +267,9 @@ Wiązania Guile do GnuTLS.
 %configure \
 	%{?with_af_alg:--enable-afalg} \
 	%{!?with_doc:--disable-doc} \
-	%{!?with_guile:--disable-guile} \
+	%{__enable_disable heartbeat heartbeat-support} \
 	%{__enable_disable ktls} \
+	%{__enable_disable srp srp-authentication} \
 	%{?with_openssl:--enable-openssl-compatibility} \
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
@@ -301,14 +288,6 @@ rm -rf $RPM_BUILD_ROOT
 
 # although libgnutls.la is obsoleted by pkg-config, there is
 # .pc file missing for libgnutls-openssl, and it needs libgnutls.la
-
-%if %{with guile}
-# guile module - dynamic only
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/3.*/extensions/guile-gnutls-*.la
-%if %{with static_libs}
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/guile/3.*/extensions/guile-gnutls-*.a
-%endif
-%endif
 
 # images for (not installed) htmlized infos - already packaged with infos
 %if %{with doc}
@@ -340,9 +319,6 @@ rm -rf $RPM_BUILD_ROOT
 %post	openssl -p /sbin/ldconfig
 %postun	openssl -p /sbin/ldconfig
 
-%post	-n guile-gnutls -p /sbin/ldconfig
-%postun	-n guile-gnutls -p /sbin/ldconfig
-
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README.md THANKS
@@ -351,7 +327,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ocsptool
 %attr(755,root,root) %{_bindir}/p11tool
 %attr(755,root,root) %{_bindir}/psktool
-%attr(755,root,root) %{_bindir}/srptool
+%{?with_srp:%attr(755,root,root) %{_bindir}/srptool}
 %{?with_tpm:%attr(755,root,root) %{_bindir}/tpmtool}
 %if %{with doc}
 %{_mandir}/man1/certtool.1*
@@ -359,7 +335,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/ocsptool.1*
 %{_mandir}/man1/p11tool.1*
 %{_mandir}/man1/psktool.1*
-%{_mandir}/man1/srptool.1*
+%{?with_srp:%{_mandir}/man1/srptool.1*}
 %{_mandir}/man1/tpmtool.1*
 %{_infodir}/gnutls.info*
 %{_infodir}/gnutls-*.png
@@ -446,18 +422,5 @@ rm -rf $RPM_BUILD_ROOT
 %files openssl-static
 %defattr(644,root,root,755)
 %{_libdir}/libgnutls-openssl.a
-%endif
-%endif
-
-%if %{with guile}
-%files -n guile-gnutls
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/guile/3.*/extensions/guile-gnutls-v-2.so*
-%{_libdir}/guile/3.*/site-ccache/gnutls.go
-%{_libdir}/guile/3.*/site-ccache/gnutls
-%{_datadir}/guile/site/3.*/gnutls.scm
-%{_datadir}/guile/site/3.*/gnutls
-%if %{with doc}
-%{_infodir}/gnutls-guile.info*
 %endif
 %endif

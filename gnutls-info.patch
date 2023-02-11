@@ -29,17 +29,3 @@
  @end direntry
  
  @titlepage
---- gnutls-3.0.0/doc/gnutls-guile.texi.orig	2011-05-27 18:09:02.000000000 +0200
-+++ gnutls-3.0.0/doc/gnutls-guile.texi	2011-08-04 16:39:19.246496322 +0200
-@@ -29,9 +29,9 @@
- @end quotation
- @end copying
- 
--@dircategory Software libraries
-+@dircategory Libraries:
- @direntry
--* GnuTLS-Guile: (gnutls-guile).		GNU Transport Layer Security Library. Guile bindings.
-+* GnuTLS-Guile: (gnutls-guile).		GNU Transport Layer Security Library. Guile bindings
- @end direntry
- 
- @titlepage
