@@ -107,6 +107,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	gmp-devel
 Requires:	libbrotli-devel >= 1.0.0
 Requires:	libidn2-devel
+%{?with_af_alg:Requires:	libkcapi-devel >= 1.3.0}
 Requires:	libtasn1-devel >= 4.11
 Requires:	libunistring-devel
 Requires:	nettle-devel >= 3.6
