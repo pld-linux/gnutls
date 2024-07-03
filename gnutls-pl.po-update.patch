@@ -13,7 +13,7 @@
 -"Project-Id-Version: gnutls-3.6.8\n"
 +"Project-Id-Version: gnutls-3.7.6\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2024-04-04 11:30+0200\n"
+ "POT-Creation-Date: 2024-07-03 11:35+0200\n"
 -"PO-Revision-Date: 2019-06-01 08:22+0200\n"
 +"PO-Revision-Date: 2022-06-03 22:30+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
@@ -142,19 +142,19 @@
 -msgstr "Certyfikat nie został jeszcze uaktywniony."
 +msgstr "Certyfikat zawiera nieznane rozszerzenie krytyczne. "
  
- #: lib/errors.c:44
+ #: lib/errors.c:41
  msgid "Could not negotiate a supported cipher suite."
 @@ -514,10 +488,8 @@ msgid "Unsupported extension in X.509 ce
  msgstr "Nieobsługiwane rozszerzenie w certyfikacie X.509."
  
- #: lib/errors.c:182
+ #: lib/errors.c:179
 -#, fuzzy
 -#| msgid "Unsupported extension in X.509 certificate."
  msgid "Duplicate extension in X.509 certificate."
 -msgstr "Nieobsługiwane rozszerzenie w certyfikacie X.509."
 +msgstr "Powtórzone rozszerzenie w certyfikacie X.509."
  
- #: lib/errors.c:184
+ #: lib/errors.c:181
  msgid "Key usage violation in certificate has been detected."
 @@ -1172,10 +1144,10 @@ msgid "%sdirectoryName: %.*s\n"
  msgstr "%sdirectoryName: %.*s\n"
@@ -303,12 +303,12 @@
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%s\t\t\tCAToolCert: %.*s\n"
  
- #: lib/x509/output.c:1129
+ #: lib/x509/output.c:1127
  #, c-format
 @@ -1538,10 +1497,9 @@ msgid "%s\t\tAuthority Information Acces
  msgstr "%s\t\tInformacje Authority Information Access (%s):\n"
  
- #: lib/x509/output.c:1318
+ #: lib/x509/output.c:1316
 -#, fuzzy, c-format
 -#| msgid "%s\t\tProxy Certificate Information (%s):\n"
 +#, c-format
@@ -316,12 +316,12 @@
 -msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
 +msgstr "%s\t\tSCT precertyfikatu CT (%s):\n"
  
- #: lib/x509/output.c:1329
+ #: lib/x509/output.c:1327
  #, c-format
 @@ -1554,22 +1512,20 @@ msgid "%s\t\tTLS Features (%s):\n"
  msgstr "%s\t\tWłaściwości TLS (%s):\n"
  
- #: lib/x509/output.c:1346
+ #: lib/x509/output.c:1344
 -#, fuzzy, c-format
 -#| msgid "%s\t\tSubject Key Identifier (%s):\n"
 +#, c-format
@@ -329,7 +329,7 @@
 -msgstr "%s\t\tIdentyfikator klucza przedmiotu (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania podmiotu(%s):\n"
  
- #: lib/x509/output.c:1351
+ #: lib/x509/output.c:1349
 -#, fuzzy, c-format
 +#, c-format
  #| msgid "%s\t\tIssuer Alternative Name (%s):\n"
@@ -337,7 +337,7 @@
 -msgstr "%s\t\tAlternatywna nazwa wystawcy (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania wystawcy (%s):\n"
  
- #: lib/x509/output.c:1359
+ #: lib/x509/output.c:1357
 -#, fuzzy, c-format
 -#| msgid "%s\t\tKey Usage (%s):\n"
 +#, c-format
@@ -345,10 +345,10 @@
 -msgstr "%s\t\tUżycie klucza (%s):\n"
 +msgstr "%s\t\tNazwa (Common Name) (%s):\n"
  
- #: lib/x509/output.c:1372
+ #: lib/x509/output.c:1370
  #, c-format
 @@ -1924,6 +1880,3 @@ msgstr "Wystąpił błąd w kluczu publi
- #: libdane/errors.c:65
+ #: libdane/errors.c:62
  msgid "Error in file."
  msgstr "Błąd w pliku."
 -
