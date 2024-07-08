@@ -15,7 +15,7 @@ Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
 Version:	3.8.6
-Release:	2
+Release:	3
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.8/%{name}-%{version}.tar.xz
@@ -38,7 +38,7 @@ BuildRequires:	libtasn1-devel >= 4.11
 BuildRequires:	libunistring-devel
 BuildRequires:	libtool >= 2:2
 %{?with_ktls:BuildRequires:	linux-libc-headers >= 7:4.13}
-BuildRequires:	nettle-devel >= 3.6
+BuildRequires:	nettle-devel >= 3.10
 # miniopencdk is included in sources and currently maintained
 # as part of gnutls, not external package
 #BuildRequires:	opencdk-devel >= 0.6.6
@@ -82,7 +82,7 @@ Requires:	libbrotli >= 1.0.0
 Requires:	libidn2 >= 2.0.0
 %{?with_af_alg:Requires:	libkcapi >= 1.3.0}
 Requires:	libtasn1 >= 4.11
-Requires:	nettle >= 3.6
+Requires:	nettle >= 3.10
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.23.1
 # dlopened libtss2-*
@@ -113,7 +113,7 @@ Requires:	libidn2-devel
 %{?with_af_alg:Requires:	libkcapi-devel >= 1.3.0}
 Requires:	libtasn1-devel >= 4.11
 Requires:	libunistring-devel
-Requires:	nettle-devel >= 3.6
+Requires:	nettle-devel >= 3.10
 #Requires:	opencdk-devel >= 0.6.6
 Requires:	p11-kit-devel >= 0.23.1
 %{?with_tpm:Requires:	trousers-devel >= 0.3.11}
