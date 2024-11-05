@@ -78,14 +78,14 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-# dlopened libbrotli*
-Suggests:	libbrotli >= 1.0.0
 Requires:	libidn2 >= 2.0.0
 %{?with_af_alg:Requires:	libkcapi >= 1.3.0}
 Requires:	libtasn1 >= 4.11
 Requires:	nettle >= 3.10
 #Requires:	opencdk >= 0.6.6
 Requires:	p11-kit >= 0.23.1
+# dlopened libbrotli*
+Suggests:	libbrotli >= 1.0.0
 # dlopened libtss2-*
 %{?with_tpm2:Suggests:	tpm2-tss}
 # dlopened libtspi
