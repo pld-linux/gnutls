@@ -14,12 +14,12 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.8.7.1
+Version:	3.8.8
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	46777802233eb7203d47a8b8880c8c90
+# Source0-md5:	410d73daaeb1c0db9c12b617e97062c4
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
@@ -78,7 +78,8 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-Requires:	libbrotli >= 1.0.0
+# dlopened libbrotli*
+Suggests:	libbrotli >= 1.0.0
 Requires:	libidn2 >= 2.0.0
 %{?with_af_alg:Requires:	libkcapi >= 1.3.0}
 Requires:	libtasn1 >= 4.11
@@ -256,7 +257,7 @@ Static gnutls-openssl library.
 Statyczna biblioteka gnutls-openssl.
 
 %prep
-%setup -q -n %{name}-3.8.7
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
