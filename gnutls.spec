@@ -279,6 +279,7 @@ Statyczna biblioteka gnutls-openssl.
 	%{?with_openssl:--enable-openssl-compatibility} \
 	--disable-silent-rules \
 	%{?with_static_libs:--enable-static} \
+	--disable-tests \
 	--with-default-trust-store-file=/etc/certs/ca-certificates.crt \
 	%{!?with_tpm:--without-tpm} \
 	%{__with_without tpm2} \
