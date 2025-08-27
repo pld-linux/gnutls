@@ -56,8 +56,8 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 BuildRequires:	zstd-devel >= 1.3.0
-Requires:	%{name}-libs = %{version}-%{release}
-%{?with_dane:Requires:	%{name}-dane = %{version}-%{release}}
+Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
+%{?with_dane:Requires:	%{name}-dane%{?_isa} = %{version}-%{release}}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautostrip	.*\.go
@@ -78,22 +78,22 @@ grupę roboczą IETF TLS.
 Summary:	GnuTLS shared libraries
 Summary(pl.UTF-8):	Biblioteki współdzielone GnuTLS
 Group:		Libraries
-Requires:	libidn2 >= 2.0.0
-%{?with_af_alg:Requires:	libkcapi >= 1.3.0}
-Requires:	libtasn1 >= 4.11
-Requires:	nettle >= 3.10
+Requires:	libidn2%{?_isa} >= 2.0.0
+%{?with_af_alg:Requires:	libkcapi%{?_isa} >= 1.3.0}
+Requires:	libtasn1%{?_isa} >= 4.11
+Requires:	nettle%{?_isa} >= 3.10
 #Requires:	opencdk >= 0.6.6
-Requires:	p11-kit >= 0.23.1
+Requires:	p11-kit%{?_isa} >= 0.23.1
 # dlopened libbrotli*
-Suggests:	libbrotli >= 1.0.0
+Suggests:	libbrotli%{?_isa} >= 1.0.0
 # dlopened libtss2-*
-%{?with_tpm2:Suggests:	tpm2-tss}
+%{?with_tpm2:Suggests:	tpm2-tss%{?_isa}}
 # dlopened libtspi
-%{?with_tpm:Suggests:	trousers-libs >= 0.3.11}
+%{?with_tpm:Suggests:	trousers-libs%{?_isa} >= 0.3.11}
 # dlopened libz.so.1
-Suggests:	zlib
+Suggests:	zlib%{?_isa}
 # dlopened libzstd.so.1
-Suggests:	zstd >= 1.3.0
+Suggests:	zstd%{?_isa} >= 1.3.0
 Conflicts:	gnutls < 3.2.0
 
 %description libs
@@ -107,19 +107,19 @@ Summary:	Header files etc to develop gnutls applications
 Summary(pl.UTF-8):	Pliki nagłówkowe i inne do gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
-Requires:	%{name}-libs = %{version}-%{release}
-Requires:	gmp-devel
-Requires:	libbrotli-devel >= 1.0.0
-Requires:	libidn2-devel
-%{?with_af_alg:Requires:	libkcapi-devel >= 1.3.0}
-Requires:	libtasn1-devel >= 4.11
-Requires:	libunistring-devel
-Requires:	nettle-devel >= 3.10
+Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
+Requires:	gmp-devel%{?_isa}
+Requires:	libbrotli-devel%{?_isa} >= 1.0.0
+Requires:	libidn2-devel%{?_isa}
+%{?with_af_alg:Requires:	libkcapi-devel%{?_isa} >= 1.3.0}
+Requires:	libtasn1-devel%{?_isa} >= 4.11
+Requires:	libunistring-devel%{?_isa}
+Requires:	nettle-devel%{?_isa} >= 3.10
 #Requires:	opencdk-devel >= 0.6.6
-Requires:	p11-kit-devel >= 0.23.1
-%{?with_tpm:Requires:	trousers-devel >= 0.3.11}
-Requires:	zlib-devel
-Requires:	zstd-devel >= 1.3.0
+Requires:	p11-kit-devel%{?_isa} >= 0.23.1
+%{?with_tpm:Requires:	trousers-devel%{?_isa} >= 0.3.11}
+Requires:	zlib-devel%{?_isa}
+Requires:	zstd-devel%{?_isa} >= 1.3.0
 
 %description devel
 Header files etc to develop gnutls applications.
@@ -132,7 +132,7 @@ Summary:	Static gnutls library
 Summary(pl.UTF-8):	Biblioteka statyczna gnutls
 License:	LGPL v2.1+ (libgnutls), GPL v3+ (openssl library)
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static gnutls library.
@@ -145,7 +145,7 @@ Summary:	libgnutlsxx - C++ interface to gnutls library
 Summary(pl.UTF-8):	libgnutlsxx - interfejs C++ do biblioteki gnutls
 License:	LGPL v2.1+
 Group:		Libraries
-Requires:	%{name}-libs = %{version}-%{release}
+Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
 
 %description c++
 libgnutlsxx - C++ interface to gnutls library.
@@ -158,9 +158,9 @@ Summary:	Header files for libgnutlsxx, a C++ interface to gnutls library
 Summary(pl.UTF-8):	Pliki nagłówkowe libgnutlsxx - interfejsu C++ do biblioteki gnutls
 License:	LGPL v2.1+
 Group:		Development/Libraries
-Requires:	%{name}-c++ = %{version}-%{release}
-Requires:	%{name}-devel = %{version}-%{release}
-Requires:	libstdc++-devel
+Requires:	%{name}-c++%{?_isa} = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
+Requires:	libstdc++-devel%{?_isa}
 
 %description c++-devel
 Header files for libgnutlsxx, a C++ interface to gnutls library.
@@ -173,7 +173,7 @@ Summary:	Static version of libgnutlsxx, a C++ interface to gnutls library
 Summary(pl.UTF-8):	Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls
 License:	LGPL v2.1+
 Group:		Development/Libraries
-Requires:	%{name}-c++-devel = %{version}-%{release}
+Requires:	%{name}-c++-devel%{?_isa} = %{version}-%{release}
 
 %description c++-static
 Static version of libgnutlsxx, a C++ interface to gnutls library.
@@ -185,7 +185,7 @@ Statyczna wersja libgnutlsxx - interfejsu C++ do biblioteki gnutls.
 Summary:	DANE security library
 Summary(pl.UTF-8):	Biblioteka bezpieczeństwa DANE
 Group:		Libraries
-Requires:	%{name}-libs = %{version}-%{release}
+Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
 
 %description dane
 DANE security library.
@@ -197,9 +197,9 @@ Biblioteka bezpieczeństwa DANE.
 Summary:	Header file for DANE security library
 Summary(pl.UTF-8):	Plik nagłówkowy biblioteki bezpieczeństwa DANE
 Group:		Development/Libraries
-Requires:	%{name}-dane = %{version}-%{release}
-Requires:	%{name}-devel = %{version}-%{release}
-Requires:	unbound-devel
+Requires:	%{name}-dane%{?_isa} = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
+Requires:	unbound-devel%{?_isa}
 
 %description dane-devel
 Header file for DANE security library.
@@ -211,7 +211,7 @@ Plik nagłówkowy biblioteki bezpieczeństwa DANE.
 Summary:	Static DANE security library
 Summary(pl.UTF-8):	Statyczna biblioteka bezpieczeństwa DANE
 Group:		Development/Libraries
-Requires:	%{name}-dane-devel = %{version}-%{release}
+Requires:	%{name}-dane-devel%{?_isa} = %{version}-%{release}
 
 %description dane-static
 Static DANE security library.
@@ -223,7 +223,7 @@ Statyczna biblioteka bezpieczeństwa DANE.
 Summary:	OpenSSL compatibility library for GnuTLS
 Summary(pl.UTF-8):	Biblioteka zgodności z OpenSSL dla GnuTLS
 Group:		Libraries
-Requires:	%{name}-libs = %{version}-%{release}
+Requires:	%{name}-libs%{?_isa} = %{version}-%{release}
 
 %description openssl
 OpenSSL compatibility library for GnuTLS.
@@ -235,8 +235,8 @@ Biblioteka zgodności z OpenSSL dla GnuTLS.
 Summary:	Header file for gnutls-openssl library
 Summary(pl.UTF-8):	Plik nagłówkowy biblioteki gnutls-openssl
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-Requires:	%{name}-openssl = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
+Requires:	%{name}-openssl%{?_isa} = %{version}-%{release}
 
 %description openssl-devel
 Header file for gnutls-openssl library.
@@ -248,7 +248,7 @@ Plik nagłówkowy biblioteki gnutls-openssl.
 Summary:	Static gnutls-openssl library
 Summary(pl.UTF-8):	Statyczna biblioteka gnutls-openssl
 Group:		Development/Libraries
-Requires:	%{name}-openssl-devel = %{version}-%{release}
+Requires:	%{name}-openssl-devel%{?_isa} = %{version}-%{release}
 
 %description openssl-static
 Static gnutls-openssl library.
