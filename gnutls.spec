@@ -14,15 +14,16 @@
 Summary:	The GNU Transport Layer Security Library
 Summary(pl.UTF-8):	Biblioteka GNU TLS (Transport Layer Security)
 Name:		gnutls
-Version:	3.8.10
+Version:	3.8.11
 Release:	1
 License:	LGPL v2.1+ (libgnutls), LGPL v3+ (libdane), GPL v3+ (openssl library and tools)
 Group:		Libraries
 Source0:	https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	803c6f5c9cbe55c64fbb46690d329a77
+# Source0-md5:	614a4f4131ee9d9c004830181bddccea
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-pl.po-update.patch
+Patch3:		includes.patch
 URL:		https://www.gnutls.org/
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1:1.12.2
@@ -261,6 +262,7 @@ Statyczna biblioteka gnutls-openssl.
 %patch -P0 -p1
 %patch -P1 -p1
 %patch -P2 -p1
+%patch -P3 -p1
 
 %{__rm} po/stamp-po
 
