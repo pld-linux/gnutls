@@ -13,7 +13,7 @@
 -"Project-Id-Version: gnutls-3.6.8\n"
 +"Project-Id-Version: gnutls-3.8.7\n"
  "Report-Msgid-Bugs-To: bug-gnutls@gnu.org\n"
- "POT-Creation-Date: 2026-02-09 14:44+0000\n"
+ "POT-Creation-Date: 2026-04-29 14:26+0000\n"
 -"PO-Revision-Date: 2019-06-01 08:22+0200\n"
 +"PO-Revision-Date: 2024-08-27 22:02+0200\n"
  "Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
@@ -171,7 +171,7 @@
 @@ -1178,10 +1148,10 @@ msgid "%sdirectoryName: %.*s\n"
  msgstr "%sdirectoryName: %.*s\n"
  
- #: lib/x509/output.c:164
+ #: lib/x509/output.c:165
 -#, fuzzy, c-format
 +#, c-format
  #| msgid "%s\t\t\totherName OID: %.*s\n"
@@ -179,12 +179,12 @@
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%sZarejestrowany ID: %.*s\n"
  
- #: lib/x509/output.c:169
+ #: lib/x509/output.c:170
  #, c-format
 @@ -1194,10 +1164,9 @@ msgid "%sKRB5Principal: %.*s\n"
  msgstr "%sKRB5Principal: %.*s\n"
  
- #: lib/x509/output.c:179
+ #: lib/x509/output.c:180
 -#, fuzzy, c-format
 -#| msgid "%sKRB5Principal: %.*s\n"
 +#, c-format
@@ -192,12 +192,12 @@
 -msgstr "%sKRB5Principal: %.*s\n"
 +msgstr "%sNazwa zarządcy użytkownika: %.*s\n"
  
- #: lib/x509/output.c:184
- #, c-format
+ #: lib/x509/output.c:185
+ #, fuzzy, c-format
 @@ -1246,51 +1215,44 @@ msgid "\t\t\tAccess Method: %s (%s)\n"
  msgstr "\t\t\tMetoda dostępu: %s (%s)\n"
  
- #: lib/x509/output.c:519
+ #: lib/x509/output.c:525
 -#, fuzzy, c-format
 -#| msgid "\tRevoked certificates (%d):\n"
 +#, c-format
@@ -205,13 +205,13 @@
 -msgstr "\tUnieważnione certyfikaty (%d):\n"
 +msgstr "%s\t\t\tZnacznik czasu podpisanego certyfikatu %d:\n"
  
- #: lib/x509/output.c:524
+ #: lib/x509/output.c:530
  #, c-format
  msgid "%s\t\t\t\tVersion: %d (unknown SCT version)\n"
 -msgstr ""
 +msgstr "%s\t\t\t\tWersja: %d (nieznana wersja SCT)\n"
  
- #: lib/x509/output.c:537
+ #: lib/x509/output.c:543
 -#, fuzzy, c-format
 -#| msgid "\tVersion: %d\n"
 +#, c-format
@@ -219,7 +219,7 @@
 -msgstr "\tWersja: %d\n"
 +msgstr "%s\t\t\t\tWersja: %d\n"
  
- #: lib/x509/output.c:538
+ #: lib/x509/output.c:544
 -#, fuzzy, c-format
 -#| msgid "%s\t\t\tASCII: "
 +#, c-format
@@ -227,7 +227,7 @@
 -msgstr "%s\t\t\tASCII: "
 +msgstr "%s\t\t\t\tLog ID: "
  
- #: lib/x509/output.c:541
+ #: lib/x509/output.c:547
 -#, fuzzy, c-format
 -#| msgid "%s\t\t\tTime stamping.\n"
 +#, c-format
@@ -235,7 +235,7 @@
 -msgstr "%s\t\t\tOznaczanie czasu.\n"
 +msgstr "%s\t\t\t\tCzas: "
  
- #: lib/x509/output.c:544
+ #: lib/x509/output.c:550
 -#, fuzzy, c-format
 -#| msgid "%s\tExtensions:\n"
 +#, c-format
@@ -243,7 +243,7 @@
 -msgstr "%s\tRozszerzenia:\n"
 +msgstr "%s\t\t\t\tRozszerzenia: brak\n"
  
- #: lib/x509/output.c:546
+ #: lib/x509/output.c:552
 -#, fuzzy, c-format
 -#| msgid "\tSignature Algorithm: %s\n"
 +#, c-format
@@ -251,7 +251,7 @@
 -msgstr "\tAlgorytm podpisu: %s\n"
 +msgstr "%s\t\t\t\tAlgorytm podpisu: %s\n"
  
- #: lib/x509/output.c:548
+ #: lib/x509/output.c:554
 -#, fuzzy, c-format
 -#| msgid "\tSignature:\n"
 +#, c-format
@@ -259,12 +259,12 @@
 -msgstr "\tPodpis:\n"
 +msgstr "%s\t\t\t\tPodpis: "
  
- #: lib/x509/output.c:640
+ #: lib/x509/output.c:646
  #, c-format
 @@ -1383,10 +1345,9 @@ msgid "%s\t\t\tIpsec IKE.\n"
  msgstr "%s\t\t\tIpsec IKE.\n"
  
- #: lib/x509/output.c:797
+ #: lib/x509/output.c:803
 -#, fuzzy, c-format
 -#| msgid "%s\t\t\tEmail protection.\n"
 +#, c-format
@@ -272,12 +272,12 @@
 -msgstr "%s\t\t\tOchrona poczty elektronicznej.\n"
 +msgstr "%s\t\t\tLogowanie kartą procesorową.\n"
  
- #: lib/x509/output.c:799
+ #: lib/x509/output.c:805
  #, c-format
 @@ -1438,33 +1399,29 @@ msgid "%s\t\t\tHexdump: "
  msgstr "%s\t\t\tZrzut hex: "
  
- #: lib/x509/output.c:1016
+ #: lib/x509/output.c:1022
 -#, fuzzy, c-format
 -#| msgid "%s%s: %.*s\n"
 +#, c-format
@@ -285,13 +285,13 @@
 -msgstr "%s%s: %.*s\n"
 +msgstr "%s\t\t\t%.*s\n"
  
- #: lib/x509/output.c:1047
+ #: lib/x509/output.c:1053
  #, c-format
  msgid "%s\t\t\tSignTool: %.*s\n"
 -msgstr ""
 +msgstr "%s\t\t\tSignTool: %.*s\n"
  
- #: lib/x509/output.c:1056
+ #: lib/x509/output.c:1062
 -#, fuzzy, c-format
 -#| msgid "%s%s: %.*s\n"
 +#, c-format
@@ -299,7 +299,7 @@
 -msgstr "%s%s: %.*s\n"
 +msgstr "%s\t\t\tCATool: %.*s\n"
  
- #: lib/x509/output.c:1065
+ #: lib/x509/output.c:1071
 -#, fuzzy, c-format
 -#| msgid "%s\t\t\totherName OID: %.*s\n"
 +#, c-format
@@ -307,7 +307,7 @@
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%s\t\t\tSignToolCert: %.*s\n"
  
- #: lib/x509/output.c:1074
+ #: lib/x509/output.c:1080
 -#, fuzzy, c-format
 -#| msgid "%s\t\t\totherName OID: %.*s\n"
 +#, c-format
@@ -315,12 +315,12 @@
 -msgstr "%s\t\t\tOID otherName: %.*s\n"
 +msgstr "%s\t\t\tCAToolCert: %.*s\n"
  
- #: lib/x509/output.c:1142
+ #: lib/x509/output.c:1148
  #, c-format
 @@ -1544,10 +1501,9 @@ msgid "%s\t\tAuthority Information Acces
  msgstr "%s\t\tInformacje Authority Information Access (%s):\n"
  
- #: lib/x509/output.c:1331
+ #: lib/x509/output.c:1337
 -#, fuzzy, c-format
 -#| msgid "%s\t\tProxy Certificate Information (%s):\n"
 +#, c-format
@@ -328,12 +328,12 @@
 -msgstr "%s\t\tInformacja o certyfikacie proxy (%s):\n"
 +msgstr "%s\t\tSCT precertyfikatu CT (%s):\n"
  
- #: lib/x509/output.c:1342
+ #: lib/x509/output.c:1348
  #, c-format
 @@ -1560,22 +1516,20 @@ msgid "%s\t\tTLS Features (%s):\n"
  msgstr "%s\t\tWłaściwości TLS (%s):\n"
  
- #: lib/x509/output.c:1359
+ #: lib/x509/output.c:1365
 -#, fuzzy, c-format
 -#| msgid "%s\t\tSubject Key Identifier (%s):\n"
 +#, c-format
@@ -341,7 +341,7 @@
 -msgstr "%s\t\tIdentyfikator klucza przedmiotu (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania podmiotu(%s):\n"
  
- #: lib/x509/output.c:1364
+ #: lib/x509/output.c:1370
 -#, fuzzy, c-format
 +#, c-format
  #| msgid "%s\t\tIssuer Alternative Name (%s):\n"
@@ -349,7 +349,7 @@
 -msgstr "%s\t\tAlternatywna nazwa wystawcy (%s):\n"
 +msgstr "%s\t\tNarzędzie podpisywania wystawcy (%s):\n"
  
- #: lib/x509/output.c:1372
+ #: lib/x509/output.c:1378
 -#, fuzzy, c-format
 -#| msgid "%s\t\tKey Usage (%s):\n"
 +#, c-format
@@ -357,7 +357,7 @@
 -msgstr "%s\t\tUżycie klucza (%s):\n"
 +msgstr "%s\t\tNazwa (Common Name) (%s):\n"
  
- #: lib/x509/output.c:1385
+ #: lib/x509/output.c:1391
  #, c-format
 @@ -1930,6 +1884,3 @@ msgstr "Wystąpił błąd w kluczu publi
  #: libdane/errors.c:62
